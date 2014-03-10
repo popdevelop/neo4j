@@ -65,7 +65,7 @@ module.exports = (grunt) ->
         tasks: ["livereload"]
 
       jade:
-        files: ['app/index.jade', 'app/views/**/*.jade', 'app/content/**/*.jade']
+        files: ['app/index.jade','app/login.jade', 'app/views/**/*.jade', 'app/content/**/*.jade']
         tasks: ['jade']
 
     connect:
@@ -154,7 +154,7 @@ module.exports = (grunt) ->
 
     jade:
       index:
-        src: ["<%= yeoman.app %>/index.jade"]
+        src: ["<%= yeoman.app %>/index.jade", "<%= yeoman.app %>/login.jade"]
         dest: '<%= yeoman.app %>'
         options:
           client: false

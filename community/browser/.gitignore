@@ -5,6 +5,7 @@ dist
 # app/components
 app/styles/main.css
 app/index.html
+app/login.html
 app/views/**/*.html
 app/content/**/*.html
 
