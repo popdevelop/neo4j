@@ -3,13 +3,18 @@ html
   head
     link(rel="stylesheet", href="styles/login.css")
   body
-    .wrapper
-      h1 Welcome to Neo4j in the cloud!
-      p
-        a.btn(href='#') Login with GitHub
+    .expand
+      .wrapper
+        h1 Welcome to the Neo4j cloud
+        p
+          a.btn(href='#') Login with GitHub
   script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js')
   script(src='components/postmessage/postmessage.js')
-  script.
+  script(type="text/javascript")
+    $(function(){
+      $('.expand').fadeIn(300);
+    });
+  script(type="text/javascript")
     function send(channel, data) {
       pm({
         target: window.parent,

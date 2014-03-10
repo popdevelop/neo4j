@@ -13,18 +13,21 @@ html, body
 body
   font: 13px 'Helvetica Neue', Helvetica, Arial, sans-serif
   // background: #222
-  background: rgba(34,34,34,0.95);
-  color: #fff
-  stretch()
+  color: #E6E8EB
   overflow: hidden
 
 //html
-//  background: radial-gradient(ellipse at center, rgba(34,34,34,0.91) 0%,rgba(34,34,34,1) 100%);
+
+.expand
+  display: none
+  //background: radial-gradient(ellipse at center, rgba(34,34,34,0.91) 0%,rgba(34,34,34,1) 100%);
+  background: rgba(34,34,34,0.95);
+  stretch()
 
 .wrapper
   width: 380px
   margin: 0 auto
-  margin-top: 26%
+  margin-top: 22%
 
 h1
   text-align: center
@@ -41,13 +44,19 @@ h1
   zoom: 1
   border-radius: 6px
   box-shadow: none
-  transition-property: background
-  transition-duration: 0.3s
+  transition: all 0.3s
   text-shadow: none
   border: none
   padding: 12px
 
   font-size: 19px
-  background: transparent
-  color: #fff
-  border: 2px solid #fff
+  background: rgba(230, 232, 235, 0.1);
+  color: #E6E8EB
+  border: 2px solid #E6E8EB
+
+  &:hover
+    background: #E6E8EB
+    color: #222
+
+  &:active
+    opacity: 0.6
