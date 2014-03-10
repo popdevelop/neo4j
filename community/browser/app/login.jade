@@ -12,7 +12,7 @@ html
   script(src='components/postmessage/postmessage.js')
   script(type="text/javascript")
     $(function(){
-      $('.expand').fadeIn(300);
+      $('.expand').fadeIn(200);
     });
   script(type="text/javascript")
     function send(channel, data) {
@@ -24,7 +24,7 @@ html
     }
 
     $('body').click(function(){
-      send('close');
+      $('.expand').fadeOut(200, function() { send('close'); })
     })
 
     $(function() { send('ready'); })
