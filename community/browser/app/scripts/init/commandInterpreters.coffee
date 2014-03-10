@@ -110,6 +110,15 @@ angular.module('neo4jApp')
           q.promise
       ]
 
+    FrameProvider.interpreters.push
+      type: 'login'
+      matches: ["#{cmdchar}login"]
+      exec: ['Login', (Login) ->
+        (input, q) ->
+          Login.open()
+          #q.promise
+      ]
+
     # about handler
     # FrameProvider.interpreters.push
     #   type: 'info'
@@ -196,7 +205,7 @@ angular.module('neo4jApp')
     # Cypher handler
     FrameProvider.interpreters.push
       type: 'cypher'
-      matches: ['cypher', 'start', 'match', 'create', 'drop', 
+      matches: ['cypher', 'start', 'match', 'create', 'drop',
         'return', 'set', 'remove', 'delete', 'merge', 'optional',
         'where', 'foreach', 'with', 'load', 'using'
       ]
