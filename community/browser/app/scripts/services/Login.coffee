@@ -46,6 +46,13 @@ angular.module('neo4jApp.services')
     )
     .insertAfter('body')
 
+    # Recieve messages from the login frame
+    #pm.bind 'ready', (data) ->
+    #  console.log alert('ready')
+
+    pm.bind 'close', ->
+      iframe.removeAttr('src').hide()
+
     {
       open: ->
         iframe.attr('src', Settings.endpoint.login).show()

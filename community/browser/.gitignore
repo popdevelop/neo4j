@@ -4,6 +4,7 @@ dist
 .sass-cache
 # app/components
 app/styles/main.css
+app/styles/login.css
 app/index.html
 app/login.html
 app/views/**/*.html
