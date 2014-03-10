@@ -23,8 +23,10 @@ html
       })
     }
 
-    $('body').click(function(){
-      $('.expand').fadeOut(200, function() { send('close'); })
+    $('.expand').click(function(e){
+      if(e.target === this) {
+        $('.expand').fadeOut(200, function() { send('close'); })
+      }
     })
 
     $(function() { send('ready'); })
