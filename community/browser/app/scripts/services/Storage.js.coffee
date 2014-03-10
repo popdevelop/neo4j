@@ -21,27 +21,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 'use strict';
 
 angular.module('neo4jApp.services')
-  .factory 'Persistable', [
-    'Storage'
-    (Storage) ->
-      class Persistable
-        # Set all properties and generate an ID if missing
-        constructor: (data = {})->
-          if angular.isObject(data)
-            angular.extend(@, data)
-          @id ?= UUID.genV1().toString()
+.service 'Storage', ['$q', 'localStorageService', ($q, localStorageService) ->
 
-        #
-        # Class methods
-        #
+  # TODO: implement authentication service to determine if we are connected to NTN
+  online = no
 
-        # Retrieve all items
-        @fetch: ->
-          Storage.get(@storageKey)
+  lsAdapter =
+    get: ->
+      dfd = $q.defer()
+      data = localStorageService.get.apply(null, arguments)
+      dfd.resolve(data)
+      dfd.promise
+    add: ->
+      dfd = $q.defer()
+      localStorageService.add.apply(null, arguments)
+      dfd.resolve()
+      dfd.promise
 
-        # Save all items
-        @save: (data) ->
-          Storage.add(@storageKey, JSON.stringify(data))
+  ntnAdapter =
+    get: (key) ->
+      dfd = $q.defer()
+      dfd.resolve(data)
+      dfd.promise
 
-      Persistable
-  ]
+    add: (key, value) ->
+      dfd = $q.defer()
+      dfd.resolve()
+      dfd.promise
+
+  get: -> (if online then ntnAdapter else lsAdapter).get.apply null, arguments
+  add: -> (if online then ntnAdapter else lsAdapter).add.apply null, arguments
+]

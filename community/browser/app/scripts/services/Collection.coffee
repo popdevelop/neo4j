@@ -25,10 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
 angular.module('neo4jApp.services')
-  .factory 'Collection', [
-    () ->
+  .factory 'Collection', ['$rootScope'
+    ($rootScope) ->
       class Collection
         constructor: (items, @_model) ->
+          @items = []
           @_reset()
           @add(items) if items?
 
@@ -128,7 +129,12 @@ angular.module('neo4jApp.services')
 
         fetch: ->
           return unless @_model or angular.isFunction(@_model.fetch)
-          @reset(@_model.fetch())
+          @_model.fetch().then((data) =>
+            return unless data
+            @_reset()
+            @add(new @_model(p)) for p in data
+            $rootScope.$apply() unless $rootScope.$$phase
+          )
           @
 
         #
@@ -136,7 +142,7 @@ angular.module('neo4jApp.services')
         #
 
         _reset: ->
-          @items = []
+          @items.length = 0
           @_byId = {}
           @length = 0
 
