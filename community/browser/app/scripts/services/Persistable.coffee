@@ -22,8 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 angular.module('neo4jApp.services')
   .factory 'Persistable', [
-    'Storage'
-    (Storage) ->
+    'localStorageService'
+    (localStorageService) ->
       class Persistable
         # Set all properties and generate an ID if missing
         constructor: (data = {})->
@@ -37,11 +37,17 @@ angular.module('neo4jApp.services')
 
         # Retrieve all items
         @fetch: ->
-          Storage.get(@storageKey)
+          persisted = try
+            (localStorageService.get(@storageKey))
+          catch
+            null
+
+          return [] unless angular.isArray(persisted)
+          new @(p) for p in persisted
 
         # Save all items
         @save: (data) ->
-          Storage.add(@storageKey, JSON.stringify(data))
+          localStorageService.add(@storageKey, JSON.stringify(data))
 
       Persistable
   ]
