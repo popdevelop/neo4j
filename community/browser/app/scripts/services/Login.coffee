@@ -61,7 +61,7 @@ angular.module('neo4jApp.services')
 
     _close = ->
       loginFrame.removeAttr('src').hide()
-      _dfd?.reject()
+      if loggedIn then _dfd?.resolve() else _dfd?.reject()
       return
 
     _ajaxConnect = ->

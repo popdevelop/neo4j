@@ -116,8 +116,10 @@ angular.module('neo4jApp')
       matches: ["#{cmdchar}login"]
       exec: ['Login', (Login) ->
         (input, q) ->
-          p = Login.open()
-          p.then(q.resolve, -> q.reject(message: "Unable to log in"))
+          Login.open()
+          .then(q.resolve, ->
+            q.reject(message: "Unable to log in")
+          )
           q.promise
       ]
 
