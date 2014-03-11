@@ -109,7 +109,7 @@ angular.module('neo4jApp.services')
       open: ->
         _dfd = $q.defer()
         loginFrame.attr('src', Settings.endpoint.login).show()
-        _dfd
+        _dfd.promise
 
       close: _close
 
