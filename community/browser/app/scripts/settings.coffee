@@ -28,7 +28,7 @@ angular.module('neo4jApp.settings', [])
     endpoint:
       console: "#{baseURL}/db/manage/server/console"
       jmx: "#{baseURL}/db/manage/server/jmx/query"
-      login: "login.html"
+      login: "http://localhost:9292/browser/login"
       ntn: 'protected.html'
       rest: restAPI
       cypher: "#{restAPI}/cypher"
