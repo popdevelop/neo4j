@@ -100,8 +100,8 @@ angular.module('neo4jApp.services')
 
     pm.bind 'ajax.failed', ->
       loggedIn = no
+      $rootScope.$broadcast('user:authenticated', no)
       d[1].reject({}) for d in _ajaxDeferred
-      ajaxFrame.removeAttr('src')
 
     _ajaxConnect()
 
