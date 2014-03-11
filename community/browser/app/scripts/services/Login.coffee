@@ -24,7 +24,7 @@ angular.module('neo4jApp.services')
 .factory 'Login', [
   'Settings', '$q', '$rootScope'
   (Settings, $q, $rootScope) ->
-    dfd = null
+    _dfd = null
     loggedIn = no
 
     loginFrame = angular.element('<iframe>')
@@ -61,7 +61,8 @@ angular.module('neo4jApp.services')
 
     _close = ->
       loginFrame.removeAttr('src').hide()
-      dfd?.reject()
+      _dfd?.reject()
+      return
 
     _ajaxConnect = ->
       ajaxFrame.attr('src', Settings.endpoint.ntn)
@@ -106,9 +107,9 @@ angular.module('neo4jApp.services')
 
     {
       open: ->
-        dfd = $q.defer()
+        _dfd = $q.defer()
         loginFrame.attr('src', Settings.endpoint.login).show()
-        dfd
+        _dfd
 
       close: _close
 
