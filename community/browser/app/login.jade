@@ -11,10 +11,6 @@ html
   script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js')
   script(src='components/postmessage/postmessage.js')
   script(type="text/javascript")
-    $(function(){
-      $('.expand').fadeIn(200);
-    });
-  script(type="text/javascript")
     function send(channel, data) {
       pm({
         target: window.parent,
@@ -23,10 +19,13 @@ html
       })
     }
 
+    $(function(){
+      send('login.ready');
+      $('.expand').fadeIn(200);
+    });
+
     $('.expand').click(function(e){
       if(e.target === this) {
-        $('.expand').fadeOut(200, function() { send('close'); })
+        $('.expand').fadeOut(200, function() { send('login.close'); })
       }
     })
-
-    $(function() { send('ready'); })

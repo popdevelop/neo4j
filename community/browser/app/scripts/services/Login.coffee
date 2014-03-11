@@ -22,9 +22,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 angular.module('neo4jApp.services')
 .factory 'Login', [
-  'Settings'
-  (Settings) ->
-    iframe = angular.element('<iframe>')
+  'Settings', '$q'
+  (Settings, $q) ->
+    dfd = null
+    loggedIn = no
+
+    loginFrame = angular.element('<iframe>')
     .attr('name', 'neo4jLogin')
     .attr('allowtransparency', true)
     .attr('seamless', true)
@@ -46,17 +49,74 @@ angular.module('neo4jApp.services')
     )
     .insertAfter('body')
 
-    # Recieve messages from the login frame
-    #pm.bind 'ready', (data) ->
-    #  console.log alert('ready')
+    ajaxFrame = angular.element('<iframe>')
+    .attr('name', 'neo4jAjax')
+    .css(
+      height: '0',
+      width: '0',
+      visibility: 'hidden',
+      display: 'none'
+    )
+    .insertAfter('body')
 
-    pm.bind 'close', ->
-      iframe.removeAttr('src').hide()
+    _close = ->
+      loginFrame.removeAttr('src').hide()
+      dfd?.reject()
+
+    _ajaxConnect = ->
+      ajaxFrame.attr('src', Settings.endpoint.ntn)
+
+    _ajaxDeferred = []
+    _ajax = (data) ->
+      dfd = $q.defer()
+      if not loggedIn
+        _ajaxDeferred.push([data, dfd])
+        return dfd.promise
+
+      pm({
+        target: window.frames['neo4jAjax']
+        type:"ajax",
+        data: data,
+        success: (data) ->
+          if(data.status < 300)
+            dfd.resolve(data)
+          else
+            dfd.reject(data)
+      })
+      dfd.promise
+
+    # Recieve messages from the login frame
+    # pm.bind 'login.ready', (data) ->
+
+    pm.bind 'login.close', _close
+    pm.bind 'ajax.ready', ->
+      loggedIn = yes
+      for d in _ajaxDeferred
+        _ajax(d[0])
+        .then(d[1].resolve, d[1].reject)
+      return
+
+    pm.bind 'ajax.failed', ->
+      loggedIn = no
+      ajaxFrame.removeAttr('src')
+
+    _ajaxConnect()
 
     {
       open: ->
-        iframe.attr('src', Settings.endpoint.login).show()
-      close: ->
-        iframe.removeAttr('src').hide()
+        dfd = $q.defer()
+        loginFrame.attr('src', Settings.endpoint.login).show()
+        dfd
+
+      close: _close
+
+      ajax: _ajax
     }
 ]
+
+angular.module('neo4jApp.services').run([
+  'Login', (Login) ->
+    Login.ajax({
+      url: '/me'
+    })
+])

@@ -7,6 +7,7 @@ app/styles/main.css
 app/styles/login.css
 app/index.html
 app/login.html
+app/protected.html
 app/views/**/*.html
 app/content/**/*.html
 
