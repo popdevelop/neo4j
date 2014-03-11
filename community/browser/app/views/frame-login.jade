@@ -1,0 +1,11 @@
+div(fullscreen)
+  .inner
+    .view-result.account(ng-show='!frame.hasErrors')
+      span(ng-show='frame.isLoading') Initated login...
+      span(ng-show='!frame.isLoading') Logged in as Johan Brissmyr (brissmyr@gmail.com)
+
+    .status-bar.error(ng-show='frame.hasErrors')
+      div
+        span
+          .icon-warning-sign
+          {{frame.errorText}}
