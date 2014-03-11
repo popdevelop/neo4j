@@ -4,8 +4,6 @@ angular.module('neo4jApp')
   'localStorageService'
   '$rootScope'
   (Login, localStorageService, $rootScope) ->
-
-
     # Sync local storage to the cloud
     sync = ->
       keys = localStorageService.keys()
@@ -17,8 +15,9 @@ angular.module('neo4jApp')
         method: 'PUT'
         url: '/api/v1/store'
         data: JSON.stringify(d)
-      }).then((d)->
-        console.log d
+      }).then((response)->
+        for k, v of response
+          localStorageService.set(k, v)
       )
 
     $rootScope.$on 'user:authenticated', (evt, authenticated) ->
