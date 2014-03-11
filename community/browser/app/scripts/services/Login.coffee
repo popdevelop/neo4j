@@ -102,6 +102,7 @@ angular.module('neo4jApp.services')
       loggedIn = no
       $rootScope.$broadcast('user:authenticated', no)
       d[1].reject({}) for d in _ajaxDeferred
+      return
 
     _ajaxConnect()
 
@@ -109,6 +110,11 @@ angular.module('neo4jApp.services')
       open: ->
         _dfd = $q.defer()
         loginFrame.attr('src', Settings.endpoint.login).show()
+        _dfd.promise
+
+      logout: ->
+        _dfd = $q.defer()
+        loginFrame.attr('src', Settings.endpoint.logout)
         _dfd.promise
 
       close: _close

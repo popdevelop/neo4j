@@ -119,6 +119,15 @@ angular.module('neo4jApp')
           #q.promise
       ]
 
+    FrameProvider.interpreters.push
+      type: 'logout'
+      matches: ["#{cmdchar}logout"]
+      exec: ['Login', (Login) ->
+        (input, q) ->
+          Login.logout()
+          #q.promise
+      ]
+
     # about handler
     # FrameProvider.interpreters.push
     #   type: 'info'

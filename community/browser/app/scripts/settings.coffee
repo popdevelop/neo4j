@@ -29,6 +29,7 @@ angular.module('neo4jApp.settings', [])
       console: "#{baseURL}/db/manage/server/console"
       jmx: "#{baseURL}/db/manage/server/jmx/query"
       login: "http://localhost:9292/browser/login"
+      logout: "http://localhost:9292/logout"
       ntn: "http://localhost:9292/browser/ajax"
       rest: restAPI
       cypher: "#{restAPI}/cypher"
