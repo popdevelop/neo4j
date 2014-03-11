@@ -79,7 +79,7 @@ angular.module('neo4jApp.services')
         data: data,
         success: (data) ->
           if(data.status < 300)
-            dfd.resolve(data.responseJSON, response)
+            dfd.resolve(data.responseJSON, data)
           else
             dfd.reject(data)
       })

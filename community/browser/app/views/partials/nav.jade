@@ -12,9 +12,9 @@
     li(ng-class='{active: showingDrawer("info") }')
       a.icon-info-sign(ng-click='toggleDrawer("info")')
   ul.nav.nav-list.bottom
-    li(ng-class='{active: showingDrawer("profile") }')
+    li(ng-class='{active: showingDrawer("profile") }', ng-if='currentUser')
       a(ng-click='toggleDrawer("profile")')
         &nbsp;
-        .avatar(style='background-image: url(https://avatars.githubusercontent.com/u/238031)')
+        .avatar(ng-style='{"background-image": "url("+currentUser.image+")"}')
     li(ng-class='{active: showingDrawer("credits") }')
       a(ng-click='toggleDrawer("credits")') &copy;
