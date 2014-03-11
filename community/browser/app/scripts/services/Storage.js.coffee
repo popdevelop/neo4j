@@ -21,34 +21,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 'use strict';
 
 angular.module('neo4jApp.services')
-.service 'Storage', ['$q', 'localStorageService', ($q, localStorageService) ->
+.service 'Storage', [
+  '$q', '$rootScope', 'localStorageService', 'Login'
+  ($q, $rootScope, localStorageService, Login) ->
+    lsAdapter =
+      get: ->
+        dfd = $q.defer()
+        data = localStorageService.get.apply(null, arguments)
+        dfd.resolve(data)
+        dfd.promise
+      add: ->
+        dfd = $q.defer()
+        localStorageService.add.apply(null, arguments)
+        dfd.resolve()
+        dfd.promise
 
-  # TODO: implement authentication service to determine if we are connected to NTN
-  online = no
+    ntnAdapter =
+      get: ->
+        Login.ajax({
+          url: '/api/v1/scripts'
+        })
 
-  lsAdapter =
-    get: ->
-      dfd = $q.defer()
-      data = localStorageService.get.apply(null, arguments)
-      dfd.resolve(data)
-      dfd.promise
-    add: ->
-      dfd = $q.defer()
-      localStorageService.add.apply(null, arguments)
-      dfd.resolve()
-      dfd.promise
+      add: (key, value) ->
+        Login.ajax({
+          method: 'POST'
+          url: '/api/v1/scripts'
+        })
 
-  ntnAdapter =
-    get: (key) ->
-      dfd = $q.defer()
-      dfd.resolve(data)
-      dfd.promise
-
-    add: (key, value) ->
-      dfd = $q.defer()
-      dfd.resolve()
-      dfd.promise
-
-  get: -> (if online then ntnAdapter else lsAdapter).get.apply null, arguments
-  add: -> (if online then ntnAdapter else lsAdapter).add.apply null, arguments
+    get: -> (if Login.authenticated() then ntnAdapter else lsAdapter).get.apply null, arguments
+    add: -> (if Login.authenticated() then ntnAdapter else lsAdapter).add.apply null, arguments
 ]

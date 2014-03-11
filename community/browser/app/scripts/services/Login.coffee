@@ -22,8 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 angular.module('neo4jApp.services')
 .factory 'Login', [
-  'Settings', '$q'
-  (Settings, $q) ->
+  'Settings', '$q', '$rootScope'
+  (Settings, $q, $rootScope) ->
     dfd = null
     loggedIn = no
 
@@ -79,7 +79,7 @@ angular.module('neo4jApp.services')
         data: data,
         success: (data) ->
           if(data.status < 300)
-            dfd.resolve(data)
+            dfd.resolve(data.responseJSON, response)
           else
             dfd.reject(data)
       })
@@ -91,7 +91,8 @@ angular.module('neo4jApp.services')
     pm.bind 'login.close', _close
     pm.bind 'ajax.ready', ->
       loggedIn = yes
-      for d in _ajaxDeferred
+      $rootScope.$broadcast('user:authenticated', yes)
+      while d = _ajaxDeferred.pop()
         _ajax(d[0])
         .then(d[1].resolve, d[1].reject)
       return
@@ -112,12 +113,7 @@ angular.module('neo4jApp.services')
       close: _close
 
       ajax: _ajax
+
+      authenticated: -> loggedIn
     }
 ]
-
-angular.module('neo4jApp.services').run([
-  'Login', (Login) ->
-    Login.ajax({
-      url: '/me'
-    })
-])
