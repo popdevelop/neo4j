@@ -18,6 +18,7 @@ angular.module('neo4jApp')
       }).then((response)->
         for k, v of response
           localStorageService.set(k, v)
+        $rootScope.$broadcast 'localStorage:update'
       )
 
     $rootScope.$on 'user:authenticated', (evt, authenticated) ->

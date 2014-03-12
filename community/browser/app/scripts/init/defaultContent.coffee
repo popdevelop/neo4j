@@ -104,7 +104,7 @@ CREATE (n) RETURN n
 //   'LabelName' with label of node to delete
 //   'propertyKey' with property to find
 //   'expected_value' with value of property
-START n=node(*) 
+START n=node(*)
 MATCH (n:LabelName)-[r?]-()
 WHERE n.propertyKey = "expected_value"
 DELETE n,r
@@ -221,7 +221,6 @@ RETURN DISTINCT head(labels(a)), type(r), head(labels(b)) LIMIT 100
 :GET /db/data/ext
         """
       }
-      
     ]
 
     folders = [
@@ -258,4 +257,8 @@ RETURN DISTINCT head(labels(a)), type(r), head(labels(b)) LIMIT 100
       if not Folder.get(doc.folder)
         Folder.create(id: doc.folder)
 
+    $rootScope.$on('localStorage:update', ->
+      Document.fetch()
+      Folder.fetch()
+    )
 ])

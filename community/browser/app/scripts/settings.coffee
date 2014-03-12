@@ -21,7 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #baseURL = 'http://localhost:7474'
 baseURL = ''
 restAPI = "#{baseURL}/db/data"
-ntnURL = "http://tintin-reference.herokuapp.com/"
+ntnURL = "http://tintin-reference.herokuapp.com"
+#ntnURL = "http://localhost:9292"
 
 angular.module('neo4jApp.settings', [])
   .constant('Settings', {
