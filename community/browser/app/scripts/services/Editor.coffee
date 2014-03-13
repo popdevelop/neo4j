@@ -23,11 +23,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 angular.module('neo4jApp.services')
   .service 'Editor', [
     'Document'
+    'EventQueue'
     'Frame'
     'Settings'
     'localStorageService'
     'motdService'
-    (Document, Frame, Settings, localStorageService, motdService) ->
+    (Document, EventQueue, Frame, Settings, localStorageService, motdService) ->
       storageKey = 'history'
       class Editor
         constructor: ->
@@ -48,6 +49,15 @@ angular.module('neo4jApp.services')
           else
             @addToHistory(input)
             @maximize(no)
+
+          # Increase script play count
+          # TODO: this probably shouldn't be handled here
+          if @document?.id
+            EventQueue.trigger('document.update', @document, {
+              plays: (@document.plays or 0) + 1
+            })
+
+          return
 
         addToHistory: (input) ->
           @current = ''
@@ -106,8 +116,9 @@ angular.module('neo4jApp.services')
           # re-fetch document from collection
           @document = Document.get(@document.id) if @document?.id
           if @document?.id
-            @document.content = input
-            Document.save()
+            EventQueue.trigger('document.update', @document, {
+              content: input
+            })
           else
             @document = Document.create(content: @content)
 

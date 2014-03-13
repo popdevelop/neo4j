@@ -55,8 +55,11 @@ angular.module('neo4jApp.controllers')
       $scope.importDocument = (content) ->
         EventQueue.trigger('document.create', content: content)
 
-      $scope.playDocument = (content) ->
-        Frame.create(input: content)
+      $scope.playDocument = (doc) ->
+        Frame.create(input: doc.content)
+        EventQueue.trigger('document.update', doc, {
+          plays: (doc.plays or 0) + 1
+        })
 
       ###*
        * Initialization

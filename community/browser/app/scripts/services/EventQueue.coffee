@@ -37,6 +37,8 @@ angular.module('neo4jApp.services')
               Document.remove.apply(Document, args)
               # also clear the document contents to cleanup editor content.
               args[k] = null for own k, v of args
+            when "document.update"
+              Document.update.apply(Document, args)
             else
               console.log "No such event: #{command}"
 

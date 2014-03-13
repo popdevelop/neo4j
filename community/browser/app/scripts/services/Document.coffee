@@ -48,5 +48,10 @@ angular.module('neo4jApp.services')
           super
           @save()
 
+        update: (doc, args) ->
+          return unless angular.isObject(args)
+          angular.extend(doc, args)
+          @save()
+
       new Documents(null, Document).fetch()
   ]
