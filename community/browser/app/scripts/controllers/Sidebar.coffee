@@ -27,7 +27,8 @@ angular.module('neo4jApp.controllers')
     'Editor'
     'Frame'
     'Folder'
-    ($scope, Document, Editor, Frame, Folder) ->
+    'EventQueue'
+    ($scope, Document, Editor, Frame, Folder, EventQueue) ->
       ###*
        * Local methods
       ###
@@ -44,7 +45,7 @@ angular.module('neo4jApp.controllers')
 
       $scope.removeFolder = (folder) ->
         return unless confirm("Are you sure you want to delete the folder?")
-        Folder.remove(folder)
+        EventQueue.trigger('folder.remove', folder)
 
       $scope.removeDocument = (doc) ->
         Document.remove(doc)
@@ -52,7 +53,7 @@ angular.module('neo4jApp.controllers')
         doc[k] = null for own k, v of doc
 
       $scope.importDocument = (content) ->
-        Document.create(content: content)
+        EventQueue.trigger('document.create', content: content)
 
       $scope.playDocument = (content) ->
         Frame.create(input: content)
@@ -105,4 +106,5 @@ angular.module('neo4jApp.controllers')
       # Expose documents and folders to views
       $scope.folders = Folder
       $scope.documents   = Document
+      $scope.events = EventQueue
   ]

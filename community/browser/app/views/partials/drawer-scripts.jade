@@ -1,5 +1,5 @@
 h4 Saved scripts
-  a.create-folder(ng-click='folders.create()', tooltip-placement='bottom', tooltip='Create folder')
+  a.create-folder(ng-click="events.trigger('folder.create')", tooltip-placement='bottom', tooltip='Create folder')
     .icon-plus-sign-alt
 .inner
   .droppable(
