@@ -128,7 +128,8 @@ angular.module('neo4jApp.services')
               content: input
             })
           else
-            @document = Document.create(content: @content)
+            @document = EventQueue.trigger('document.create'
+              content: @content, name: title)
 
         setContent: (content = '') ->
           @content = content
