@@ -38,6 +38,9 @@ angular.module('neo4jApp.services')
             updated_at: now
           }, @timestamps)
 
+        toJSON: ->
+          {@id, @timestamps}
+
         update: (data) ->
           return unless angular.isObject(data)
           angular.extend(@, data)
