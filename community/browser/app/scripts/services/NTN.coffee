@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 'use strict';
 
 angular.module('neo4jApp.services')
-.factory 'Login', [
+.factory 'NTN', [
   'Settings', '$q', '$rootScope'
   (Settings, $q, $rootScope) ->
     _dfd = null

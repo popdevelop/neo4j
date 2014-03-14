@@ -1,16 +1,16 @@
 angular.module('neo4jApp')
 .run [
-  'Login'
+  'NTN'
   'localStorageService'
   '$rootScope'
-  (Login, localStorageService, $rootScope) ->
+  (NTN, localStorageService, $rootScope) ->
     # Sync local storage to the cloud
     sync = ->
       keys = localStorageService.keys()
       d = {}
       d[k] = localStorageService.get(k) for k in keys
 
-      Login.ajax({
+      NTN.ajax({
         contentType: 'application/json'
         method: 'PUT'
         url: '/api/v1/store'
@@ -23,7 +23,7 @@ angular.module('neo4jApp')
 
     $rootScope.$on 'user:authenticated', (evt, authenticated) ->
       if authenticated
-        Login.ajax('/api/v1/me')
+        NTN.ajax('/api/v1/me')
         .then(
           (data) ->
             $rootScope.currentUser = data
