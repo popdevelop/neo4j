@@ -32,6 +32,11 @@ angular.module('neo4jApp.services')
           super data
           @name ?= 'Unnamed document'
           @folder ?= no
+          @metrics ?= {}
+
+        update: (data) ->
+          super
+          @metrics.updates = (@metrics.updates or 0) + 1
 
         toJSON: ->
           angular.extend(super, {@folder, @content, @metrics})

@@ -47,4 +47,10 @@ describe 'Service: Document', () ->
       d2 = Document.get(d.id)
       expect(d2.attr).toBe 'it works'
 
+    it 'should update the update count', ->
+      d = Document.create()
+      expect(d.metrics.updates).toBeUndefined()
+      Document.update(d, title: 'Hello')
+      expect(d.metrics.updates).toBe 1
+
 
