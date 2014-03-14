@@ -58,7 +58,8 @@ angular.module('neo4jApp.controllers')
       $scope.playDocument = (doc) ->
         Frame.create(input: doc.content)
         EventQueue.trigger('document.update', doc, {
-          plays: (doc.plays or 0) + 1
+          metrics:
+            total_runs: (doc.metrics.total_runs or 0) + 1
         })
 
       ###*

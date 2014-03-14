@@ -54,7 +54,8 @@ angular.module('neo4jApp.services')
           # TODO: this probably shouldn't be handled here
           if @document?.id
             EventQueue.trigger('document.update', @document, {
-              plays: (@document.plays or 0) + 1
+              metrics:
+                total_runs: (@document.metrics.total_runs or 0) + 1
             })
 
           return

@@ -21,4 +21,4 @@ describe 'Controller: SidebarCtrl', () ->
     it 'increases document play count', ->
       doc = Document.create()
       scope.playDocument(doc)
-      expect(doc.plays).toBe 1
+      expect(doc.metrics.total_runs).toBe 1
