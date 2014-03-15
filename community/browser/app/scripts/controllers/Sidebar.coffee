@@ -56,11 +56,17 @@ angular.module('neo4jApp.controllers')
         EventQueue.trigger('document.create', content: content)
 
       $scope.playDocument = (doc) ->
-        Frame.create(input: doc.content)
-        EventQueue.trigger('document.update', doc, {
-          metrics:
-            total_runs: (doc.metrics.total_runs or 0) + 1
+        frame = Frame.create(input: doc.content)
+        # Increase script play count and average run time
+        EventQueue.trigger('document.update.metrics', doc, {
+          total_runs: (doc.metrics.total_runs or 0) + 1
         })
+        frame?.then(=>
+          {average_runtime, total_runs} = doc.metrics
+          EventQueue.trigger('document.update.metrics', doc, {
+            average_runtime: Utils.updateAverage(frame.runTime, average_runtime, total_runs-1)
+          })
+        )
 
       ###*
        * Initialization

@@ -34,9 +34,9 @@ angular.module('neo4jApp.services')
           @folder ?= no
           @metrics ?= {}
 
-        update: (data) ->
+        update: (data, silent = no) ->
           super
-          @metrics.updates = (@metrics.updates or 0) + 1
+          @metrics.updates = (@metrics.updates or 0) + 1 unless silent
 
         toJSON: ->
           angular.extend(super, {@folder, @content, @metrics})
@@ -53,8 +53,13 @@ angular.module('neo4jApp.services')
           super
           @save()
 
-        update: (doc, args) ->
-          doc.update(args)
+        update: (doc, args...) ->
+          doc.update.apply(doc, args)
+          @save()
+
+        # separate method for this since we don't want to update timestamps
+        updateMetrics: (doc, data) ->
+          angular.extend(doc.metrics, data)
           @save()
 
       new Documents(null, Document).fetch()

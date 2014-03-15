@@ -22,8 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 angular.module('neo4jApp.services')
   .factory 'EventQueue', [
-    'Folder', 'Document'
-    (Folder, Document) ->
+    '$log', 'Folder', 'Document'
+    ($log, Folder, Document) ->
       class EventQueue
         trigger: (command, args...) ->
           switch command
@@ -39,8 +39,10 @@ angular.module('neo4jApp.services')
               args[k] = null for own k, v of args
             when "document.update"
               Document.update.apply(Document, args)
+            when "document.update.metrics"
+              Document.updateMetrics.apply(Document, args)
             else
-              console.log "No such event: #{command}"
+              $log.error "No such event: #{command}"
 
       new EventQueue
   ]

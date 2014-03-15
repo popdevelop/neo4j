@@ -56,4 +56,9 @@ angular.module('neo4jApp.utils', [])
 
     timeNow: -> (new Date()).getTime()
 
+    updateAverage: (newVal, avg = 0, count = 0) ->
+      avg = (avg*count++) + newVal
+      parseInt(avg / count, 10)
+
+
   ])

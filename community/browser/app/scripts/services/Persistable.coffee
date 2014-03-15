@@ -41,10 +41,10 @@ angular.module('neo4jApp.services')
         toJSON: ->
           {@id, @timestamps}
 
-        update: (data) ->
+        update: (data, silent = no) ->
           return unless angular.isObject(data)
           angular.extend(@, data)
-          @timestamps?.updated_at = Utils.timeNow()
+          @timestamps?.updated_at = Utils.timeNow() unless silent
 
         #
         # Class methods

@@ -28,7 +28,8 @@ angular.module('neo4jApp.services')
     'Settings'
     'localStorageService'
     'motdService'
-    (Document, EventQueue, Frame, Settings, localStorageService, motdService) ->
+    'Utils'
+    (Document, EventQueue, Frame, Settings, localStorageService, motdService, Utils) ->
       storageKey = 'history'
       class Editor
         constructor: ->
@@ -43,20 +44,26 @@ angular.module('neo4jApp.services')
         execScript: (input) ->
           @showMessage = no
           frame = Frame.create(input: input)
+          doc = @document
+
+          # Increase script play count and average run time
+          # TODO: this probably shouldn't be handled here
+          if doc?.id
+            EventQueue.trigger('document.update.metrics', doc, {
+              total_runs: (doc.metrics.total_runs or 0) + 1
+            })
+            frame?.then(=>
+              {average_runtime, total_runs} = doc.metrics
+              EventQueue.trigger('document.update.metrics', doc, {
+                average_runtime: Utils.updateAverage(frame.runTime, average_runtime, total_runs-1)
+              })
+            )
 
           if !frame and input != ''
             @setMessage("<b>Unrecognized:</b> <i>#{input}</i>.", 'error')
           else
             @addToHistory(input)
             @maximize(no)
-
-          # Increase script play count
-          # TODO: this probably shouldn't be handled here
-          if @document?.id
-            EventQueue.trigger('document.update', @document, {
-              metrics:
-                total_runs: (@document.metrics.total_runs or 0) + 1
-            })
 
           return
 

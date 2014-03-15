@@ -65,7 +65,7 @@ angular.module('neo4jApp.services')
             @templateUrl = intr.templateUrl
             timer = Timer.start()
             @startTime = timer.started()
-            $q.when(intrFn(query, $q.defer())).then(
+            @then = $q.when(intrFn(query, $q.defer())).then(
               (result) =>
                 @isLoading = no
                 @response = result
@@ -80,7 +80,7 @@ angular.module('neo4jApp.services')
                   @errorText = result[0].code
                   @detailedErrorText = result[0].message if result[0].message
                 @runTime = timer.stop().time()
-            )
+            ).then
             @
           setProperties: ->
             # FIXME: this should maybe be defined by the interpreters
