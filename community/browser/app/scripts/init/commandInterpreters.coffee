@@ -134,6 +134,21 @@ angular.module('neo4jApp')
           q.promise
       ]
 
+    FrameProvider.interpreters.push
+      type: 'labs'
+      matches: ["#{cmdchar}labs"]
+      exec: ['Settings', (Settings) ->
+        (input) ->
+          matches = /^[^\w]*(labs)\s+(\S+):([\S\s]+)?$/.exec(input)
+
+          [_, feature, action] = [matches[1], matches[2], matches[3]]
+
+          # extend this when more features are introduced
+          Settings.fileMode = feature == 'filemode' and action == 'enable'
+
+          true
+      ]
+
     # about handler
     # FrameProvider.interpreters.push
     #   type: 'info'

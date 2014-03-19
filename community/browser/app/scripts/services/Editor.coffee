@@ -62,7 +62,8 @@ angular.module('neo4jApp.services')
           if !frame and input != ''
             @setMessage("<b>Unrecognized:</b> <i>#{input}</i>.", 'error')
           else
-            @addToHistory(input)
+            if !(Settings.fileMode and @document?.id)
+              @addToHistory(input)
             @maximize(no)
 
           return
@@ -109,6 +110,7 @@ angular.module('neo4jApp.services')
           @document = null
 
         loadDocument: (id) ->
+          # return if @hasChanged() && !confirm("Are you sure you want to throw away your changes?")
           doc = Document.get(id)
           return unless doc
           @content = doc.content
@@ -132,6 +134,7 @@ angular.module('neo4jApp.services')
               content: @content, name: title)
 
         setContent: (content = '') ->
+          # return if @hasChanged() && !confirm("Are you sure you want to throw away your changes?")
           @content = content
           @focusEditor()
           @document = null

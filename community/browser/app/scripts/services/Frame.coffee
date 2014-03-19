@@ -96,7 +96,7 @@ angular.module('neo4jApp.services')
             if intr.templateUrl
               frame = new Frame(data)
             else
-              rv = $injector.invoke(intr.exec)()
+              rv = $injector.invoke(intr.exec)(data.input)
 
             if frame
               # Make sure we don't create more frames than allowed
