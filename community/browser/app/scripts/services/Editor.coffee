@@ -46,7 +46,8 @@ angular.module('neo4jApp.services')
           if !frame and input != ''
             @setMessage("<b>Unrecognized:</b> <i>#{input}</i>.", 'error')
           else
-            @addToHistory(input)
+            if !(Settings.fileMode and @document?.id)
+              @addToHistory(input)
             @maximize(no)
 
         addToHistory: (input) ->

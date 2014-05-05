@@ -24,7 +24,8 @@ angular.module('neo4jApp.services')
   .factory 'Document', [
     'Collection'
     'Persistable'
-    (Collection, Persistable) ->
+    'Settings'
+    (Collection, Persistable, Settings) ->
       class Document extends Persistable
         @storageKey = 'documents'
 

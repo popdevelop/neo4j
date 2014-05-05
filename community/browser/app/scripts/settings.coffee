@@ -40,4 +40,5 @@ angular.module('neo4jApp.settings', [])
     maxRows: 1000
     maxRawSize: 5000 # bytes
     scrollToTop: yes # When new frames are inserted in to the stream
+    fileMode: false
   })

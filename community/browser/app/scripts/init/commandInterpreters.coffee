@@ -110,6 +110,22 @@ angular.module('neo4jApp')
           q.promise
       ]
 
+    FrameProvider.interpreters.push
+      type: 'labs'
+      matches: ["#{cmdchar}labs"]
+      exec: ['Settings', (Settings) ->
+        (input) ->
+          matches = /^[^\w]*(labs)\s+(\S+):([\S\s]+)?$/.exec(input)
+          return unless matches
+
+          [_, feature, action] = [matches[1], matches[2], matches[3]]
+
+          # extend this when more features are introduced
+          Settings.fileMode = feature == 'filemode' and action == 'enable'
+
+          true
+      ]
+
     # about handler
     # FrameProvider.interpreters.push
     #   type: 'info'
@@ -196,7 +212,7 @@ angular.module('neo4jApp')
     # Cypher handler
     FrameProvider.interpreters.push
       type: 'cypher'
-      matches: ['cypher', 'start', 'match', 'create', 'drop', 
+      matches: ['cypher', 'start', 'match', 'create', 'drop',
         'return', 'set', 'remove', 'delete', 'merge', 'optional',
         'where', 'foreach', 'with', 'load', 'using'
       ]
