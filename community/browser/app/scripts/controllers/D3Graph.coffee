@@ -55,7 +55,9 @@ clickcancel = ->
 
 angular.module('neo4jApp.controllers')
   .controller('D3GraphCtrl', [
+    '$attrs'
     '$element'
+    '$parse'
     '$window'
     '$rootScope'
     '$scope'
@@ -64,7 +66,7 @@ angular.module('neo4jApp.controllers')
     'GraphRenderer'
     'GraphStyle'
     'GraphGeometry'
-    ($element, $window, $rootScope, $scope, CircularLayout, GraphExplorer, GraphRenderer, GraphStyle, GraphGeometry) ->
+    ($attrs, $element, $parse, $window, $rootScope, $scope, CircularLayout, GraphExplorer, GraphRenderer, GraphStyle, GraphGeometry) ->
 
       linkDistance = 60
 
@@ -89,8 +91,9 @@ angular.module('neo4jApp.controllers')
           force.start()
 
       selectItem = (item) ->
-        $rootScope.selectedGraphItem = item
-        $rootScope.$apply() unless $rootScope.$$phase
+        if $attrs.onNodeClick
+          exp = $parse($attrs.onNodeClick)
+          $scope.$apply(->exp($scope, {'$node': item}))
 
       onNodeDblClick = (d) =>
         return if d.expanded

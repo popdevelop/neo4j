@@ -85,6 +85,7 @@ angular.module('neo4jApp.controllers')
       $scope.$watch 'isDrawerShown', () ->
         $timeout(() -> $scope.$emit 'layout.changed', 0)
 
+      ###
       $scope.isInspectorShown = no
       $scope.toggleInspector = ->
         $scope.isInspectorShown ^= true
@@ -92,6 +93,8 @@ angular.module('neo4jApp.controllers')
       $scope.$watch 'selectedGraphItem', Utils.debounce((val) ->
         $scope.isInspectorShown = !!val
       ,200)
+      ###
+
       $scope.isPopupShown = false
       $scope.togglePopup = (content) ->
         if content?

@@ -1,9 +1,9 @@
-inspector(show='isInspectorShown', ng-controller='InspectorCtrl', style="top: 60px; right: 24px")
+.inspector(ng-show='item', ng-controller='InspectorCtrl')
   .header
     span.preview(ng-style='{"background-color": style.color }')
     {{item.type || item.labels.join(', ')}}&nbsp;
     span.muted [{{item.id}}]
-    a.close.icon-remove(ng-click='toggleInspector()')
+    a.close.icon-remove(ng-click='close()')
 
   tabset
     tab

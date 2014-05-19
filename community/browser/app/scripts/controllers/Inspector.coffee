@@ -33,12 +33,14 @@ angular.module('neo4jApp.controllers')
         'border-color': $scope.colors[0]['border-color']
         diameter: $scope.sizes[0].diameter
 
-      $scope.$watch 'selectedGraphItem', (item) ->
-        return unless item
+      $scope.$watch 'selectedItem', (item) ->
         $scope.item = item
+        return unless item
         $scope.style = GraphStyle.forEntity(item).props
         if $scope.style.caption
           $scope.selectedCaption = $scope.style.caption.replace(/\{([^{}]*)\}/, "$1")
+
+      $scope.close = -> $scope.item = null
 
       $scope.selectSize = (size) ->
         $scope.style.diameter = size.diameter

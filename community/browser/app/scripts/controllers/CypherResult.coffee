@@ -35,6 +35,9 @@ angular.module('neo4jApp.controllers')
     $scope.setActive = (tab) -> $rootScope.stickyTab = $scope.tab = tab
     $scope.isActive = (tab) -> tab is $scope.tab
 
+    $scope.onNodeClick = (item) ->
+      $scope.selectedItem = item
+
     $scope.resultStatistics = (frame) ->
       if frame?.response
         stats = frame.response.table.stats
