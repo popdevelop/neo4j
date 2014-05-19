@@ -1,6 +1,6 @@
 .code-bar
   .status
-    div(class="label label-{{frame.type | lowercase}}") {{frame.type | uppercase}}
+    div(class="label label-default label-{{frame.type | lowercase}}") {{frame.type | uppercase}}
     span.code(click-to-code='frame.input') {{frame.input | uncomment}}
   .actions
     a.icon-download-alt(exportable ng-click='exportJSON(frame.response)', tooltip-placement='bottom', tooltip='Export JSON', ng-show='frame.exportable')

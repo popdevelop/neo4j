@@ -6,7 +6,7 @@
         ng-model='editor.content',
         placeholder='{{motd.tip}}'
         )
-    ul.controls.inline
+    ul.controls.list-inline
       li(tooltip-placement='bottom', tooltip='Save')
         a.balled.golden(ng-class="{active: editor.content, 'enabled': editor.document.id, 'changed': editor.hasChanged()}", ng-click='star()')
           i.icon-star(ng-class="{'icon-exclamation': editor.hasChanged()}")

@@ -1,10 +1,11 @@
-.inspector(ng-show='item', ng-controller='InspectorCtrl')
+.inspector.inspector-slide-in(ng-show='item', ng-controller='InspectorCtrl')
   .header
     span.preview(ng-style='{"background-color": style.color }')
     {{item.type || item.labels.join(', ')}}&nbsp;
     span.muted [{{item.id}}]
     a.close.icon-remove(ng-click='close()')
 
+  .handle
   tabset
     tab
       tab-heading
@@ -32,19 +33,19 @@
               li(ng-repeat='property in item.propertyList')
                 a(ng-click='selectCaption(property.key)') {{property.key}}
         li.node-sizes(ng-show='item.isNode')
-          ul.inline
+          ul.list-inline
             li(ng-repeat='size in sizes')
               a(ng-style='{width: size.diameter, height: size.diameter}'
                 ng-class='{active: size.diameter == style.diameter}'
                 ng-click='selectSize(size)')
         li.arrow-widths(ng-show='item.isRelationship')
-          ul.inline
+          ul.list-inline
             li(ng-repeat='arrowWidth in arrowWidths')
               a(ng-style='{width: arrowWidth["shaft-width"]}'
                 ng-class='{active: arrowWidth["shaft-width"] == style["shaft-width"]}'
                 ng-click='selectArrowWidth(arrowWidth)')
         li.colors
-          ul.inline
+          ul.list-inline
             li(ng-repeat='scheme in colors')
               a(ng-style='{"background-color": scheme.color}'
                 ng-class='{active: scheme.color == style.color && scheme["border-color"] == style["border-color"]}'

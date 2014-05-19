@@ -14,11 +14,11 @@
   width: 320px
 
   // Bootstrap overrides
-  ul.inline li:first-child
+  ul.list-inline li:first-child
     padding-left: 0
-  ul.inline li:last-child
+  ul.list-inline li:last-child
     padding-right: 0
-  ul.inline > li
+  ul.list-inline > li
     padding-left: 3px
     padding-right: 3px
   .nav
@@ -35,6 +35,8 @@
     border: none
     color: inspector-tab-font-color
     background-color: inspector-tab-bg-color
+    padding: 0 12px;
+    line-height: 39px;
   li
     line-height: 1px
   .dropdown
@@ -48,7 +50,6 @@
     padding-left: 10px
     overflow: hidden
     user-select: none
-    cursor: move
     .preview
       width: 10px
       height: 10px
