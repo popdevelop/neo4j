@@ -40,6 +40,6 @@ app = angular.module('neo4jApp', [
   'ui.bootstrap.carousel'
   'ui.codemirror'
   'ui.sortable'
-  'angularMoment'
+  #'angularMoment'
   'ngSanitize'
 ])

@@ -42,5 +42,5 @@ angular.module('neo4jApp').run([
           $scope.offline = yes
           timer = $timeout(check, Settings.hearbeat)
       )
-    check()
+    #check()
 ])
