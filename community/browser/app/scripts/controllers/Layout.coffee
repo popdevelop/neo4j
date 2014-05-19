@@ -26,12 +26,12 @@ angular.module('neo4jApp.controllers')
   .controller 'LayoutCtrl', [
     '$rootScope'
     '$timeout'
-    '$dialog'
+    '$modal'
     'Editor'
     'Frame'
     'GraphStyle'
     'Utils'
-    ($scope, $timeout, $dialog, Editor, Frame, GraphStyle, Utils) ->
+    ($scope, $timeout, $modal, Editor, Frame, GraphStyle, Utils) ->
 
       _codeMirror = null
       dialog = null
@@ -41,6 +41,7 @@ angular.module('neo4jApp.controllers')
         backdropFade: yes
         dialogFade: yes
         keyboard: yes
+        size: 'lg'
 
       $scope.showDoc = () ->
         Frame.create(input: ':play')
@@ -98,22 +99,21 @@ angular.module('neo4jApp.controllers')
       $scope.isPopupShown = false
       $scope.togglePopup = (content) ->
         if content?
-          if not dialog?.isOpen()
+          if not dialog
             dialogOptions.templateUrl = 'popup-' + content
-            dialog = $dialog.dialog(dialogOptions)
-            dialog.open().then(->
+            dialogOptions.windowClass = 'modal-' + content
+            dialog = $modal.open(dialogOptions)
+            dialog.result.then(->
               $scope.popupContent = null
               $scope.isPopupShown = no
             )
         else
           dialog.close() if dialog?
+          dialog = null
 
-        # Add unique classes so that we can style popups individually
-        dialog.modalEl.removeClass('modal-' + $scope.popupContent) if $scope.popupContent
-        dialog.modalEl.addClass('modal-' + content) if content
 
-        $scope.popupContent = content
-        $scope.isPopupShown = !!content
+        $scope.popupContent = dialog
+        $scope.isPopupShown = !!dialog
 
       $scope.globalKey = (e) ->
         # Don't toggle anything when shortcut popup is open
