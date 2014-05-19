@@ -29,6 +29,6 @@
     "commit": "27d85e21cb96f49ed53cb48ed58841804e3fb4f9"
   },
   "_source": "git://github.com/angular-ui/ui-sortable.git",
-  "_target": "~0.0.1",
+  "_target": "0.0.1",
   "_originalSource": "angular-ui-sortable"
 }
