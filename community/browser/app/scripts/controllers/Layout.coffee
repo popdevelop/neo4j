@@ -103,9 +103,10 @@ angular.module('neo4jApp.controllers')
             dialogOptions.templateUrl = 'popup-' + content
             dialogOptions.windowClass = 'modal-' + content
             dialog = $modal.open(dialogOptions)
-            dialog.result.then(->
+            dialog.result.finally(->
               $scope.popupContent = null
               $scope.isPopupShown = no
+              dialog = null
             )
         else
           dialog.close() if dialog?
