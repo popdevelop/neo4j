@@ -3,12 +3,12 @@ div(ng-controller="CypherResultCtrl", fullscreen)
   .inner
     .view-result(ng-class='{error: frame.hasErrors}')
       .view-result-graph.result(ng-show='isActive("graph")')
+        include partials/legend
         svg(neo-graph
           graph-data='frame.response.graph'
           on-node-click='onNodeClick($node)'
           ng-controller='D3GraphCtrl'
           style="pointer-events:fill;")
-        include partials/legend
         include partials/inspector
       .view-result-table.result(ng-show='isActive("table")', ng-animate = "'animate-box'")
         neo-table(table-data='frame.response.table')
