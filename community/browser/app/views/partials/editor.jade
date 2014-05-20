@@ -8,14 +8,14 @@
         )
     ul.controls.list-inline
       li(tooltip-placement='bottom', tooltip='Save')
-        a.balled.golden(ng-class="{active: editor.content, 'enabled': editor.document.id, 'changed': editor.hasChanged()}", ng-click='star()')
+        a.balled.golden(ng-class="{active: editorHasContent, 'enabled': editor.document.id, 'changed': editor.hasChanged()}", ng-click='star()')
           i.icon-star(ng-class="{'icon-exclamation': editor.hasChanged()}")
       li(tooltip-placement='bottom', tooltip='New')
-        a.balled.add(ng-click='editor.setContent("")', ng-class="{active: editor.content}")
+        a.balled.add(ng-click='editor.setContent("")', ng-class="{active: editorHasContent}")
           i.icon-plus
       li.divider &nbsp;
       li(tooltip-placement='bottom', tooltip='Execute')
-        a.balled.success('ng-click' = 'editor.execScript(editor.content)', ng-class="{active: editor.content}")
+        a.balled.success('ng-click' = 'editor.execScript(editor.content)', ng-class="{active: editorHasContent}")
           i.icon-play
 
     .message-bar.error.slide-down(ng-if='editor.showMessage', ng-class="editor.errorCode")
