@@ -40,7 +40,7 @@
             color: color-link
 
         .view-result-graph
-          background-color: #F8F9FB
+          background-color: #F1F3F8
           svg
             height: 400px
             width: 100%
@@ -73,18 +73,19 @@
         margin: 0
 
 .code-bar
-  color: #848790
-  border-bottom: 1px solid table-color-border-color
+  background: #fff
+  color: stream-font-color
   height: middlebar-height
   line-height: middlebar-height
   padding-left: horizontal-padding
-  padding: 0 25px
+  margin: 0 25px
   //overflow: hidden
   position: relative
 
   .label
-    text-shadow: 0 1px 1px rgba(0,0,0,0.15)
     font-size: 11px
+    border-radius: 0px
+    padding: 4px 9px
   .label-cypher
     background-color: #8FDDC7
   .label-rest
@@ -95,8 +96,9 @@
   .code
     text-shadow: 0 1px 0 rgba(255,255,255,0.7)
     font-family: mono-font-family
-    font-size: 14px
-    margin-left: 8px
+    font-size: 12px
+    margin-left: 11px
+    color: #525864
     &:hover
       cursor: pointer
       border-bottom: 1px dotted #B6ADAD
@@ -105,33 +107,35 @@
     display: none
 
   .status
+    float: left
     display: block
     max-height: 30px
     overflow: hidden
+    max-width: 400px
+    text-overflow: ellipsis
+    white-space: nowrap
   .actions
-    opacity: 0
-    transist: opacity 0.2s
-    absolute: top 3px right 25px
-    background-color: #e7e9eb
+    float: right
+    opacity: 1.0
     a
-      font-size: 20px
-      margin-left: 13px
+      transist: all 0.2s
+      float: left
+      border-left: 1px solid #E6E9EF
+      padding: 9px 13px
+      height: 39px
+      font-size: 16px
       vertical-align: center
       position: relative
       color: #9B9DA2
       &:hover
-        color: #3F434B
+        background: #40454f
+        color: #fff
       &.icon-download-alt
-        top: 2px
-      &.icon-edit
-        top: 1px
+        padding-top: 12px
       &.icon-fullscreen
-        font-size: 19px
-        margin-left: 16px
-      &.icon-trash
-        font-size: 21px
+        padding-top: 12px
+        font-size: 15px
       &.icon-remove
-        top: 1px
-        font-size: 26px
+        padding-top: 11px
     .btn
       margin-left: 4px
