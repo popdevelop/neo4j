@@ -28,19 +28,20 @@ angular.module('neo4jApp')
     update = (graph) ->
       resultLabels = {}
       for node in graph.nodes()
-        for label in node.labels 
+        for label in node.labels
           resultLabels[label] = (resultLabels[label] || 0) + 1
       resultRules = []
       for rule in graphStyle.rules
         if resultLabels.hasOwnProperty(rule.selector.klass)
           resultRules.push(rule)
       $scope.rules = resultRules
+      $scope.count = resultLabels
 
     $scope.$watch 'frame.response', (frameResponse) ->
       return unless frameResponse
       if frameResponse.graph
         $scope.graph = frameResponse.graph
-        update(frameResponse.graph) 
+        update(frameResponse.graph)
 
     graphChanged = (event, graph) ->
       if graph is $scope.graph
@@ -48,7 +49,7 @@ angular.module('neo4jApp')
 
     $scope.$on 'graph:changed', graphChanged
 
-    $scope.rules = [] 
+    $scope.rules = []
 
     $scope.isNode = (rule) ->
       rule.selector.tag == 'node'

@@ -4,7 +4,7 @@
       a.preview(ng-style='{"background-color": rule.props.color, "border-color": rule.props["border-color"]}')
         .shade
       .contents.no-condition
-        .class-name {{rule.selector.klass || 'Default'}}
+        .class-name {{rule.selector.klass || 'Default'}} ({{count[rule.selector.klass]}})
         .condition
       //- a.remove.btn.btn-small(tooltip-placement='right', tooltip='Remove style', ng-click="remove(rule)")
       //-   i.icon-remove
