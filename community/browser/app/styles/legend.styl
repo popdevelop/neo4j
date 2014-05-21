@@ -3,7 +3,6 @@
 @import 'mixins'
 
 .legend
-  height: middlebar-height
   background-color: #EEF1F8
   border-bottom: 1px solid #DFE5F0
 
@@ -17,8 +16,9 @@
       font-weight: normal
 
   ul
-    padding: 6px 9px
+    padding: 6px 9px 1px
     li
+      display: inline-block
       &.faded
         opacity: 0.3
       .preview
