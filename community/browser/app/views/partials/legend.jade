@@ -4,9 +4,8 @@
       .contents.no-condition
         .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "color": node.style.props["text-color-internal"]}') {{label || 'No label'}}
           span.count  ({{node.count}})
+    .black-hole
     li(ng-repeat='(type, rel) in types')
       .contents.no-condition
         .label.label-relationship.class-name(ng-style='{"background-color": rel.style.props.color, "color": rel.style.props["text-color-internal"]}') {{type}}
           span.count  ({{rel.count}})
-      //- a.remove.btn.btn-small(tooltip-placement='right', tooltip='Remove style', ng-click="remove(rule)")
-      //-   i.icon-remove
