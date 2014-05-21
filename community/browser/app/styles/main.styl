@@ -112,8 +112,10 @@ table.json-object
   font-size: 13px
   position: relative
   background-color: #FFF
-  .btn-group
-    absolute: top 3px right 12px
+  .status
+    float: left
+    [class^="icon-"]
+      margin-right: 6px
 
   .popover.bottom
     line-height: 22px
@@ -128,8 +130,6 @@ table.json-object
     margin-right horizontal-padding
   &.error
     color: color-error
-  [class^="icon-"]
-    margin-right: 6px
   i[class^="icon-"]
     margin: 0
   .icon-ok

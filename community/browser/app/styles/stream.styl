@@ -106,35 +106,45 @@
     display: none
 
   .status
-    float: left
     display: block
     max-height: 30px
     overflow: hidden
     max-width: 400px
     text-overflow: ellipsis
     white-space: nowrap
-  .actions
-    float: right
-    opacity: 1.0
-    a
-      transist: all 0.2s
-      float: left
-      border-left: 1px solid #E6E9EF
-      padding: 9px 13px
-      height: 39px
-      font-size: 16px
-      vertical-align: center
+
+.actions
+  float: right
+  opacity: 1.0
+  a
+    transist: all 0.2s
+    float: left
+    border-left: 1px solid #E6E9EF
+    padding-top: 11px
+    height: 39px
+    font-size: 16px
+    vertical-align: center
+    position: relative
+    color: #9B9DA2
+    width: 42px
+    text-align: center
+    &:hover
+      background: #40454f
+      color: #fff
+    &.active, &.active:hover {
+      color: #30333a
+      cursor: default
       position: relative
-      color: #9B9DA2
-      &:hover
-        background: #40454f
-        color: #fff
-      &.icon-download-alt
-        padding-top: 12px
-      &.icon-fullscreen
-        padding-top: 12px
-        font-size: 15px
-      &.icon-remove
-        padding-top: 11px
-    .btn
-      margin-left: 4px
+      top: -1px
+      background: #F9FBFD
+      &.icon-table {
+        background: #fff;
+      }
+    }
+    &.icon-download-alt
+      padding-top: 12px
+    &.icon-fullscreen
+      padding-top: 12px
+      font-size: 15px
+  .btn
+    margin-left: 4px
