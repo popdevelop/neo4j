@@ -4,12 +4,13 @@ div(ng-controller="CypherResultCtrl", fullscreen)
     .view-result(ng-class='{error: frame.hasErrors}')
       .view-result-graph.result(ng-show='isActive("graph")')
         include partials/legend
-        svg(neo-graph
-          graph-data='frame.response.graph'
-          on-node-click='onNodeClick($node)'
-          ng-controller='D3GraphCtrl'
-          style="pointer-events:fill;")
-        include partials/inspector
+        .graph-contents
+          svg(neo-graph
+            graph-data='frame.response.graph'
+            on-node-click='onNodeClick($node)'
+            ng-controller='D3GraphCtrl'
+            style="pointer-events:fill;")
+          include partials/inspector
       .view-result-table.result(ng-show='isActive("table")', ng-animate = "'animate-box'")
         neo-table(table-data='frame.response.table')
         a.icon-download-alt(exportable 'ng-click'='exportCSV(frame.response.table)', tooltip-placement='left', tooltip='Download CSV')

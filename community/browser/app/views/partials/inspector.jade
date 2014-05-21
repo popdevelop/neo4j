@@ -1,8 +1,8 @@
 .inspector.inspector-slide-in(ng-show='item', ng-controller='InspectorCtrl')
   .header
     span.preview(ng-style='{"background-color": style.color }')
-    {{item.type || item.labels.join(', ')}}&nbsp;
-    span.muted [{{item.id}}]
+    | Node {{item.id}}
+    span.muted  [{{item.type || item.labels.join(', ')}}]
     a.close.icon-remove(ng-click='close()')
 
   .handle
