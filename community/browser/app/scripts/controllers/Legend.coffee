@@ -25,17 +25,35 @@ angular.module('neo4jApp')
 
     $scope.graph = null
 
-    update = (graph) ->
+    graphStats = (graph) ->
       resultLabels = {}
+      resultRelTypes = {}
+      stats = {
+        labels: {}
+        types: {}
+      }
       for node in graph.nodes()
+        if node.labels?.length is 0
+          stats.labels[''] ?= { count: 0, style: graphStyle.forNode(node) }
+          stats.labels[''].count++
+          continue
         for label in node.labels
-          resultLabels[label] = (resultLabels[label] || 0) + 1
-      resultRules = []
-      for rule in graphStyle.rules
-        if resultLabels.hasOwnProperty(rule.selector.klass)
-          resultRules.push(rule)
-      $scope.rules = resultRules
-      $scope.count = resultLabels
+          stats.labels[label] ?= { count: 0, style: graphStyle.forNode(node) }
+          stats.labels[label].count++
+      for rel in graph.relationships()
+        stats.types[rel.type] ?= { count: 0, style: graphStyle.forRelationship(rel) }
+        stats.types[rel.type].count++
+
+      stats
+
+    update = (graph) ->
+      stats = graphStats(graph)
+      #for rule in graphStyle.rules
+      #  if stats.labels.hasOwnProperty(rule.selector.klass)
+      #    resultRules.push(rule)
+      #$scope.rules = resultRules
+      $scope.labels = stats.labels
+      $scope.types = stats.types
 
     $scope.$watch 'frame.response', (frameResponse) ->
       return unless frameResponse

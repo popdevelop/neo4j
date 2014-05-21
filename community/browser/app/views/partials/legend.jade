@@ -1,9 +1,14 @@
 .legend(ng-controller='LegendCtrl', ng-model='frame.results.graph')
   ul.list-unstyled
-    li(ng-repeat='rule in rules | filter:isNode')
+    li(ng-repeat='(label, node) in labels')
       .contents.no-condition
-        .label.label-node.class-name(ng-style='{"background-color": rule.props.color, "border-color": rule.props["border-color"]}') {{rule.selector.klass || 'Default'}}
-          span.count  ({{count[rule.selector.klass]}})
+        .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "border-color": node.style.props["border-color"]}') {{label || 'No label'}}
+          span.count  ({{node.count}})
+        .condition
+    li(ng-repeat='(type, rel) in types')
+      .contents.no-condition
+        .label.label-node.class-name(ng-style='{"background-color": rel.style.props.color, "border-color": rel.style.props["border-color"]}') {{type}}
+          span.count  ({{rel.count}})
         .condition
       //- a.remove.btn.btn-small(tooltip-placement='right', tooltip='Remove style', ng-click="remove(rule)")
       //-   i.icon-remove
