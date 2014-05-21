@@ -4,7 +4,7 @@ script(id="template/carousel/carousel.html", type="text/ng-template")
       ol.carousel-indicators(ng-show='slides.length > 1')
         li(ng-repeat='slide in slides track by $index', ng-class='{active: isActive(slide)}', ng-click='select(slide)')
     .carousel-inner(ng-transclude)
-    a.carousel-control.left(ng-click='prev()', ng-show='slides.length > 1')
+    a.carousel-control.left(ng-click='prev()', ng-show='slides.length > 1 && !slides[0].active')
       | &lsaquo;
-    a.carousel-control.right(ng-click='next()', ng-show='slides.length > 1')
+    a.carousel-control.right(ng-click='next()', ng-show='slides.length > 1 && !slides[slides.length - 1].active')
       | &rsaquo;
