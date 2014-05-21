@@ -6,17 +6,22 @@
   background-color: #EEF1F8
   border-bottom: 1px solid #DFE5F0
 
-  .label.label-node
+  .label
     padding: 10px
-    border-radius: 20px
     font-size: 12px
-    padding: 6px 15px
-    margin-right: 6px
+    margin-right: 5px
+    &.label-node
+      padding: 4px 9px
+      border-radius: 20px
+    &.label-relationship
+      padding: 4px 6px
+      border-radius: 3px
+
     .count
       font-weight: normal
 
   ul
-    padding: 6px 9px 1px
+    padding: 7px 9px 4px
     li
       display: inline-block
       &.faded
@@ -43,7 +48,7 @@
         top: 3px
         &.no-condition
           top: -1px
-          line-height: 30px
+          line-height: 24px
         .condition
           font-size: 10px
           color: #888

@@ -2,13 +2,11 @@
   ul.list-unstyled
     li(ng-repeat='(label, node) in labels')
       .contents.no-condition
-        .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "border-color": node.style.props["border-color"]}') {{label || 'No label'}}
+        .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "color": node.style.props["text-color-internal"]}') {{label || 'No label'}}
           span.count  ({{node.count}})
-        .condition
     li(ng-repeat='(type, rel) in types')
       .contents.no-condition
-        .label.label-node.class-name(ng-style='{"background-color": rel.style.props.color, "border-color": rel.style.props["border-color"]}') {{type}}
+        .label.label-relationship.class-name(ng-style='{"background-color": rel.style.props.color, "color": rel.style.props["text-color-internal"]}') {{type}}
           span.count  ({{rel.count}})
-        .condition
       //- a.remove.btn.btn-small(tooltip-placement='right', tooltip='Remove style', ng-click="remove(rule)")
       //-   i.icon-remove
