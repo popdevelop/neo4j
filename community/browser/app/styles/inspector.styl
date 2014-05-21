@@ -164,3 +164,21 @@
         padding-top: 14px
       &:last-child
         padding-bottom: 14px
+
+/*
+ * Animations
+ */
+.inspector-slide-in.ng-hide-add, .inspector-slide-in.ng-hide-remove {
+  transist: all 0.4s
+  display:block!important;
+}
+.inspector-slide-in.ng-hide-add.ng-hide-add-active,
+.inspector-slide-in.ng-hide-remove {
+  //opacity:0;
+  -webkit-transform: translateX(320px);
+}
+.inspector-slide-in.ng-hide-add,
+.inspector-slide-in.ng-hide-remove.ng-hide-remove-active {
+  //opacity:1;
+  -webkit-transform: translateX(0);
+}
