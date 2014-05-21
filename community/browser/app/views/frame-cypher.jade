@@ -28,10 +28,11 @@ div(ng-controller="CypherResultCtrl", fullscreen)
             div(ng-show='frame.response.table')
               .icon-ok
               include partials/result-status
+        span(ng-show='frame.isLoading')
+          .icon-spinner.icon-spin
+          | Executing query...
+
       .actions
         a.icon-table(ng-class='{active: isActive("table")}', ng-click='setActive("table")')
         a.icon-code-fork(ng-class='{active: isActive("graph")}', ng-click='setActive("graph")')
 
-      span(ng-show='frame.isLoading')
-        .icon-spinner.icon-spin
-        | Executing query...
