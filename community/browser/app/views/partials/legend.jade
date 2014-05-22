@@ -49,13 +49,13 @@
             ul.list-inline
               li(ng-repeat='arrowWidth in arrowWidths')
                 a(ng-style='{width: arrowWidth["shaft-width"]}'
-                  ng-class='{active: arrowWidth["shaft-width"] == style["shaft-width"]}'
+                  ng-class='{active: arrowWidth["shaft-width"] == rel.style.props["shaft-width"]}'
                   ng-click='selectArrowWidth(rel.style.selector, arrowWidth)')
           li.colors
             ul.list-inline
               li(ng-repeat='scheme in colors')
                 a(ng-style='{"background-color": scheme.color}'
-                  ng-class='{active: scheme.color == style.color && scheme["border-color"] == style["border-color"]}'
+                  ng-class='{active: scheme.color == rel.style.props.color && scheme["border-color"] == rel.style.props["border-color"]}'
                   ng-click="selectScheme(rel.style.selector, scheme)")
           li
             i.icon-code
