@@ -102,4 +102,13 @@ angular.module('neo4jApp')
     $scope.selectSize = (selector, size) ->
       graphStyle.changeForSelector(selector, size )
 
+    arrowDisplayWidths = ("#{5 + 3*i}px" for i in [0..10])
+    $scope.arrowDisplayWidth = (idx) ->
+      width: arrowDisplayWidths[idx]
+
+    nodeDisplaySizes = ("#{15 + 5*i}px" for i in [0..10])
+    $scope.nodeDisplaySize = (idx) ->
+      width: nodeDisplaySizes[idx]
+      height: nodeDisplaySizes[idx]
+
   ]

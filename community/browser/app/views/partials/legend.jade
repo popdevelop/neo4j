@@ -18,7 +18,7 @@
             li.node-sizes
               ul.list-inline
                 li(ng-repeat='size in sizes')
-                  a(ng-style='{width: size.diameter, height: size.diameter}'
+                  a(ng-style='nodeDisplaySize($index)'
                     ng-class='{active: size.diameter == node.style.props.diameter}'
                     ng-click='selectSize(node.style.selector, size)')
             li.colors
@@ -40,7 +40,7 @@
             li.arrow-widths
               ul.list-inline
                 li(ng-repeat='arrowWidth in arrowWidths')
-                  a(ng-style='{width: arrowWidth["shaft-width"]}'
+                  a(ng-style='arrowDisplayWidth($index)'
                     ng-class='{active: arrowWidth["shaft-width"] == rel.style.props["shaft-width"]}'
                     ng-click='selectArrowWidth(rel.style.selector, arrowWidth)')
             li.colors

@@ -70,6 +70,8 @@
     line-height: 1.3em
     padding: 10px 14px 11px
     border-bottom: 1px solid styler-divider-color
+    &.list-inline
+      margin-left: 0
     &.attributes
       padding-bottom: 9px
     a
@@ -88,14 +90,14 @@
       font-size: 18px
       display: inline-block
       width: 29px
-    &.colors, &.node-sizes, &.arrow-widths
+    &.colors, &.arrow-widths
       a
         position: relative
         display: inline-block
         background-color: #FFF
         line-height: 0
         overflow: hidden
-        opacity: 0.3
+        opacity: 0.5
         padding: 0
         &:after
           content: ' '
@@ -108,6 +110,19 @@
     &.colors, &.node-sizes
       a
         border-radius: 50%
+    &.node-sizes
+      a
+        position: relative
+        display: inline-block
+        border: 2px solid #fff
+        background-color: transparent
+        line-height: 0
+        overflow: hidden
+        opacity: 0.5
+        padding: 0
+        &:hover, &.active
+          opacity: 1
+          background-color: #fff
     &.colors
       a
         width: 36px
