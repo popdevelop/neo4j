@@ -1,62 +1,65 @@
 .legend(ng-controller='LegendCtrl', ng-model='frame.results.graph')
-  .type Labels:
-  ul.list-unstyled.list-labels
-    li.dropdown(ng-repeat='(label, node) in labels')
-      .contents.dropdown-toggle
-        .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "color": node.style.props["text-color-internal"]}') {{label || '*'}}
-          span.count  ({{node.count}})
-      .styler.dropdown-menu
-        .arrow
-        ul.sections.unstyled
-          li
-            a.attribute(ng-click='selectCaption(node.style.selector, "id")') ID
-            a.attribute(
-              ng-repeat='property in node.attrs'
-              ng-click='selectCaption(node.style.selector, property)'
-              ng-bind="property")
-          li.node-sizes
-            ul.list-inline
-              li(ng-repeat='size in sizes')
-                a(ng-style='{width: size.diameter, height: size.diameter}'
-                  ng-class='{active: size.diameter == node.style.props.diameter}'
-                  ng-click='selectSize(node.style.selector, size)')
-          li.colors
-            ul.list-inline
-              li(ng-repeat='scheme in colors')
-                a(ng-style='{"background-color": scheme.color}'
-                  ng-class='{active: scheme.color == node.style.props.color && scheme["border-color"] == node.style.props["border-color"]}'
-                  ng-click="selectScheme(node.style.selector, scheme)")
-          li
-            i.icon-code
-            a(ng-click='togglePopup("styling")') View stylesheet...
-  .type Relationships:
-  ul.list-unstyled
-    li.dropdown(ng-repeat='(type, rel) in types')
-      .contents.dropdown-toggle
-        .label.label-relationship.class-name(ng-style='{"background-color": rel.style.props.color, "color": rel.style.props["text-color-internal"]}') {{type}}
-          span.count  ({{rel.count}})
-      .styler.dropdown-menu
-        .arrow
-        ul.sections.unstyled
-          //- li
-          //-   span.caption Caption:
-          //-   a.attribute(ng-click='selectCaption(rel.style.selector, "type")') Type
-          //-   a.attribute(
-          //-     ng-repeat='property in rel.attrs'
-          //-     ng-click='selectCaption(rel.style.selector, property)'
-          //-     ng-bind="property")
-          li.arrow-widths
-            ul.list-inline
-              li(ng-repeat='arrowWidth in arrowWidths')
-                a(ng-style='{width: arrowWidth["shaft-width"]}'
-                  ng-class='{active: arrowWidth["shaft-width"] == rel.style.props["shaft-width"]}'
-                  ng-click='selectArrowWidth(rel.style.selector, arrowWidth)')
-          li.colors
-            ul.list-inline
-              li(ng-repeat='scheme in colors')
-                a(ng-style='{"background-color": scheme.color}'
-                  ng-class='{active: scheme.color == rel.style.props.color && scheme["border-color"] == rel.style.props["border-color"]}'
-                  ng-click="selectScheme(rel.style.selector, scheme)")
-          li
-            i.icon-code
-            a(ng-click='togglePopup("styling")') View stylesheet...
+  .legend-row
+    .type Labels:
+    ul.list-unstyled.list-labels
+      li.dropdown(ng-repeat='(label, node) in labels')
+        .contents.dropdown-toggle
+          .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "color": node.style.props["text-color-internal"]}') {{label || '*'}}
+            span.count  ({{node.count}})
+        .styler.dropdown-menu
+          .arrow
+          ul.sections.unstyled
+            li
+              a.attribute(ng-click='selectCaption(node.style.selector, "id")') ID
+              a.attribute(
+                ng-repeat='property in node.attrs'
+                ng-click='selectCaption(node.style.selector, property)'
+                ng-bind="property")
+            li.node-sizes
+              ul.list-inline
+                li(ng-repeat='size in sizes')
+                  a(ng-style='{width: size.diameter, height: size.diameter}'
+                    ng-class='{active: size.diameter == node.style.props.diameter}'
+                    ng-click='selectSize(node.style.selector, size)')
+            li.colors
+              ul.list-inline
+                li(ng-repeat='scheme in colors')
+                  a(ng-style='{"background-color": scheme.color}'
+                    ng-class='{active: scheme.color == node.style.props.color && scheme["border-color"] == node.style.props["border-color"]}'
+                    ng-click="selectScheme(node.style.selector, scheme)")
+            li
+              i.icon-code
+              a(ng-click='togglePopup("styling")') View stylesheet...
+  .legend-row
+    .type Relationships:
+    ul.list-unstyled.list-relationships
+      li.dropdown(ng-repeat='(type, rel) in types')
+        .contents.dropdown-toggle
+          .label.label-relationship.class-name(ng-style='{"background-color": rel.style.props.color, "color": rel.style.props["text-color-internal"]}') {{type}}
+            span.count  ({{rel.count}})
+        .styler.dropdown-menu
+          .arrow
+          ul.sections.unstyled
+            //- li
+            //-   span.caption Caption:
+            //-   ul.list-inline
+            //-     li
+            //-       a(ng-click='selectCaption(rel.style.selector, "id")') ID
+            //-     li(ng-repeat='property in rel.attrs')
+            //-       a(ng-click='selectCaption(property)'
+            //-         ng-bind='property')
+            li.arrow-widths
+              ul.list-inline
+                li(ng-repeat='arrowWidth in arrowWidths')
+                  a(ng-style='{width: arrowWidth["shaft-width"]}'
+                    ng-class='{active: arrowWidth["shaft-width"] == rel.style.props["shaft-width"]}'
+                    ng-click='selectArrowWidth(rel.style.selector, arrowWidth)')
+            li.colors
+              ul.list-inline
+                li(ng-repeat='scheme in colors')
+                  a(ng-style='{"background-color": scheme.color}'
+                    ng-class='{active: scheme.color == rel.style.props.color && scheme["border-color"] == rel.style.props["border-color"]}'
+                    ng-click="selectScheme(rel.style.selector, scheme)")
+            li
+              i.icon-code
+              a(ng-click='togglePopup("styling")') View stylesheet...
