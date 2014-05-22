@@ -9,17 +9,17 @@
     ul.controls.list-inline
       li(tooltip-placement='bottom', tooltip='Save')
         a.balled.golden(ng-class="{active: editorHasContent, 'enabled': editor.document.id, 'changed': editor.hasChanged()}", ng-click='star()')
-          i.icon-star(ng-class="{'icon-exclamation': editor.hasChanged()}")
+          i.fa.fa-star(ng-class="{'fa-exclamation': editor.hasChanged()}")
       li(tooltip-placement='bottom', tooltip='New')
         a.balled.add(ng-click='editor.setContent("")', ng-class="{active: editorHasContent}")
-          i.icon-plus
+          i.fa.fa-plus
       li.divider &nbsp;
       li(tooltip-placement='bottom', tooltip='Execute')
         a.balled.success('ng-click' = 'editor.execScript(editor.content)', ng-class="{active: editorHasContent}")
-          i.icon-play
+          i.fa.fa-play
 
     .message-bar.error.slide-down(ng-if='editor.showMessage', ng-class="editor.errorCode")
       span(ng-bind-html-unsafe="editor.errorMessage")
       |  Type <code click-to-code="':help'">:help</code> for a list of available commands.
       .actions
-        a.icon-remove(ng-click='editor.showMessage = null')
+        a.fa.fa-times-circle(ng-click='editor.showMessage = null')

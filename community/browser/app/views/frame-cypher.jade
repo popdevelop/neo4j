@@ -13,7 +13,7 @@ div(ng-controller="CypherResultCtrl", fullscreen)
           include partials/inspector
       .view-result-table.result(ng-show='isActive("table")', ng-animate = "'animate-box'")
         neo-table(table-data='frame.response.table')
-        a.icon-download-alt(exportable 'ng-click'='exportCSV(frame.response.table)', tooltip-placement='left', tooltip='Download CSV')
+        a.fa.fa-download(exportable 'ng-click'='exportCSV(frame.response.table)', tooltip-placement='left', tooltip='Download CSV')
       .view-result-error.result(ng-show='frame.detailedErrorText')
         pre
           {{ frame.detailedErrorText }}
@@ -22,17 +22,17 @@ div(ng-controller="CypherResultCtrl", fullscreen)
       .status
         div(ng-hide='frame.isLoading')
           span(ng-show='frame.hasErrors')
-            .icon-warning-sign
+            .fa.fa-warning-sign
             {{frame.errorText}}
           div(ng-hide='frame.hasErrors')
             div(ng-show='frame.response.table')
-              .icon-ok
+              .fa.fa-ok
               include partials/result-status
         span(ng-show='frame.isLoading')
-          .icon-spinner.icon-spin
+          .fa.fa-spinner.fa-spin
           | Executing query...
 
       .actions
-        a.icon-table(ng-class='{active: isActive("table")}', ng-click='setActive("table")')
-        a.icon-code-fork(ng-class='{active: isActive("graph")}', ng-click='setActive("graph")')
+        a.fa.fa-table(ng-class='{active: isActive("table")}', ng-click='setActive("table")')
+        a.fa.fa-code-fork(ng-class='{active: isActive("graph")}', ng-click='setActive("graph")')
 

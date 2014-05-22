@@ -114,7 +114,7 @@ table.json-object
   background-color: #FFF
   .status
     float: left
-    [class^="icon-"]
+    [class*="fa-"]
       margin-right: 6px
 
   .popover.bottom
@@ -130,9 +130,9 @@ table.json-object
     margin-right horizontal-padding
   &.error
     color: color-error
-  i[class^="icon-"]
+  i[class*="fa-"]
     margin: 0
-  .icon-ok
+  .fa-ok
     color: color-success
 
 .fullscreen-container
@@ -155,7 +155,7 @@ table.json-object
       absolute: top 9px right 16px
       color: #9B9DA2
       font-size: 20px
-  a.icon-download-alt
+  a.fa-download
     color: #9B9DA2
     absolute: top 9px right 18px
     font-size: 22px
@@ -234,10 +234,10 @@ table.json-object
 .navbar .nav > li:last-child > a
   padding-right: 0
 
-.icon-margin-right
+.fa-margin-right
   margin-right: 0.5em
 
-.icon-margin-left
+.fa-margin-left
   margin-left: 0.5em
 
 select
@@ -359,7 +359,7 @@ select
       bottom: 0
       z-index: 10
 
-// TODO: implement this class as @extend .icon-pencil
+// TODO: implement this class as @extend .fa-pencil
 .edit-in-place
   .edit-in-place-input
     border: none
@@ -376,7 +376,7 @@ select
   .edit-in-place-trigger
     &:before
       content: "\f040"
-    [class^="icon-"]:before, [class*=" icon-"]:before
+    [class*="fa-"]:before, [class*=" fa-"]:before
       text-decoration: inherit
       display: inline-block
       speak: none

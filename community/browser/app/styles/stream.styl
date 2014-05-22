@@ -33,7 +33,7 @@
         background: #F8F9FB
         z-index: 10
 
-        a[class^="icon-"]
+        a[class*="fa-"]
           color: color-default-text
           &:hover
             color: color-link
@@ -43,7 +43,7 @@
           svg
             height: 400px
             width: 100%
-          a.icon-table
+          a.fa-table
             font-size: 24px
             absolute: bottom 57px right horizontal-padding
 
@@ -56,7 +56,7 @@
           position: relative
           overflow-y: auto
           max-height: 359px
-          a.icon-download-alt
+          a.fa-download
             absolute: top 8px right horizontal-padding*2+20
             font-size: 24px
             right: horizontal-padding
@@ -147,13 +147,13 @@
       position: relative
       top: -1px
       background: #F9FBFD
-      &.icon-table {
+      &.fa-table {
         background: #fff;
       }
     }
-    &.icon-download-alt
+    &.fa-download
       padding-top: 12px
-    &.icon-fullscreen
+    &.fa-fullscreen
       padding-top: 12px
       font-size: 15px
   .btn

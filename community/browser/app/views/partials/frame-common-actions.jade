@@ -1,9 +1,9 @@
 .code-bar
   .actions
-    a.icon-download-alt(exportable ng-click='exportJSON(frame.response)', tooltip-placement='bottom', tooltip='Export JSON', ng-show='frame.exportable')
-    a.icon-zoom-in(ng-click="toggleFullscreen(true)", tooltip-placement='bottom', tooltip='Fullscreen', ng-show='frame.fullscreenable')
-    a.icon-remove(ng-click='frames.remove(frame)', tooltip-placement='bottom', tooltip='Remove')
+    a.fa.fa-download(exportable ng-click='exportJSON(frame.response)', tooltip-placement='bottom', tooltip='Export JSON', ng-show='frame.exportable')
+    a.fa.fa-expand(ng-click="toggleFullscreen(true)", tooltip-placement='bottom', tooltip='Fullscreen', ng-show='frame.fullscreenable')
+    a.fa.fa-times-circle(ng-click='frames.remove(frame)', tooltip-placement='bottom', tooltip='Remove')
   .status
     div(class="label label-default label-{{frame.type | lowercase}}") {{frame.type | uppercase}}
     span.code(click-to-code='frame.input') {{frame.input | uncomment}}
-  a.close-fullscreen.icon-chevron-down(ng-click="toggleFullscreen(false)")
+  a.close-fullscreen.fa.fa-compress(ng-click="toggleFullscreen(false)")
