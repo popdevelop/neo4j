@@ -45,9 +45,18 @@ angular.module('neo4jApp')
     FrameProvider.interpreters.push
       type: 'clear'
       matches: "#{cmdchar}clear"
-      exec: ['$rootScope', 'Frame', ($rootScope, Frame) ->
+      exec: ['Frame', (Frame) ->
         (input) ->
           Frame.reset()
+          true
+      ]
+
+    FrameProvider.interpreters.push
+      type: 'style'
+      matches: "#{cmdchar}style"
+      exec: ['$rootScope', ($rootScope) ->
+        (input) ->
+          $rootScope.togglePopup('styling')
           true
       ]
 
@@ -144,7 +153,7 @@ angular.module('neo4jApp')
 
           if (matches?)
             [key, value] = [matches[1], matches[2]]
-            if (value?) 
+            if (value?)
               try
                 value = eval(value)
               catch
@@ -156,11 +165,11 @@ angular.module('neo4jApp')
             property = {}
             property[key] = value
             q.resolve(property)
-          else 
+          else
             q.resolve(Settings)
 
           q.promise
-          
+
       ]
 
     # about handler
