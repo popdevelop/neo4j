@@ -37,14 +37,13 @@
           span.count  ({{rel.count}})
       .styler.dropdown-menu
         ul.sections.unstyled
-          li
-            span.caption Caption:
-            ul.list-inline
-              li
-                a(ng-click='selectCaption(rel.style.selector, "id")') ID
-              li(ng-repeat='property in rel.attrs')
-                a(ng-click='selectCaption(property)'
-                  ng-bind='property')
+          //- li
+          //-   span.caption Caption:
+          //-   a.attribute(ng-click='selectCaption(rel.style.selector, "type")') Type
+          //-   a.attribute(
+          //-     ng-repeat='property in rel.attrs'
+          //-     ng-click='selectCaption(rel.style.selector, property)'
+          //-     ng-bind="property")
           li.arrow-widths
             ul.list-inline
               li(ng-repeat='arrowWidth in arrowWidths')
