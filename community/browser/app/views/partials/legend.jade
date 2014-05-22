@@ -1,13 +1,67 @@
 .legend(ng-controller='LegendCtrl', ng-model='frame.results.graph')
   .type Labels:
   ul.list-unstyled.list-labels
-    li(ng-repeat='(label, node) in labels')
-      .contents.no-condition
-        .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "color": node.style.props["text-color-internal"]}') {{label || 'No label'}}
+    li.dropdown(ng-repeat='(label, node) in labels')
+      .contents.no-condition.dropdown-toggle
+        .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "color": node.style.props["text-color-internal"]}') {{label || 'All'}}
           span.count  ({{node.count}})
-  .type Relationships:
-  ul.list-unstyled
-    li(ng-repeat='(type, rel) in types')
-      .contents.no-condition
+      .styler.dropdown-menu
+        ul.sections.unstyled
+          li
+            span Caption:
+            .dropdown
+              a.dropdown-toggle(data-toggle='dropdown') {{selectedCaption}} &nbsp;
+                i.icon-caret-down
+              ul.dropdown-menu.pull-left(role='menu')
+                li
+                  a(ng-click='selectCaption("id")') ID
+                li(ng-repeat='property in item.propertyList')
+                  a(ng-click='selectCaption(property.key)') {{property.key}}
+          li.node-sizes
+            ul.list-inline
+              li(ng-repeat='size in sizes')
+                a(ng-style='{width: size.diameter, height: size.diameter}'
+                  ng-class='{active: size.diameter == node.style.props.diameter}'
+                  ng-click='selectSize(node.style.selector, size)')
+          li.colors
+            ul.list-inline
+              li(ng-repeat='scheme in colors')
+                a(ng-style='{"background-color": scheme.color}'
+                  ng-class='{active: scheme.color == node.style.props.color && scheme["border-color"] == node.style.props["border-color"]}'
+                  ng-click="selectScheme(node.style.selector, scheme)")
+          li
+            i.icon-code
+            a(ng-click='togglePopup("styling")') View stylesheet...
+  .type(ng-if='types.length > 0') Relationships:
+  ul.list-unstyled(ng-if='types.length > 0')
+    li.dropdown(ng-repeat='(type, rel) in types')
+      .contents.no-condition.dropdown-toggle
         .label.label-relationship.class-name(ng-style='{"background-color": rel.style.props.color, "color": rel.style.props["text-color-internal"]}') {{type}}
           span.count  ({{rel.count}})
+      .styler.dropdown-menu
+        ul.sections.unstyled
+          li
+            span Caption:
+            .dropdown
+              a.dropdown-toggle(data-toggle='dropdown') {{selectedCaption}} &nbsp;
+                i.icon-caret-down
+              ul.dropdown-menu.pull-left(role='menu')
+                li
+                  a(ng-click='selectCaption("id")') ID
+                li(ng-repeat='property in item.propertyList')
+                  a(ng-click='selectCaption(property.key)') {{property.key}}
+          li.arrow-widths
+            ul.list-inline
+              li(ng-repeat='arrowWidth in arrowWidths')
+                a(ng-style='{width: arrowWidth["shaft-width"]}'
+                  ng-class='{active: arrowWidth["shaft-width"] == style["shaft-width"]}'
+                  ng-click='selectArrowWidth(rel.style.selector, arrowWidth)')
+          li.colors
+            ul.list-inline
+              li(ng-repeat='scheme in colors')
+                a(ng-style='{"background-color": scheme.color}'
+                  ng-class='{active: scheme.color == style.color && scheme["border-color"] == style["border-color"]}'
+                  ng-click="selectScheme(rel.style.selector, scheme)")
+          li
+            i.icon-code
+            a(ng-click='togglePopup("styling")') View stylesheet...

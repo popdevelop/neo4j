@@ -174,8 +174,10 @@ angular.module('neo4jApp.services')
       #
       change: (item, props) ->
         selector = @selector(item)
-        rule = @findRule(selector)
+        @changeForSelector(selector, props)
 
+      changeForSelector: (selector, props) ->
+        rule = @findRule(selector)
         if not rule?
           rule = new StyleRule(selector, {})
           @rules.push(rule)

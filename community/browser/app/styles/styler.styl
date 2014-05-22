@@ -1,0 +1,81 @@
+@import 'variables'
+@import 'mixins'
+
+.styler
+  opacity: 0.95
+  -webkit-font-smoothing: initial
+  position: absolute
+  color: inspector-font-color
+  background-color: inspector-bg-color
+  width: 320px
+  overflow: hidden
+
+  ul.list-inline li:first-child
+    padding-left: 0
+  ul.list-inline li:last-child
+    padding-right: 0
+  ul.list-inline > li
+    padding-left: 3px
+    padding-right: 3px
+
+  ul
+    padding: 0
+
+
+
+  .sections > li
+    display: list-item
+    line-height: 1.3em
+    padding: 18px 14px
+    border-bottom: 1px solid inspector-divider-color
+    a
+      color: inspector-font-color
+    .dropdown-menu > li > a
+      color: inspector-bg-color
+      &:hover
+        color: #fff
+    .dropdown-toggle
+      font-weight: bold
+    &:last-child
+      border-bottom: none
+    i
+      margin-top: -2px
+      vertical-align: middle
+      font-size: 18px
+      display: inline-block
+      width: 29px
+    &.colors, &.node-sizes, &.arrow-widths
+      padding-top: 10px
+      padding-bottom: 11px
+      a
+        position: relative
+        display: inline-block
+        background-color: #FFF
+        line-height: 0
+        overflow: hidden
+        opacity: 0.3
+        padding: 0
+        &:after
+          content: ' '
+          stretch()
+          background-color: #fff
+          width 50%
+          opacity: 0.20
+        &:hover, &.active
+          opacity: 1
+    &.colors, &.node-sizes
+      a
+        border-radius: 50%
+    &.colors
+      a
+        width: 36px
+        height: 36px
+        border: 3px solid inspector-bg-color
+        &:hover, &.active
+          width: 36px
+          height: 36px
+          border: none
+    &.arrow-widths
+      a
+        height: 30px
+
