@@ -2,21 +2,18 @@
   .type Labels:
   ul.list-unstyled.list-labels
     li.dropdown(ng-repeat='(label, node) in labels')
-      .contents.no-condition.dropdown-toggle
-        .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "color": node.style.props["text-color-internal"]}') {{label || 'All'}}
+      .contents.dropdown-toggle
+        .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "color": node.style.props["text-color-internal"]}') {{label || '*'}}
           span.count  ({{node.count}})
       .styler.dropdown-menu
         ul.sections.unstyled
           li
-            span Caption:
-            .dropdown
-              a.dropdown-toggle(data-toggle='dropdown') {{selectedCaption}} &nbsp;
-                i.icon-caret-down
-              ul.dropdown-menu.pull-left(role='menu')
-                li
-                  a(ng-click='selectCaption("id")') ID
-                li(ng-repeat='property in item.propertyList')
-                  a(ng-click='selectCaption(property.key)') {{property.key}}
+            span.caption Caption:
+            a.attribute(ng-click='selectCaption(node.style.selector, "id")') ID
+            a.attribute(
+              ng-repeat='property in node.attrs'
+              ng-click='selectCaption(node.style.selector, property)'
+              ng-bind="property")
           li.node-sizes
             ul.list-inline
               li(ng-repeat='size in sizes')
@@ -32,24 +29,22 @@
           li
             i.icon-code
             a(ng-click='togglePopup("styling")') View stylesheet...
-  .type(ng-if='types.length > 0') Relationships:
-  ul.list-unstyled(ng-if='types.length > 0')
+  .type Relationships:
+  ul.list-unstyled
     li.dropdown(ng-repeat='(type, rel) in types')
-      .contents.no-condition.dropdown-toggle
+      .contents.dropdown-toggle
         .label.label-relationship.class-name(ng-style='{"background-color": rel.style.props.color, "color": rel.style.props["text-color-internal"]}') {{type}}
           span.count  ({{rel.count}})
       .styler.dropdown-menu
         ul.sections.unstyled
           li
-            span Caption:
-            .dropdown
-              a.dropdown-toggle(data-toggle='dropdown') {{selectedCaption}} &nbsp;
-                i.icon-caret-down
-              ul.dropdown-menu.pull-left(role='menu')
-                li
-                  a(ng-click='selectCaption("id")') ID
-                li(ng-repeat='property in item.propertyList')
-                  a(ng-click='selectCaption(property.key)') {{property.key}}
+            span.caption Caption:
+            ul.list-inline
+              li
+                a(ng-click='selectCaption(rel.style.selector, "id")') ID
+              li(ng-repeat='property in rel.attrs')
+                a(ng-click='selectCaption(property)'
+                  ng-bind='property')
           li.arrow-widths
             ul.list-inline
               li(ng-repeat='arrowWidth in arrowWidths')

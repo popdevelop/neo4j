@@ -6,6 +6,24 @@
   background-color: #EEF1F8
   border-bottom: 1px solid #DFE5F0
 
+  .attribute
+    user-select: none
+    display: inline-block
+    padding: 1px 6px
+    font-size: 12px
+    background-color: rgba(0, 0, 0, 0);
+    color: #9195A0;
+    border: 1px solid #595D66;
+    max-width: 100px;
+    overflow: hidden;
+    border-radius: .25em;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    &:hover
+      border-color: #FFF;
+      color: #FFF;
+
   .label
     padding: 10px
     font-size: 12px
@@ -27,6 +45,13 @@
     width: 90px
     margin: 0 12px
     color: #525864
+
+  .caption
+    float: left
+    margin-right: 5px
+    font-size: 12px
+    font-weight: bold
+    line-height: 21px
 
   > ul
     padding: 7px 9px 2px
@@ -57,12 +82,8 @@
         line-height: 1em
         position: relative
         top: 3px
-        &.no-condition
-          top: -1px
-          line-height: 24px
-        .condition
-          font-size: 10px
-          color: #888
+        top: -1px
+        line-height: 24px
       .remove
         display: none
         padding: 2px 8px

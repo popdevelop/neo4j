@@ -28,10 +28,6 @@ angular.module('neo4jApp')
     $scope.sizes = graphStyle.defaultSizes()
     $scope.arrowWidths = graphStyle.defaultArrayWidths()
     $scope.colors = graphStyle.defaultColors()
-    $scope.style =
-      color: $scope.colors[0].color
-      'border-color': $scope.colors[0]['border-color']
-      diameter: $scope.sizes[0].diameter
 
     graphStats = (graph) ->
       resultLabels = {}
@@ -41,13 +37,25 @@ angular.module('neo4jApp')
         types: {}
       }
       for node in graph.nodes()
-        stats.labels[''] ?= { count: 0, style: graphStyle.forNode(node) }
+        stats.labels[''] ?=
+          attrs: []
+          count: 0
+          style: graphStyle.forNode(node)
+
         stats.labels[''].count++
         for label in node.labels
-          stats.labels[label] ?= { count: 0, style: graphStyle.forNode(node) }
+          stats.labels[label] ?=
+            attrs: Object.keys(node.propertyMap)
+            count: 0
+            style: graphStyle.forNode(node)
+
           stats.labels[label].count++
       for rel in graph.relationships()
-        stats.types[rel.type] ?= { count: 0, style: graphStyle.forRelationship(rel) }
+        stats.types[rel.type] ?=
+          attrs: Object.keys(rel.propertyMap)
+          count: 0
+          style: graphStyle.forRelationship(rel)
+
         stats.types[rel.type].count++
 
       stats
@@ -83,6 +91,10 @@ angular.module('neo4jApp')
 
     $scope.selectArrowWidth = (selector, size) ->
       graphStyle.changeForSelector(selector, size )
+
+    $scope.selectCaption  = (selector, caption) ->
+      $scope.selectedCaption = caption
+      graphStyle.changeForSelector(selector, { caption: '{' + caption + '}'})
 
     $scope.selectScheme = (selector, scheme) ->
       graphStyle.changeForSelector(selector, angular.copy(scheme))

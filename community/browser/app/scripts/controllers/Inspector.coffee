@@ -23,12 +23,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 angular.module('neo4jApp.controllers')
   .controller 'InspectorCtrl', [
     '$scope',
-    ($scope) ->
+    'GraphStyle'
+    ($scope, GraphStyle) ->
       $scope.showInspector = no
       $scope.$watch 'selectedItem', (item) ->
         $scope.item = item
         $scope.showInspector = !!item
         return unless item
+        $scope.style = GraphStyle.forEntity(item).props
         #if $scope.style.caption
         #  $scope.selectedCaption = $scope.style.caption.replace(/\{([^{}]*)\}/, "$1")
 
