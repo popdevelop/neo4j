@@ -7,7 +7,7 @@ div(ng-controller="CypherResultCtrl", fullscreen)
         .graph-contents
           svg(neo-graph
             graph-data='frame.response.graph'
-            on-node-click='onNodeClick($node)'
+            on-item-click='onItemClick($item)'
             ng-controller='D3GraphCtrl'
             style="pointer-events:fill;")
           include partials/inspector

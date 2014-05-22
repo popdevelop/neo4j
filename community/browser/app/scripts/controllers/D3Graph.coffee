@@ -91,9 +91,9 @@ angular.module('neo4jApp.controllers')
           force.start()
 
       selectItem = (item) ->
-        if $attrs.onNodeClick
-          exp = $parse($attrs.onNodeClick)
-          $scope.$apply(->exp($scope, {'$node': item}))
+        if $attrs.onItemClick
+          exp = $parse($attrs.onItemClick)
+          $scope.$apply(->exp($scope, {'$item': item}))
 
       onNodeDblClick = (d) =>
         return if d.expanded
