@@ -9,7 +9,7 @@
         .styler.dropdown-menu
           .arrow
           ul.sections.unstyled
-            li
+            li.attributes
               a.attribute(ng-click='selectCaption(node.style.selector, "id")') ID
               a.attribute(
                 ng-repeat='property in node.attrs'
@@ -27,9 +27,6 @@
                   a(ng-style='{"background-color": scheme.color}'
                     ng-class='{active: scheme.color == node.style.props.color && scheme["border-color"] == node.style.props["border-color"]}'
                     ng-click="selectScheme(node.style.selector, scheme)")
-            li
-              i.icon-code
-              a(ng-click='togglePopup("styling")') View stylesheet...
   .legend-row
     .type Relationships:
     ul.list-unstyled.list-relationships
@@ -40,14 +37,6 @@
         .styler.dropdown-menu
           .arrow
           ul.sections.unstyled
-            //- li
-            //-   span.caption Caption:
-            //-   ul.list-inline
-            //-     li
-            //-       a(ng-click='selectCaption(rel.style.selector, "id")') ID
-            //-     li(ng-repeat='property in rel.attrs')
-            //-       a(ng-click='selectCaption(property)'
-            //-         ng-bind='property')
             li.arrow-widths
               ul.list-inline
                 li(ng-repeat='arrowWidth in arrowWidths')
@@ -60,6 +49,3 @@
                   a(ng-style='{"background-color": scheme.color}'
                     ng-class='{active: scheme.color == rel.style.props.color && scheme["border-color"] == rel.style.props["border-color"]}'
                     ng-click="selectScheme(rel.style.selector, scheme)")
-            li
-              i.icon-code
-              a(ng-click='togglePopup("styling")') View stylesheet...

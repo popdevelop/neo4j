@@ -4,10 +4,11 @@
 .styler
   opacity: 0.95
   -webkit-font-smoothing: initial
-  color: inspector-font-color
-  background-color: inspector-bg-color
+  color: styler-font-color
+  background-color: styler-bg-color
   width: 320px
-  margin-top: 5px;
+  margin-top: 5px
+  border: none
 
   ul.list-inline li:first-child
     padding-left: 0
@@ -35,14 +36,14 @@
     margin-left: -(arrow-size);
     border-width: arrow-size;
     border-top-width: 0;
-    border-bottom-color: inspector-bg-color
+    border-bottom-color: styler-bg-color
 
   > .arrow:after
     top: 1px;
     margin-left: -10px;
     content: " ";
     border-top-width: 0;
-    border-bottom-color: inspector-bg-color
+    border-bottom-color: styler-bg-color
     border-width: 10px;
 
   .attribute
@@ -57,7 +58,7 @@
     overflow: hidden;
     border-radius: .25em;
     margin-right: 6px;
-    margin-bottom: 6px;
+    margin-bottom: 2px;
     font-weight: bold;
     &:hover
       border-color: #FFF;
@@ -68,11 +69,13 @@
     display: list-item
     line-height: 1.3em
     padding: 10px 14px 11px
-    border-bottom: 1px solid inspector-divider-color
+    border-bottom: 1px solid styler-divider-color
+    &.attributes
+      padding-bottom: 9px
     a
-      color: inspector-font-color
+      color: styler-font-color
     .dropdown-menu > li > a
-      color: inspector-bg-color
+      color: styler-bg-color
       &:hover
         color: #fff
     .dropdown-toggle
@@ -109,7 +112,7 @@
       a
         width: 36px
         height: 36px
-        border: 3px solid inspector-bg-color
+        border: 3px solid styler-bg-color
         &:hover, &.active
           width: 36px
           height: 36px
