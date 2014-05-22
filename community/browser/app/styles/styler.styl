@@ -4,11 +4,10 @@
 .styler
   opacity: 0.95
   -webkit-font-smoothing: initial
-  position: absolute
   color: inspector-font-color
   background-color: inspector-bg-color
   width: 320px
-  overflow: hidden
+  margin-top: 5px;
 
   ul.list-inline li:first-child
     padding-left: 0
@@ -21,6 +20,48 @@
   ul
     padding: 0
 
+  arrow-size = 6px
+  > .arrow,
+  > .arrow:after
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  > .arrow
+    top: -(arrow-size);
+    left: 20px;
+    margin-left: -(arrow-size);
+    border-width: arrow-size;
+    border-top-width: 0;
+    border-bottom-color: inspector-bg-color
+
+  > .arrow:after
+    top: 1px;
+    margin-left: -10px;
+    content: " ";
+    border-top-width: 0;
+    border-bottom-color: inspector-bg-color
+    border-width: 10px;
+
+  .attribute
+    user-select: none
+    display: inline-block
+    padding: 1px 6px
+    font-size: 12px
+    background-color: rgba(0, 0, 0, 0);
+    color: #9195A0;
+    border: 1px solid #595D66;
+    max-width: 100px;
+    overflow: hidden;
+    border-radius: .25em;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    &:hover
+      border-color: #FFF;
+      color: #FFF;
 
 
   .sections > li

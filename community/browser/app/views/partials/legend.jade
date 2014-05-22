@@ -6,6 +6,7 @@
         .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "color": node.style.props["text-color-internal"]}') {{label || '*'}}
           span.count  ({{node.count}})
       .styler.dropdown-menu
+        .arrow
         ul.sections.unstyled
           li
             span.caption Caption:
@@ -36,6 +37,7 @@
         .label.label-relationship.class-name(ng-style='{"background-color": rel.style.props.color, "color": rel.style.props["text-color-internal"]}') {{type}}
           span.count  ({{rel.count}})
       .styler.dropdown-menu
+        .arrow
         ul.sections.unstyled
           //- li
           //-   span.caption Caption:
