@@ -28,12 +28,15 @@ angular.module('neo4jApp.controllers')
       $scope.showInspector = no
       $scope.$watch 'selectedItem', (item) ->
         $scope.item = item
-        $scope.showInspector = !!item
+        #$scope.showInspector = !!item
         return unless item
         $scope.style = GraphStyle.forEntity(item).props
         #if $scope.style.caption
         #  $scope.selectedCaption = $scope.style.caption.replace(/\{([^{}]*)\}/, "$1")
 
       $scope.close = -> $scope.showInspector = no
+
+      $scope.toggleInspector = ->
+        $scope.showInspector = !$scope.showInspector
 
   ]

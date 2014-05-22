@@ -1,5 +1,24 @@
 @import 'variables'
 @import 'mixins'
+@import 'nib'
+
+.inspector-handle
+  position: absolute
+  top: 0
+  right: 0
+  width: 42px
+  height: 42px
+  background: #fff
+  color: #9b9da2
+  text-align: center
+  font-size: 16px
+  padding-top: 10px
+  border-left: 1px solid #dfe5f0
+  border-bottom: 1px solid #dfe5f0
+  transist: all 0.2s
+  &:hover
+    background: #4B4F58
+    color: #fff
 
 .inspector
   opacity: 0.95
@@ -51,7 +70,7 @@
     padding-left: 10px
     overflow: hidden
     user-select: none
-    background-color: #212329
+    background-color: inspector-header-color
     .preview
       width: 10px
       height: 10px
@@ -59,10 +78,11 @@
       display: inline-block
       margin-right: 6px
     a.close
-      font-size: 13px
-      color: white
+      font-size: 14px
+      color: #fff
       float: right
-      padding: 10px 12px
+      padding: 9px 12px
+      opacity: 0.8
 
   .nav
     font-weight: bold
@@ -154,6 +174,7 @@
       color: darken(inspector-font-color, 30%)
       text-align: center
       font-style: italic
+      padding: 18px 24px
 
   ul.tight
     li.pair
@@ -168,16 +189,14 @@
  * Animations
  */
 .inspector-slide-in.ng-hide-add, .inspector-slide-in.ng-hide-remove {
-  transist: all 0.4s
-  display:block!important;
+  transition: all 0.4s
+  display: block!important;
 }
 .inspector-slide-in.ng-hide-add.ng-hide-add-active,
 .inspector-slide-in.ng-hide-remove {
-  //opacity:0;
-  -webkit-transform: translateX(320px);
+  transform: translateX(320px)
 }
 .inspector-slide-in.ng-hide-add,
 .inspector-slide-in.ng-hide-remove.ng-hide-remove-active {
-  //opacity:1;
-  -webkit-transform: translateX(0);
+  transform: translateX(0)
 }

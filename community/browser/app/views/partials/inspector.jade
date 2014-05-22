@@ -1,13 +1,19 @@
-.inspector.inspector-slide-in(ng-show='showInspector', ng-controller='InspectorCtrl')
-  .header
-    span.preview(ng-style='{"background-color": style.color }')
-    | Node {{item.id}}
-    span.muted  [{{item.type || item.labels.join(', ')}}]
-    a.close.icon-remove(ng-click='close()')
+div(ng-controller='InspectorCtrl')
+  a.inspector-handle.inspector-slide-in(ng-click='toggleInspector()', ng-hide='showInspector')
+    .icon-info-sign
+  .inspector.inspector-slide-in(ng-show='showInspector')
+    .header
+      span(ng-hide='item') No item selected
+      span(ng-show='item')
+        span.preview(ng-style='{"background-color": style.color }')
+        | {{item.type ? 'Relationship' : 'Node'}} {{item.id}}
+        span.muted  [{{item.type || item.labels.join(', ')}}]
+      a.close.icon-remove(ng-click='close()')
 
-  .handle
-    ul.sections.unstyled.tight.scrollable
-      li.empty(ng-show='item.propertyList.length == 0') No properties
-      li.pair(ng-repeat='property in item.propertyList')
-        .key {{property.key}}
-        .value {{property.value}}
+    .handle
+      ul.sections.unstyled.tight.scrollable
+        li.empty(ng-hide='item') Click on a node or relationship to display its properties here.
+        li.empty(ng-show='item.propertyList.length == 0') No properties
+        li.pair(ng-repeat='property in item.propertyList')
+          .key {{property.key}}
+          .value {{property.value}}
