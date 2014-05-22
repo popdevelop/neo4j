@@ -6,13 +6,8 @@
     a.close.icon-remove(ng-click='close()')
 
   .handle
-  tabset
-    tab
-      tab-heading
-        i.icon-info-sign
-        span.name Properties
-      ul.sections.unstyled.tight.scrollable
-        li.empty(ng-show='item.propertyList.length == 0') No properties
-        li.pair(ng-repeat='property in item.propertyList')
-          .key {{property.key}}
-          .value {{property.value}}
+    ul.sections.unstyled.tight.scrollable
+      li.empty(ng-show='item.propertyList.length == 0') No properties
+      li.pair(ng-repeat='property in item.propertyList')
+        .key {{property.key}}
+        .value {{property.value}}
