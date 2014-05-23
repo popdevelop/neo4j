@@ -153,19 +153,17 @@
       height: ball-size;
       width: 26px;
       user-select: none;
-      input {
-        display: none;
-        &:checked + label {
+      label.right {
+        border-color: #D2D5DA;
+        .switch-inner {
+          margin-left: 0;
+        }
+        .handle {
+          right: 0px;
           border-color: #D2D5DA;
-          .switch-inner {
-            margin-left: 0;
-          }
-          .handle {
-            right: 0px;
-            border-color: #D2D5DA;
-          }
         }
       }
+
       label {
         margin-bottom: 0;
         display: block;

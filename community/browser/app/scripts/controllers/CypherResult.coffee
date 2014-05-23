@@ -32,7 +32,9 @@ angular.module('neo4jApp.controllers')
         showGraph = resp.table.nodes.length
         $scope.tab = if showGraph then 'graph' else 'table'
 
-    $scope.setActive = (tab) -> $rootScope.stickyTab = $scope.tab = tab
+    $scope.setActive = (tab) ->
+      tab ?= if $scope.tab is 'graph' then 'table' else 'graph'
+      $rootScope.stickyTab = $scope.tab = tab
     $scope.isActive = (tab) -> tab is $scope.tab
 
     $scope.onItemClick = (item) ->

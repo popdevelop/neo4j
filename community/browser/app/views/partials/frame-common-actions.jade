@@ -3,8 +3,7 @@
     .toggle(ng-if='frame.type == "cypher"')
       a(ng-class='{active: isActive("graph")}', ng-click='setActive("graph")') Graph
       .switch
-        input(type="checkbox", id="toggle-result-{{$index}}")
-        label(for="toggle-result-{{$index}}")
+        label(ng-class='{right: isActive("table")}', ng-click='setActive()')
           .switch-inner
           .handle
       a(ng-class='{active: isActive("table")}', ng-click='setActive("table")') Table
