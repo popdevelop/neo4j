@@ -140,8 +140,8 @@ angular.module('neo4jApp.services')
       forEntity: (item) ->
         @calculateStyle(@selector(item), item)
 
-      forNode: (node = {}) ->
-        selector = @nodeSelector(node)
+      forNode: (node = {}, idx = 0) ->
+        selector = @nodeSelector(node, idx)
         if node.labels?.length > 0
           @setDefaultStyling(selector)
         @calculateStyle(selector, node)
