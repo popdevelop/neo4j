@@ -140,12 +140,12 @@ indent-hover = 22px
             padding-left: indent-hover
             .contents a
               color: color-star
-          .fa-star
+          .icon-loaded
             opacity: 1
             left: 0
             &:hover
               color: #fff
-          &:hover .fa-play-circle
+          &:hover .icon-inactive
             opacity: 0
             left: 40px
           .contents
@@ -161,9 +161,9 @@ indent-hover = 22px
           padding-left: indent-hover
           .fa-trash-o
             display: block
-          .fa-play-circle, .fa-spinner
+          .icon-inactive, .fa-spinner
             opacity: 1
-          .fa-play-circle
+          .icon-inactive
             color: color-success
           .contents a
             color: drawer-color-fg-active
@@ -178,12 +178,12 @@ indent-hover = 22px
           z-index 2
           absolute: right 2px top 10px
           display: none
-        .fa-play-circle, .fa-spinner, .fa-star
+        .icon-inactive, .fa-spinner, .icon-loaded
           transist: all 0.2s
           opacity: 0
           z-index 2
           absolute: left 0 top 10px
-        a.fa-star
+        a.icon-loaded
           color: color-star
           left: -10px
         a.fa-spinner
@@ -210,17 +210,17 @@ indent-hover = 22px
   ul.indented
     li .list-item
       padding-left: indent
-      a.fa-star
+      a.icon-loaded
         left: 0px
       &.loaded
         padding-left: indent-hover + indent
         &:hover
           padding-left: indent-hover + indent
-        .fa-star
+        .icon-loaded
           left: indent
       &:hover
         padding-left: indent-hover + indent
-      .fa-play-circle, .fa-spinner
+      .icon-inactive, .fa-spinner
         left indent
 
   .badge, .label
