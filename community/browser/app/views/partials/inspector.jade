@@ -10,8 +10,8 @@ div(ng-controller='InspectorCtrl')
         span.muted  [{{item.type || item.labels.join(', ')}}]
       a.close.fa.fa-times-circle(ng-click='close()')
 
-    .handle
-      ul.sections.unstyled.tight.scrollable
+    .inspector-body
+      ul.sections.unstyled.tight
         li.empty(ng-hide='item') Click on a node or relationship to display its properties here.
         li.empty(ng-show='item.propertyList.length == 0') No properties
         li.pair(ng-repeat='property in item.propertyList')
