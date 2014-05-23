@@ -7,7 +7,7 @@ h4 Saved scripts
     h5.folder(ng-click='folders.expand(folder)')
       i.fa.fa-caret-right(ng-class="{'fa-rotate-90': folder.expanded}")
       div(edit-in-place='folder.name', on-blur='folders.save()')
-      a.fa.fa-trash(ng-click='removeFolder(folder)', tooltip-placement='left', tooltip='Remove folder')
+      a.fa.fa-trash-o(ng-click='removeFolder(folder)', tooltip-placement='left', tooltip='Remove folder')
     ul.starred.indented(ng-show='folder.expanded')
       li(ng-repeat="document in documents.where({folder: folder.id})", ng-animate="{leave:'pop-out', enter:'pop-in'}")
         include list-item
