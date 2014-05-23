@@ -4,7 +4,7 @@
 
 .inspector-handle
   position: absolute
-  top: 0
+  bottom: 0
   right: 0
   width: 42px
   height: 42px
@@ -14,7 +14,7 @@
   font-size: 16px
   padding-top: 10px
   border-left: 1px solid #dfe5f0
-  border-bottom: 1px solid #dfe5f0
+  border-top: 1px solid #dfe5f0
   transist: all 0.2s
   &:hover
     background: #4B4F58
@@ -176,14 +176,14 @@
  * Animations
  */
 .inspector-slide-in.ng-hide-add, .inspector-slide-in.ng-hide-remove {
-  transition: all 0.4s
-  display: block!important;
+  transition: all 0.3s
+  display: block !important;
 }
 .inspector-slide-in.ng-hide-add.ng-hide-add-active,
 .inspector-slide-in.ng-hide-remove {
-  transform: translateX(320px)
+  top: 100%
 }
 .inspector-slide-in.ng-hide-add,
 .inspector-slide-in.ng-hide-remove.ng-hide-remove-active {
-  transform: translateX(0)
+  top: 0%
 }

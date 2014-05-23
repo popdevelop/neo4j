@@ -33,10 +33,10 @@
         background: #F8F9FB
         z-index: 10
 
-        a[class*="fa-"]
-          color: color-default-text
-          &:hover
-            color: color-link
+        //a[class*="fa-"]
+        //  color: color-default-text
+        //  &:hover
+        //    color: color-link
 
         .view-result-graph
           background-color: #F9FBFD
@@ -128,10 +128,90 @@
     text-overflow: ellipsis
     white-space: nowrap
 
+  .toggle
+    ball-size = 16px
+
+    float: left
+    font-weight: bold
+    font-size: 11px
+    text-transform: uppercase
+    border-left: 1px solid #e6e9ef
+    padding: 0 16px
+    a
+      color: #9b9da2
+      line-height: 36px
+      position: relative
+      top: -1px
+
+    .switch {
+      position: relative
+      top: 3px
+      display: inline-block
+      margin-left: 3px
+      margin-right: 5px
+
+      height: ball-size;
+      width: 26px;
+      user-select: none;
+      input {
+        display: none;
+        &:checked + label {
+          border-color: #D2D5DA;
+          .switch-inner {
+            margin-left: 0;
+          }
+          .handle {
+            right: 0px;
+            border-color: #D2D5DA;
+          }
+        }
+      }
+      label {
+        margin-bottom: 0;
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+        border: 2px solid #CED3D8;
+        border-radius: 50px;
+        height: ball-size;
+        transition: border-color 0.25s;
+      }
+      .switch-inner {
+        width: 200%;
+        margin-left: -100%;
+        transition: all 0.3s ease-in 0s;
+        &:before, &:after {
+          content: "";
+          float: left;
+          width: 50%;
+          height: ball-size;
+        }
+        &:before {
+          padding-left: 10px;
+          background-color: #D2D5DA
+        }
+        &:after {
+          background-color: #D2D5DA;
+        }
+      }
+      .handle {
+        width: ball-size;
+        margin: 0;
+        background: #FFFFFF;
+        border: 2px solid #CED3D8;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 10px;
+        transition: all 0.3s ease-in 0s;
+      }
+    }
+
 .actions
   float: right
   opacity: 1.0
-  a
+  .button
     transist: all 0.2s
     float: left
     border-left: 1px solid #E6E9EF

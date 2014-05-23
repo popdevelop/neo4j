@@ -1,5 +1,5 @@
 div(ng-controller='InspectorCtrl')
-  a.inspector-handle.inspector-slide-in(ng-click='toggleInspector()', ng-hide='showInspector')
+  a.inspector-handle.inspector-slide-in(ng-click='toggleInspector()')
     .fa.fa-info-circle
   .inspector.inspector-slide-in(ng-show='showInspector')
     .header
@@ -8,7 +8,7 @@ div(ng-controller='InspectorCtrl')
         span.preview(ng-style='{"background-color": style.color }')
         | {{item.type ? 'Relationship' : 'Node'}} {{item.id}}
         span.muted  [{{item.type || item.labels.join(', ')}}]
-      a.close.fa.fa-times-circle(ng-click='close()')
+      a.close.fa.fa-chevron-down(ng-click='close()')
 
     .inspector-body
       ul.sections.unstyled.tight

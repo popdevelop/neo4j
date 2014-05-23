@@ -18,21 +18,20 @@ div(ng-controller="CypherResultCtrl", fullscreen)
         pre
           {{ frame.detailedErrorText }}
 
-    .status-bar(ng-class='{error: frame.hasErrors, loading: frame.isLoading}')
-      .status
-        div(ng-hide='frame.isLoading')
-          span(ng-show='frame.hasErrors')
-            .fa.fa-warning-sign
-            {{frame.errorText}}
-          div(ng-hide='frame.hasErrors')
-            div(ng-show='frame.response.table')
-              .fa.fa-ok
-              include partials/result-status
-        span(ng-show='frame.isLoading')
-          .fa.fa-spinner.fa-spin
-          | Executing query...
+    //- .status-bar(ng-class='{error: frame.hasErrors, loading: frame.isLoading}')
+    //-   .status
+    //-     div(ng-hide='frame.isLoading')
+    //-       span(ng-show='frame.hasErrors')
+    //-         .fa.fa-warning-sign
+    //-         {{frame.errorText}}
+    //-       div(ng-hide='frame.hasErrors')
+    //-         div(ng-show='frame.response.table')
+    //-           .fa.fa-ok
+    //-           include partials/result-status
+    //-     span(ng-show='frame.isLoading')
+    //-       .fa.fa-spinner.fa-spin
+    //-       | Executing query...
 
-      .actions
-        a.fa.fa-table(ng-class='{active: isActive("table")}', ng-click='setActive("table")')
-        a.fa.fa-code-fork(ng-class='{active: isActive("graph")}', ng-click='setActive("graph")')
-
+    //-   .actions
+    //-     a.fa.fa-table(ng-class='{active: isActive("table")}', ng-click='setActive("table")')
+    //-     a.fa.fa-code-fork(ng-class='{active: isActive("graph")}', ng-click='setActive("graph")')
