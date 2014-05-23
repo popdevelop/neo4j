@@ -197,10 +197,12 @@ angular.module('neo4jApp.services')
       #
       # Selector helpers
       #
-      nodeSelector: (node = {}) ->
+      # FIXME: until we support styling nodes with multiple labels separately.
+      # Provide an option to select which label to use
+      nodeSelector: (node = {}, labelIdx = 0) ->
         selector = 'node'
         if node.labels?.length > 0
-          selector += ".#{node.labels[0]}"
+          selector += ".#{node.labels[labelIdx]}"
         new Selector(selector)
 
       relationshipSelector: (rel = {}) ->
