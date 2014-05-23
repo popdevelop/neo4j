@@ -4,6 +4,7 @@
     a.fa.fa-expand(ng-click="toggleFullscreen(true)", tooltip-placement='bottom', tooltip='Fullscreen', ng-show='frame.fullscreenable')
     a.fa.fa-times-circle(ng-click='frames.remove(frame)', tooltip-placement='bottom', tooltip='Remove')
   .status
-    div(class="label label-default label-{{frame.type | lowercase}}") {{frame.type | uppercase}}
-    span.code(click-to-code='frame.input') {{frame.input | uncomment}}
+    //- div(class="label label-default label-{{frame.type | lowercase}}") {{frame.type | uppercase}}
+    span.prompt.code(ng-if='frame.type == "cypher"') $
+    span.code.mono(click-to-code='frame.input') {{frame.input | uncomment}}
   a.close-fullscreen.fa.fa-compress(ng-click="toggleFullscreen(false)")

@@ -1,11 +1,11 @@
 .legend(ng-controller='LegendCtrl', ng-model='frame.results.graph')
   .legend-row(ng-if='labels[""].count')
-    .type Labels:
     ul.list-unstyled.list-labels
       li.dropdown(ng-repeat='(label, node) in labels')
         .contents.dropdown-toggle
           .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "color": node.style.props["text-color-internal"]}') {{label || '*'}}
             span.count  ({{node.count}})
+            span.caret
         .styler.dropdown-menu
           .arrow
           ul.sections.unstyled
@@ -28,12 +28,12 @@
                     ng-class='{active: scheme.color == node.style.props.color && scheme["border-color"] == node.style.props["border-color"]}'
                     ng-click="selectScheme(node.style.selector, scheme)")
   .legend-row(ng-if='types[""].count')
-    .type Relationships:
     ul.list-unstyled.list-relationships
       li.dropdown(ng-repeat='(type, rel) in types')
         .contents.dropdown-toggle
           .label.label-relationship.class-name(ng-style='{"background-color": rel.style.props.color, "color": rel.style.props["text-color-internal"]}') {{type || '*'}}
             span.count  ({{rel.count}})
+            span.caret
         .styler.dropdown-menu
           .arrow
           ul.sections.unstyled

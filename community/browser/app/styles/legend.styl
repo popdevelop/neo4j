@@ -7,19 +7,25 @@
   border-bottom: 1px solid #DFE5F0
 
   .label
+    user-select: none
     padding: 10px
     font-size: 12px
     margin-right: 5px
     cursor: pointer
     &.label-node
-      padding: 4px 9px
+      padding: 4px 7px 4px 9px
       border-radius: 20px
     &.label-relationship
-      padding: 4px 6px
+      padding: 4px 5px 4px 6px
       border-radius: 3px
 
     .count
       font-weight: normal
+
+    .caret
+      margin-top: -1px
+      margin-left: 3px
+      opacity: 0.7
 
   .type
     float: left
@@ -35,12 +41,12 @@
     line-height: 21px
 
   .legend-row > ul
-    padding: 7px 9px 2px
-    padding-left: 112px
+    padding: 7px 9px 0px 10px
     &.list-relationships
       border-top: 1px dashed #d2d5da
     > li
       display: inline-block
+      margin-bottom: 3px
       &.faded
         opacity: 0.3
       .preview
@@ -64,7 +70,6 @@
         position: relative
         top: 3px
         top: -1px
-        line-height: 24px
       .remove
         display: none
         padding: 2px 8px

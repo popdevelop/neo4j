@@ -28,14 +28,14 @@ angular.module('neo4jApp.services')
     @defaultStyle =
       'node':
         'diameter': '40px'
-        'color': '#DFE1E3'
-        'border-color': '#D4D6D7'
+        'color': '#A5ABB6'
+        'border-color': '#9AA1AC'
         'border-width': '2px'
-        'text-color-internal': '#000000'
+        'text-color-internal': '#FFFFFF'
         'caption': '{id}'
         'font-size': '10px'
       'relationship':
-        'color': '#D4D6D7'
+        'color': '#A5ABB6'
         'shaft-width': '1px'
         'font-size': '8px'
         'padding': '3px'
@@ -65,7 +65,7 @@ angular.module('neo4jApp.services')
 
     # Default node colors that user can choose from
     @defaultColors = [
-      { color: '#DFE1E3', 'border-color': '#D4D6D7', 'text-color-internal': '#000000' }
+      { color: '#A5ABB6', 'border-color': '#9AA1AC', 'text-color-internal': '#FFFFFF' }
       { color: '#F25A29', 'border-color': '#DC4717', 'text-color-internal': '#FFFFFF' }
       { color: '#AD62CE', 'border-color': '#9453B1', 'text-color-internal': '#FFFFFF' }
       { color: '#30B6AF', 'border-color': '#46A39E', 'text-color-internal': '#FFFFFF' }
