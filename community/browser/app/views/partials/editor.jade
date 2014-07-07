@@ -1,5 +1,15 @@
-#editor
-  .view-editor(ng-mousedown="focusEditor($event)", ng-controller = "EditorCtrl")
+#editor(ng-controller = "EditorCtrl", ng-mousedown="focusEditor($event)")
+  .file-bar.slide-down(ng-if="settings.filemode && editor.document.id")
+    .title.icon-star.fa.fa-star
+      {{editor.document.content | autotitle}}
+      a.btn.btn-success.btn-xs.btn-save(ng-if='editor.hasChanged()', ng-click='star()') Save
+      a.btn.btn-default.btn-xs.btn-save(ng-if='editor.hasChanged()', ng-click='star()') Revert
+      //- span.edited.icon-circle-blank(ng-if='editor.hasChanged()')
+      a.fa.fa-times-circle.file-bar-close(ng-click='editor.setContent("")', ng-class="{active: editorHasContent}")
+    .actions
+      a.icon.icon-remove(ng-click='editor.setContent("")')
+      //- a.button(ng-if='editor.hasChanged()', ng-click='star()') Save
+  .view-editor
     span(ng-class="{'one-line': editorOneLine, 'disable-highlighting': disableHighlighting}")
       .prompt.code-style $
       textarea('ui-codemirror'="{theme: 'neo', mode: 'cypher', autofocus: true, lineNumbers: true, lineWrapping: true, onLoad: codemirrorLoaded}",
@@ -7,14 +17,15 @@
         placeholder='{{motd.tip}}'
         )
     ul.controls.list-inline
-      li(tooltip-placement='bottom', tooltip='Save')
+      li(ng-if="!(settings.filemode && editor.document.id)")
         a.balled.golden(ng-class="{active: editorHasContent, 'enabled': editor.document.id, 'changed': editor.hasChanged()}", ng-click='star()')
           i.fa.fa-star(ng-class="{'fa-exclamation': editor.hasChanged()}")
-      li(tooltip-placement='bottom', tooltip='New')
+      li(ng-if="!settings.filemode")
         a.balled.add(ng-click='editor.setContent("")', ng-class="{active: editorHasContent}")
           i.fa.fa-plus
-      li.divider &nbsp;
-      li(tooltip-placement='bottom', tooltip='Execute')
+      //- li.divider &nbsp;
+      //- li(tooltip-placement='bottom', tooltip='Execute')
+      li
         a.balled.success('ng-click' = 'editor.execScript(editor.content)', ng-class="{active: editorHasContent}")
           i.fa.fa-play
 

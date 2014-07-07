@@ -99,7 +99,7 @@ angular.module("neo4jApp.animations", [])
         display: 'block'
 
       element.animate
-        height: 49
+        height: 39
       ,
         duration: 400
         easing: "easeInOutCubic"

@@ -12,6 +12,75 @@
   left: 0
   right: 0
   z-index: 100
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1)
+
+  .file-bar
+    color: #fff
+    height: 39px
+    display: none
+    background: #69707E
+    line-height: 39px
+    padding: 0 24px
+    overflow: hidden
+    &.enabled
+      display: block
+    .title
+      display: block;
+      line-height: 39px
+      font-size: 13px
+      font-weight: bold
+      .btn-save {
+        margin-left: 8px;
+        border: none;
+      }
+      .file-bar-close {
+        float: right;
+        font-size: 20px;
+        padding: 8px;
+        margin-right: -17px;
+        color: #fff;
+      }
+      .edited
+        font-size: 10px;
+        position: relative;
+        top: -2px
+        left: 9px
+        color: #7ACAFF
+      &:before
+        color: #fdcc59
+        padding-right: 1px
+    .actions
+      float: right
+      padding-top: 9px
+      a
+        float: right
+        transist: all 0.15s
+        line-height: 30px
+        text-align: center
+        border-radius: 3px
+        color: #E7E9EB
+        &.button
+          padding: 0 14px
+          font-size: 13px
+          font-weight: bold
+          margin-right: 6px
+          color: #E7E9EB
+          border: 2px solid #E7E9EB
+          line-height: 26px
+        &.icon
+          background: rgba(0,0,0,0.4)
+          font-size: 18px
+          width: 30px
+        &:hover
+          color: #333946
+          background: #E7E9EB
+
+  .starred
+    display: none
+    position: absolute
+    &.enabled
+      display: block
+
 
   textarea
     opacity: 0 // avoid being displayed before CodeMirror has loaded
@@ -20,6 +89,7 @@
     transist: min-height
     min-height: 0%
     overflow-y: auto
+    position: relative
 
   .message-bar
     height: 49px
@@ -59,7 +129,7 @@
 
   ul.controls
     z-index: 1000
-    fixed: top 20px right 16px
+    absolute: top 20px right 16px
     .divider
       margin: 0 6px
       width: 1px
