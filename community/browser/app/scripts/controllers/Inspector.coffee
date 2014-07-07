@@ -24,14 +24,13 @@ angular.module('neo4jApp.controllers')
   .service('InspectorService', [->
     item: null
     type: null
+    visible: null
   ])
   .controller 'InspectorCtrl', [
     '$scope',
     'GraphStyle'
     'InspectorService'
     ($scope, graphStyle, Inspector) ->
-      $scope.showInspector = no
-
       $scope.sizes = graphStyle.defaultSizes()
       $scope.arrowWidths = graphStyle.defaultArrayWidths()
       $scope.colors = graphStyle.defaultColors()
@@ -43,10 +42,10 @@ angular.module('neo4jApp.controllers')
         $scope.item = item
         $scope.itemTmpl = "inspector/#{type}.html"
 
-      $scope.close = -> $scope.showInspector = no
+      $scope.close = -> Inspector.visible = no
 
       $scope.toggleInspector = ->
-        $scope.showInspector = !$scope.showInspector
+        Inspector.visible = !Inspector.visible
 
       $scope.selectArrowWidth = (selector, size) ->
         $scope.item.style = graphStyle.changeForSelector(selector, size )

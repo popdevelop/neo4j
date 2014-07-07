@@ -40,6 +40,7 @@ angular.module('neo4jApp.controllers')
     $scope.onItemClick = (item, type) ->
       Inspector.item = item
       Inspector.type = type
+      Inspector.visible = yes if type in ['label', 'relationshipType']
 
     $scope.resultStatistics = (frame) ->
       if frame?.response

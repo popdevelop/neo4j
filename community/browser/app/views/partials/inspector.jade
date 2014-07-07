@@ -72,4 +72,4 @@ script(id="inspector/relationshipType.html", type="text/ng-template")
 div(ng-controller='InspectorCtrl')
   a.inspector-handle.inspector-slide-in(ng-click='toggleInspector()')
     .fa.fa-info-circle
-  .inspector.inspector-slide-in(ng-show='showInspector', ng-include="itemTmpl")
+  .inspector.inspector-slide-in(ng-show='Inspector.visible', ng-include="itemTmpl")
