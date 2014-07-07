@@ -18,7 +18,7 @@
     "d3": "3.2.8",
     "es5-shim": "2.0.12",
     "file-saver": "latest",
-    "font-awesome": "~4.1.0"
+    "font-awesome": "~4.1.0",
     "jquery": "2.0.3",
     "jquery-ui": "1.10.3",
     "jquery.animate-enhanced": "*",
