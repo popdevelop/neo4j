@@ -2,50 +2,15 @@
   .legend-row(ng-if='labels[""].count')
     ul.list-unstyled.list-labels
       li.dropdown(ng-repeat='(label, node) in labels')
-        .contents.dropdown-toggle
+        .contents(ng-click="onItemClick(node, 'label')")
           .label.label-node.class-name(ng-style='{"background-color": node.style.props.color, "color": node.style.props["text-color-internal"]}') {{label || '*'}}
             span.count  ({{node.count}})
             span.caret
-        .styler.dropdown-menu
-          .arrow
-          ul.sections.unstyled
-            li.attributes
-              a.attribute(ng-click='selectCaption(node.style.selector, "id")') id
-              a.attribute(
-                ng-repeat='property in node.attrs'
-                ng-click='selectCaption(node.style.selector, property)'
-                ng-bind="property")
-            li.node-sizes
-              ul.list-inline
-                li(ng-repeat='size in sizes')
-                  a(ng-style='nodeDisplaySize($index)'
-                    ng-class='{active: size.diameter == node.style.props.diameter}'
-                    ng-click='selectSize(node.style.selector, size)')
-            li.colors
-              ul.list-inline
-                li(ng-repeat='scheme in colors')
-                  a(ng-style='{"background-color": scheme.color}'
-                    ng-class='{active: scheme.color == node.style.props.color && scheme["border-color"] == node.style.props["border-color"]}'
-                    ng-click="selectScheme(node.style.selector, scheme)")
   .legend-row(ng-if='types[""].count')
     ul.list-unstyled.list-relationships
       li.dropdown(ng-repeat='(type, rel) in types')
-        .contents.dropdown-toggle
+        .contents(ng-click="onItemClick(rel, 'relationshipType')")
           .label.label-relationship.class-name(ng-style='{"background-color": rel.style.props.color, "color": rel.style.props["text-color-internal"]}') {{type || '*'}}
             span.count  ({{rel.count}})
             span.caret
-        .styler.dropdown-menu
-          .arrow
-          ul.sections.unstyled
-            li.arrow-widths
-              ul.list-inline
-                li(ng-repeat='arrowWidth in arrowWidths')
-                  a(ng-style='arrowDisplayWidth($index)'
-                    ng-class='{active: arrowWidth["shaft-width"] == rel.style.props["shaft-width"]}'
-                    ng-click='selectArrowWidth(rel.style.selector, arrowWidth)')
-            li.colors
-              ul.list-inline
-                li(ng-repeat='scheme in colors')
-                  a(ng-style='{"background-color": scheme.color}'
-                    ng-class='{active: scheme.color == rel.style.props.color && scheme["border-color"] == rel.style.props["border-color"]}'
-                    ng-click="selectScheme(rel.style.selector, scheme)")
+

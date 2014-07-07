@@ -21,22 +21,52 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 'use strict'
 
 angular.module('neo4jApp.controllers')
+  .service('InspectorService', [->
+    item: null
+    type: null
+  ])
   .controller 'InspectorCtrl', [
     '$scope',
     'GraphStyle'
-    ($scope, GraphStyle) ->
+    'InspectorService'
+    ($scope, graphStyle, Inspector) ->
       $scope.showInspector = no
-      $scope.$watch 'selectedItem', (item) ->
+
+      $scope.sizes = graphStyle.defaultSizes()
+      $scope.arrowWidths = graphStyle.defaultArrayWidths()
+      $scope.colors = graphStyle.defaultColors()
+
+      $scope.Inspector = Inspector
+      $scope.$watch 'Inspector.item', () ->
+        {item, type} = Inspector
+        return unless item and type
         $scope.item = item
-        #$scope.showInspector = !!item
-        return unless item
-        $scope.style = GraphStyle.forEntity(item).props
-        #if $scope.style.caption
-        #  $scope.selectedCaption = $scope.style.caption.replace(/\{([^{}]*)\}/, "$1")
+        $scope.itemTmpl = "inspector/#{type}.html"
 
       $scope.close = -> $scope.showInspector = no
 
       $scope.toggleInspector = ->
         $scope.showInspector = !$scope.showInspector
+
+      $scope.selectArrowWidth = (selector, size) ->
+        $scope.item.style = graphStyle.changeForSelector(selector, size )
+
+      $scope.selectCaption = (selector, caption) ->
+        $scope.item.style = graphStyle.changeForSelector(selector, { caption: '{' + caption + '}'})
+
+      $scope.selectScheme = (selector, scheme) ->
+        $scope.item.style = graphStyle.changeForSelector(selector, angular.copy(scheme))
+
+      $scope.selectSize = (selector, size) ->
+        $scope.item.style = graphStyle.changeForSelector(selector, size)
+
+      arrowDisplayWidths = ("#{5 + 3*i}px" for i in [0..10])
+      $scope.arrowDisplayWidth = (idx) ->
+        width: arrowDisplayWidths[idx]
+
+      nodeDisplaySizes = ("#{15 + 5*i}px" for i in [0..10])
+      $scope.nodeDisplaySize = (idx) ->
+        width: nodeDisplaySizes[idx]
+        height: nodeDisplaySizes[idx]
 
   ]

@@ -87,35 +87,4 @@ angular.module('neo4jApp')
         update(graph)
 
     $scope.$on 'graph:changed', graphChanged
-
-    $scope.rules = []
-
-    $scope.isNode = (rule) ->
-      rule.selector.tag == 'node'
-
-    $scope.remove = (rule) ->
-      graphStyle.destroyRule(rule)
-
-    $scope.selectArrowWidth = (selector, size) ->
-      graphStyle.changeForSelector(selector, size )
-
-    $scope.selectCaption  = (selector, caption) ->
-      $scope.selectedCaption = caption
-      graphStyle.changeForSelector(selector, { caption: '{' + caption + '}'})
-
-    $scope.selectScheme = (selector, scheme) ->
-      graphStyle.changeForSelector(selector, angular.copy(scheme))
-
-    $scope.selectSize = (selector, size) ->
-      graphStyle.changeForSelector(selector, size )
-
-    arrowDisplayWidths = ("#{5 + 3*i}px" for i in [0..10])
-    $scope.arrowDisplayWidth = (idx) ->
-      width: arrowDisplayWidths[idx]
-
-    nodeDisplaySizes = ("#{15 + 5*i}px" for i in [0..10])
-    $scope.nodeDisplaySize = (idx) ->
-      width: nodeDisplaySizes[idx]
-      height: nodeDisplaySizes[idx]
-
   ]
