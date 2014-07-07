@@ -99,7 +99,7 @@ angular.module('neo4jApp.services')
         @selector.tag is selector.tag and @selector.klass is selector.klass
 
     class StyleElement
-      constructor: (selector, @data) ->
+      constructor: (selector) ->
         @selector = selector
         @props = {}
 
@@ -134,11 +134,11 @@ angular.module('neo4jApp.services')
       #
       # Methods for calculating applied style for elements
       #
-      calculateStyle: (selector, data) ->
-        new StyleElement(selector, data).applyRules(@rules)
+      calculateStyle: (selector) ->
+        new StyleElement(selector).applyRules(@rules)
 
       forEntity: (item) ->
-        @calculateStyle(@selector(item), item)
+        @calculateStyle(@selector(item))
 
       forNode: (node = {}, idx = 0) ->
         selector = @nodeSelector(node, idx)
@@ -147,7 +147,7 @@ angular.module('neo4jApp.services')
         @calculateStyle(selector, node)
 
       forRelationship: (rel) ->
-        @calculateStyle(@relationshipSelector(rel), rel)
+        @calculateStyle(@relationshipSelector(rel))
 
       findAvailableDefaultColor: () ->
         usedColors = {}
