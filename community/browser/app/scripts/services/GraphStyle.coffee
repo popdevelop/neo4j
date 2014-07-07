@@ -66,12 +66,12 @@ angular.module('neo4jApp.services')
     # Default node colors that user can choose from
     @defaultColors = [
       { color: '#A5ABB6', 'border-color': '#9AA1AC', 'text-color-internal': '#FFFFFF' }
-      { color: '#F25A29', 'border-color': '#DC4717', 'text-color-internal': '#FFFFFF' }
-      { color: '#AD62CE', 'border-color': '#9453B1', 'text-color-internal': '#FFFFFF' }
-      { color: '#30B6AF', 'border-color': '#46A39E', 'text-color-internal': '#FFFFFF' }
-      { color: '#FF6C7C', 'border-color': '#EB5D6C', 'text-color-internal': '#FFFFFF' }
-      { color: '#FCC940', 'border-color': '#F3BA25', 'text-color-internal': '#000000' }
-      { color: '#4356C0', 'border-color': '#3445A2', 'text-color-internal': '#FFFFFF' }
+      { color: '#68BDF6', 'border-color': '#5CA8DB', 'text-color-internal': '#FFFFFF' }
+      { color: '#6DCE9E', 'border-color': '#60B58B', 'text-color-internal': '#FFFFFF' }
+      { color: '#FF756E', 'border-color': '#E06760', 'text-color-internal': '#FFFFFF' }
+      { color: '#DE9BF9', 'border-color': '#BF85D6', 'text-color-internal': '#FFFFFF' }
+      { color: '#FB95AF', 'border-color': '#E0849B', 'text-color-internal': '#FFFFFF' }
+      { color: '#FFD86E', 'border-color': '#EDBA39', 'text-color-internal': '#604A0E' }
     ]
 
     class Selector
