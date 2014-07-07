@@ -136,12 +136,18 @@
     font-size: 11px
     text-transform: uppercase
     border-left: 1px solid #e6e9ef
-    padding: 0 16px
     a
       color: #9b9da2
       line-height: 36px
       position: relative
       top: -1px
+      transition: color 0.25s;
+      &:hover
+        color: #40454f
+      &.toggle-graph
+        padding: 12px 0 12px 16px
+      &.toggle-table
+        padding: 12px 16px 12px 0px
 
     .switch {
       position: relative

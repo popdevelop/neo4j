@@ -1,12 +1,12 @@
 .code-bar
   .actions
     .toggle(ng-if='frame.type == "cypher"')
-      a(ng-class='{active: isActive("graph")}', ng-click='setActive("graph")') Graph
+      a.toggle-graph(ng-class='{active: isActive("graph")}', ng-click='setActive("graph")') Graph
       .switch
         label(ng-class='{right: isActive("table")}', ng-click='setActive()')
           .switch-inner
           .handle
-      a(ng-class='{active: isActive("table")}', ng-click='setActive("table")') Table
+      a.toggle-table(ng-class='{active: isActive("table")}', ng-click='setActive("table")') Table
     a.button.fa.fa-download(exportable ng-click='exportJSON(frame.response)', tooltip-placement='bottom', tooltip='Export JSON', ng-show='frame.exportable')
     a.button.fa.fa-expand(ng-click="toggleFullscreen(true)", tooltip-placement='bottom', tooltip='Fullscreen', ng-show='frame.fullscreenable')
     a.button.fa.fa-times-circle(ng-click='frames.remove(frame)', tooltip-placement='bottom', tooltip='Remove')
