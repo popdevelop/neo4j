@@ -4,17 +4,18 @@
       {{editor.document.content | autotitle}}
       //- a.btn.btn-success.btn-xs.btn-save(ng-if='editor.hasChanged()', ng-click='star()') Save
       //- a.btn.btn-default.btn-xs.btn-save(ng-if='editor.hasChanged()', ng-click='star()') Revert
-    ul.file-actions.list-inline
+    ul.file-actions.list-inline.pull-left
       li(ng-class="{'modified': editor.hasChanged()}")
-        a.button.fa.fa-star(ng-click='star()') Save
+        a.fa.fa-star(ng-click='star()') Save
       li
-        a.button.fa.fa-plus(ng-click='create()') New
+        a.fa.fa-plus(ng-click='create()') New
       li
-        a.button.fa.fa-code-fork(ng-click='clone()') Clone
+        a.fa.fa-code-fork(ng-click='clone()') Clone
+    ul.file-actions.list-inline.pull-right
       li
-        a.button.fa.fa-play-circle('ng-click' = 'editor.execScript(editor.content)') Run
+        a.button.fa.fa-play('ng-click' = 'editor.execScript(editor.content)')
       li
-        a.button.fa.fa-times(ng-click='editor.setContent("")') Close
+        a.button.fa.fa-times(ng-click='editor.setContent("")')
   .view-editor
     span(ng-class="{'one-line': editorOneLine, 'disable-highlighting': disableHighlighting}")
       .prompt.code-style $
