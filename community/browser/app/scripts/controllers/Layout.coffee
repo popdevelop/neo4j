@@ -73,7 +73,7 @@ angular.module('neo4jApp.controllers')
       $scope.editor = Editor
       $scope.editorOneLine = true
       $scope.editorChanged = (codeMirror) ->
-        $scope.editorOneLine = codeMirror.lineCount() == 1
+        $scope.editorOneLine = codeMirror.lineCount() == 1 and !Editor.document
         $scope.disableHighlighting = codeMirror.getValue().trim()[0] == ':'
 
       $scope.isDrawerShown = false

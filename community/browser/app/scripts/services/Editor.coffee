@@ -132,7 +132,7 @@ angular.module('neo4jApp.services')
 
       # Configure codemirror
       CodeMirror.commands.handleEnter = (cm) ->
-        if cm.lineCount() == 1
+        if cm.lineCount() == 1 and !editor.document
           editor.execCurrent()
         else
           CodeMirror.commands.newlineAndIndent(cm)
