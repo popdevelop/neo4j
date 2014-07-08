@@ -65,7 +65,7 @@ angular.module('neo4jApp.services')
           $('#editor textarea').focus()
 
         hasChanged:->
-          @document?.content and @document.content.trim() isnt @content.trim()
+          @document?.content and @document.content isnt @content
 
         historyNext: ->
           idx = @cursor
@@ -101,7 +101,7 @@ angular.module('neo4jApp.services')
           @maximized = !!state
 
         saveDocument: ->
-          input = @content.trim()
+          input = @content
           return unless input
           # re-fetch document from collection
           @document = Document.get(@document.id) if @document?.id
@@ -110,6 +110,13 @@ angular.module('neo4jApp.services')
             Document.save()
           else
             @document = Document.create(content: @content)
+
+        createDocument: (content = '// Untitled script\n') ->
+          @content = content
+          @document = Document.create(content: content)
+
+        cloneDocument: ->
+          @createDocument(@content)
 
         setContent: (content = '') ->
           @content = content

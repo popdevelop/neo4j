@@ -25,55 +25,36 @@
     &.enabled
       display: block
     .title
-      display: block;
+      float: left;
       line-height: 39px
       font-size: 13px
       font-weight: bold
-      .btn-save {
-        margin-left: 8px;
-        border: none;
-      }
-      .file-bar-close {
-        float: right;
-        font-size: 20px;
-        padding: 8px;
-        margin-right: -17px;
-        color: #fff;
-      }
-      .edited
-        font-size: 10px;
-        position: relative;
-        top: -2px
-        left: 9px
-        color: #7ACAFF
+      margin-right: 28px
       &:before
         color: #fdcc59
-        padding-right: 1px
-    .actions
-      float: right
-      padding-top: 9px
+        padding-right: 2px
+    ul.file-actions
+      @include display(flex);
+      float: left
+      li
+        padding: 0
+        border-left: 1px solid #575D69
+        &.modified
+          a
+            border-top: 3px solid #FDCC59
+            line-height: 34px
+      li:last-child
+        border-right: 1px solid #575D69
       a
-        float: right
-        transist: all 0.15s
-        line-height: 30px
-        text-align: center
-        border-radius: 3px
-        color: #E7E9EB
-        &.button
-          padding: 0 14px
-          font-size: 13px
-          font-weight: bold
-          margin-right: 6px
-          color: #E7E9EB
-          border: 2px solid #E7E9EB
-          line-height: 26px
-        &.icon
-          background: rgba(0,0,0,0.4)
-          font-size: 18px
-          width: 30px
+        color: #fff
+        line-height: 39px
+        padding: 0 10px
         &:hover
-          color: #333946
-          background: #E7E9EB
+          &:before
+            color: #fff
+        &:before
+          color: #CFD5E1
+          margin-right: 5px
 
   .starred
     display: none
@@ -104,6 +85,7 @@
       a
         font-size: 18px
         position: absolute
+        top: 10px
         right: 16px
         line-height: 30px
         width: 30px

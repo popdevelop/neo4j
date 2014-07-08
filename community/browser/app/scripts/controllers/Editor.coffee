@@ -40,6 +40,12 @@ angular.module('neo4jApp.controllers')
       $scope.$watch 'editor.content', Utils.debounce((val, val2) ->
         $scope.editorHasContent = !!val
       , 100)
+      $scope.create = ->
+        $scope.toggleDrawer("scripts", true)
+        Editor.createDocument()
+      $scope.clone = ->
+        $scope.toggleDrawer("scripts", true)
+        Editor.cloneDocument()
       $scope.star = ->
         unless Editor.document
           $scope.toggleDrawer("scripts", true)

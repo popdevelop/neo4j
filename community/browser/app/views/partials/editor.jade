@@ -1,14 +1,20 @@
 #editor(ng-controller = "EditorCtrl", ng-mousedown="focusEditor($event)")
   .file-bar.slide-down(ng-if="settings.filemode && editor.document.id")
-    .title.icon-star.fa.fa-star
+    .title
       {{editor.document.content | autotitle}}
-      a.btn.btn-success.btn-xs.btn-save(ng-if='editor.hasChanged()', ng-click='star()') Save
-      a.btn.btn-default.btn-xs.btn-save(ng-if='editor.hasChanged()', ng-click='star()') Revert
-      //- span.edited.icon-circle-blank(ng-if='editor.hasChanged()')
-      a.fa.fa-times-circle.file-bar-close(ng-click='editor.setContent("")', ng-class="{active: editorHasContent}")
-    .actions
-      a.icon.icon-remove(ng-click='editor.setContent("")')
-      //- a.button(ng-if='editor.hasChanged()', ng-click='star()') Save
+      //- a.btn.btn-success.btn-xs.btn-save(ng-if='editor.hasChanged()', ng-click='star()') Save
+      //- a.btn.btn-default.btn-xs.btn-save(ng-if='editor.hasChanged()', ng-click='star()') Revert
+    ul.file-actions.list-inline
+      li(ng-class="{'modified': editor.hasChanged()}")
+        a.button.fa.fa-star(ng-click='star()') Save
+      li
+        a.button.fa.fa-plus(ng-click='create()') New
+      li
+        a.button.fa.fa-code-fork(ng-click='clone()') Clone
+      li
+        a.button.fa.fa-play-circle('ng-click' = 'editor.execScript(editor.content)') Run
+      li
+        a.button.fa.fa-times(ng-click='editor.setContent("")') Close
   .view-editor
     span(ng-class="{'one-line': editorOneLine, 'disable-highlighting': disableHighlighting}")
       .prompt.code-style $
@@ -16,8 +22,8 @@
         ng-model='editor.content',
         placeholder='{{motd.tip}}'
         )
-    ul.controls.list-inline
-      li(ng-if="!(settings.filemode && editor.document.id)")
+    ul.controls.list-inline(ng-if="!(settings.filemode && editor.document.id)")
+      li
         a.balled.golden(ng-class="{active: editorHasContent, 'enabled': editor.document.id, 'changed': editor.hasChanged()}", ng-click='star()')
           i.fa.fa-star(ng-class="{'fa-exclamation': editor.hasChanged()}")
       li(ng-if="!settings.filemode")

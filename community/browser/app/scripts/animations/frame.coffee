@@ -95,11 +95,11 @@ angular.module("neo4jApp.animations", [])
   .animation(".slide-down", ["$window", ($window) ->
     enter: (element, done) ->
       element.css
-        height: 0
+        maxHeight: 0
         display: 'block'
 
       element.animate
-        height: 39
+        maxHeight: 49
       ,
         duration: 400
         easing: "easeInOutCubic"
