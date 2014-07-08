@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 'use strict'
 
 angular.module('neo4jApp.controllers')
-  .controller 'CypherResultCtrl', ['InspectorService', '$rootScope', '$scope', (Inspector, $rootScope, $scope) ->
+  .controller 'CypherResultCtrl', ['$rootScope', '$scope', ($rootScope, $scope) ->
 
     $scope.$watch 'frame.response', (resp) ->
       return unless resp
@@ -36,11 +36,6 @@ angular.module('neo4jApp.controllers')
       tab ?= if $scope.tab is 'graph' then 'table' else 'graph'
       $rootScope.stickyTab = $scope.tab = tab
     $scope.isActive = (tab) -> tab is $scope.tab
-
-    $scope.onItemClick = (item, type) ->
-      Inspector.item = item
-      Inspector.type = type
-      Inspector.visible = yes if type in ['label', 'relationshipType']
 
     $scope.resultStatistics = (frame) ->
       if frame?.response

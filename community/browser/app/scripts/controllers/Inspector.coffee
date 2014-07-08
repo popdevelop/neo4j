@@ -21,43 +21,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 'use strict'
 
 angular.module('neo4jApp.controllers')
-  .service('InspectorService', [->
-    item: null
-    type: null
-    visible: null
-  ])
   .controller 'InspectorCtrl', [
     '$scope',
     'GraphStyle'
-    'InspectorService'
-    ($scope, graphStyle, Inspector) ->
+    'Collection'
+    ($scope, graphStyle, Collection) ->
       $scope.sizes = graphStyle.defaultSizes()
       $scope.arrowWidths = graphStyle.defaultArrayWidths()
       $scope.colors = graphStyle.defaultColors()
 
-      $scope.Inspector = Inspector
-      $scope.$watch 'Inspector.item', () ->
-        {item, type} = Inspector
-        return unless item and type
-        $scope.item = item
-        $scope.itemTmpl = "inspector/#{type}.html"
+      $scope.onItemClick = (item, type) ->
+        $scope.Inspector.reset({
+          data: item
+          type: type
+          tmpl: "inspector/#{type}.html"
+        })
+
+      $scope.sizeLessThan = (a, b) ->
+        a = if a then a.replace('px', '') else 0
+        b = if b then b.replace('px', '') else 0
+        +a <= +b
+
+      $scope.Inspector = new Collection()
 
       $scope.close = -> Inspector.visible = no
 
       $scope.toggleInspector = ->
         Inspector.visible = !Inspector.visible
 
-      $scope.selectArrowWidth = (selector, size) ->
-        $scope.item.style = graphStyle.changeForSelector(selector, size )
+      $scope.selectArrowWidth = (item, size) ->
+        item.style = graphStyle.changeForSelector(item.style.selector, size)
 
-      $scope.selectCaption = (selector, caption) ->
-        $scope.item.style = graphStyle.changeForSelector(selector, { caption: '{' + caption + '}'})
+      $scope.selectCaption = (item, caption) ->
+        item.style = graphStyle.changeForSelector(item.style.selector, { caption: '{' + caption + '}'})
 
-      $scope.selectScheme = (selector, scheme) ->
-        $scope.item.style = graphStyle.changeForSelector(selector, angular.copy(scheme))
+      $scope.selectScheme = (item, scheme) ->
+        item.style = graphStyle.changeForSelector(item.style.selector, angular.copy(scheme))
 
-      $scope.selectSize = (selector, size) ->
-        $scope.item.style = graphStyle.changeForSelector(selector, size)
+      $scope.selectSize = (item, size) ->
+        item.style = graphStyle.changeForSelector(item.style.selector, size)
 
       arrowDisplayWidths = ("#{5 + 3*i}px" for i in [0..10])
       $scope.arrowDisplayWidth = (idx) ->

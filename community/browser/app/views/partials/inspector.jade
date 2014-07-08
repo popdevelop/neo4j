@@ -1,75 +1,50 @@
 script(id="inspector/graphItem.html", type="text/ng-template")
-  .header
-    span(ng-if='!item') No item selected
-    span(ng-if='item')
-      span.preview(ng-style='{"background-color": style.color }')
-      | {{item.type ? 'Relationship' : 'Node'}} {{item.id}}
-      span.muted  [{{item.type || item.labels.join(', ')}}]
-    a.close.fa.fa-chevron-down(ng-click='close()')
-
-  .inspector-body
-    ul.sections.unstyled.tight
-      li.empty(ng-if='!item') Click on a node or relationship to display its properties here.
-      li.empty(ng-if='item.propertyList.length == 0') No properties
-      li.pair(ng-repeat='property in item.propertyList')
-        .key(ng-bind="property.key")
-        .value(ng-bind="property.value")
+  ul.list-inline
+    li
+      i.fa.fa-thumb-tack
+    li.empty(ng-if='item.propertyList.length == 0') No properties
+    li.pair(ng-repeat='property in item.propertyList')
+      .key(ng-bind-template="{{property.key}}: ")
+      .value(ng-bind="property.value | limitTo:50")
 
 script(id="inspector/label.html", type="text/ng-template")
-  .header
-    span(ng-if='!item') No label selected
-    span(ng-if='item')
-      span.preview(ng-style='{"background-color": item.style.props.color }')
-      | {{item.style.selector.klass}}
-    a.close.fa.fa-chevron-down(ng-click='close()')
-  .inspector-body
-    ul.sections.unstyled.tight(ng-if='!item')
-      li.empty Click on a label to display the styling options.
-    ul.sections.unstyled.tight(ng-if='item')
-      li.attributes
-        a.attribute(ng-click='selectCaption(item.style.selector, "id")') id
-        a.attribute(
-          ng-repeat='property in item.attrs'
-          ng-click='selectCaption(item.style.selector, property)'
-          ng-bind="property")
-      li.node-sizes
-        ul.list-inline
-          li(ng-repeat='size in sizes')
-            a(ng-style='nodeDisplaySize($index)'
-              ng-class='{active: size.diameter == item.style.props.diameter}'
-              ng-click='selectSize(item.style.selector, size)')
-      li.colors
-        ul.list-inline
-          li(ng-repeat='scheme in colors')
-            a(ng-style='{"background-color": scheme.color}'
-              ng-class='{active: scheme.color == item.style.props.color && scheme["border-color"] == item.style.props["border-color"]}'
-              ng-click="selectScheme(item.style.selector, scheme)")
+  ul.list-inline
+    li
+      i.fa.fa-wrench
+    li.colors
+      ul.list-inline
+        li(ng-repeat='scheme in colors')
+          a(ng-style='{"background-color": scheme.color}'
+            ng-class='{active: scheme.color == item.style.props.color && scheme["border-color"] == item.style.props["border-color"]}'
+            ng-click="selectScheme(item, scheme)")
+    li.node-sizes
+      ul.list-inline
+        li(ng-repeat='size in sizes')
+          a(ng-class='{active: sizeLessThan(size.diameter, item.style.props.diameter)}'
+            ng-click='selectSize(item, size)')
+    li.attributes
+      a.attribute(ng-click='selectCaption(item, "id")') id
+      a.attribute(
+        ng-repeat='property in item.attrs'
+        ng-click='selectCaption(item, property)'
+        ng-bind="property")
 
 script(id="inspector/relationshipType.html", type="text/ng-template")
-  .header
-    span(ng-if='!item') No relationsship type selected
-    span(ng-if='item')
-      span.preview(ng-style='{"background-color": item.style.props.color }')
-      | {{item.style.selector.klass}}
-    a.close.fa.fa-chevron-down(ng-click='close()')
-  .inspector-body
-    ul.sections.unstyled.tight(ng-if='!item')
-      li.empty Click on a relationship type to display the styling options.
-    ul.sections.unstyled
-      li.arrow-widths
-        ul.list-inline
-          li(ng-repeat='arrowWidth in arrowWidths')
-            a(ng-style='arrowDisplayWidth($index)'
-              ng-class='{active: arrowWidth["shaft-width"] == item.style.props["shaft-width"]}'
-              ng-click='selectArrowWidth(item.style.selector, arrowWidth)')
-      li.colors
-        ul.list-inline
-          li(ng-repeat='scheme in colors')
-            a(ng-style='{"background-color": scheme.color}'
-              ng-class='{active: scheme.color == item.style.props.color && scheme["border-color"] == item.style.props["border-color"]}'
-              ng-click="selectScheme(item.style.selector, scheme)")
+  ul.list-inline
+    li
+      i.fa.fa-wrench
+    li.colors
+      ul.list-inline
+        li(ng-repeat='scheme in colors')
+          a(ng-style='{"background-color": scheme.color}'
+            ng-class='{active: scheme.color == item.style.props.color && scheme["border-color"] == item.style.props["border-color"]}'
+            ng-click="selectScheme(item, scheme)")
+    li.arrow-widths
+      ul.list-inline
+        li(ng-repeat='arrowWidth in arrowWidths')
+          a(ng-style='arrowDisplayWidth($index)'
+            ng-class='{active: arrowWidth["shaft-width"] == item.style.props["shaft-width"]}'
+            ng-click='selectArrowWidth(item, arrowWidth)')
 
-div(ng-controller='InspectorCtrl')
-  a.inspector-handle.inspector-slide-in(ng-click='toggleInspector()')
-    .fa.fa-info-circle
-  .inspector.inspector-slide-in(ng-show='Inspector.visible', ng-include="itemTmpl")
+.inspector-footer(ng-if="Inspector.length > 0")
+  .inspector-footer-row(ng-repeat="row in Inspector.items", ng-include="row.tmpl", onload ="item = row.data")

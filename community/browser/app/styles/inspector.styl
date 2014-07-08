@@ -2,6 +2,52 @@
 @import 'mixins'
 @import 'nib'
 
+
+.inspector-footer
+  background-color: #EEF1F8
+  .inspector-footer-row > ul
+    padding: 5px 9px 5px 10px
+    li.pair
+      font-size: 10px
+    .key
+      float: left
+      color: darken(inspector-font-color, 30%)
+    .value
+      padding-left: 3px
+      overflow: hidden
+
+    .colors, .node-sizes, .arrow-widths
+      ul.list-inline > li
+        padding-left: 1px
+        a
+          background-color: #aaa
+          display: inline-block;
+          height: 12px
+          width: 12px
+          margin-top: 1px
+          line-height: 0
+          opacity: 0.2
+          &.active, &:hover
+            opacity: 1
+    .node-sizes a, .colors a, .colors a
+      border-radius: 50%
+    .attribute
+      user-select: none
+      display: inline-block
+      padding: 1px 6px
+      font-size: 10px
+      color: #9195A0;
+      border: 1px solid #9195A0;
+      max-width: 100px;
+      overflow: hidden;
+      border-radius: .25em;
+      margin-right: 6px;
+      font-weight: bold;
+      &:hover
+        border-color: #aaa;
+        color: #aaa;
+
+
 .inspector-handle
   position: absolute
   bottom: 0
