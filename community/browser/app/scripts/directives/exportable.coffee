@@ -51,5 +51,8 @@ angular.module('neo4jApp.directives')
         $scope.exportGraSS = (data) ->
           saveAs(data, 'graphstyle.grass')
 
+        $scope.exportScript = (data) ->
+          saveAs(data, 'script.cypher')
+
     ]
   ])

@@ -11,6 +11,8 @@
         a.fa.fa-plus(ng-click='create()') New
       li
         a.fa.fa-code-fork(ng-click='clone()') Clone
+      li
+        a.fa.fa-download(exportable ng-click='exportScript(editor.content)', tooltip="Export to file") Download
     ul.file-actions.list-inline.pull-right
       li
         a.button.fa.fa-play('ng-click' = 'editor.execScript(editor.content)')
