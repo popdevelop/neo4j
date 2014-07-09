@@ -5,7 +5,7 @@ script(id="inspector/graphItem.html", type="text/ng-template")
     li.empty(ng-if='item.propertyList.length == 0') No properties
     li.pair(ng-repeat='property in item.propertyList')
       .key(ng-bind-template="{{property.key}}: ")
-      .value(ng-bind="property.value | limitTo:50")
+      .value(ng-bind="property.value")
 
 script(id="inspector/label.html", type="text/ng-template")
   ul.list-inline
