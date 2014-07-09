@@ -129,14 +129,24 @@ indent-hover = 22px
       background-color: drawer-color-bg
       overflow: hidden
       .list-item
-        padding: 9px horizontal-padding 9px 0
+        padding: 9px horizontal-padding 0 0
+        padding-left: indent-hover
         position: relative
-        border-bottom: 1px solid drawer-color-border
         cursor: pointer
         transist: padding 0.2s
         overflow: hidden
+        .icon
+          position: absolute
+          &.fa-file-o
+            opacity: 1
+            padding-left: 0
+            left: 0
+            font-size: 14px
+            top: 10px
         &.loaded
           padding-left: indent-hover
+          &.fa-file-o
+            opacity: 0
           &:hover
             padding-left: indent-hover
             .contents a
@@ -159,9 +169,10 @@ indent-hover = 22px
           width 0
           opacity 0
         &:hover
-          padding-left: indent-hover
           .fa-trash-o
             display: block
+          .fa-file-o
+            opacity: 0
           .icon-inactive, .fa-spinner
             opacity: 1
           .icon-inactive
@@ -179,7 +190,7 @@ indent-hover = 22px
           z-index 2
           absolute: right 2px top 10px
           display: none
-        .icon-inactive, .fa-spinner, .icon-loaded
+        .icon-inactive, .fa-spinner, .icon-loaded, .icon
           transist: all 0.2s
           opacity: 0
           z-index 2
@@ -210,9 +221,21 @@ indent-hover = 22px
               margin-right: 4px
   ul.indented
     li .list-item
-      padding-left: indent
+      padding-left: indent-hover + indent
+      .icon
+        position: absolute
+        &.fa-file-o
+          padding-left:indent-hover + indent
+          left: -21px
       a.icon-loaded
         left: 0px
+      &.icon
+        position: absolute
+        &.fa-file-o
+          padding-left: indent-hover + indent
+          left: -14px
+          font-size: 14px
+          top: 10px
       &.loaded
         padding-left: indent-hover + indent
         &:hover
@@ -243,6 +266,10 @@ indent-hover = 22px
       border-color: #FFF
       color: #FFF
 
+  hr
+    border-top: 1px solid drawer-color-border
+    margin-top: 13px
+    margin-bottom: 1px
 
   .file-drop-area
     margin: 14px 0

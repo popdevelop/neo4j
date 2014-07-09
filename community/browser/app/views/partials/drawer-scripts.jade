@@ -11,6 +11,7 @@ h4 Saved scripts
     ul.starred.indented(ng-show='folder.expanded')
       li(ng-repeat="document in documents.where({folder: folder.id})", ng-animate="{leave:'pop-out', enter:'pop-in'}")
         include list-item
+  hr(ng-if="documents.where({folder: false}).length > 0")
   .droppable(ui-sortable="sortableOptions")
     ul.starred
       li(ng-repeat="document in documents.where({folder: false})")
