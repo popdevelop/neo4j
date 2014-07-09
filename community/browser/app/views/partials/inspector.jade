@@ -9,8 +9,9 @@ script(id="inspector/graphItem.html", type="text/ng-template")
 
 script(id="inspector/label.html", type="text/ng-template")
   ul.list-inline
-    li
-      i.fa.fa-wrench
+    li.inspector-icon
+      i.fa.fa-eye
+      | Style nodes:
     li.colors
       ul.list-inline
         li(ng-repeat='scheme in colors')
@@ -31,8 +32,9 @@ script(id="inspector/label.html", type="text/ng-template")
 
 script(id="inspector/relationshipType.html", type="text/ng-template")
   ul.list-inline
-    li
-      i.fa.fa-wrench
+    li.inspector-icon
+      i.fa.fa-eye
+      | Style relationships:
     li.colors
       ul.list-inline
         li(ng-repeat='scheme in colors')
