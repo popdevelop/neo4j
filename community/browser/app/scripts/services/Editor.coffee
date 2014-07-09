@@ -111,12 +111,13 @@ angular.module('neo4jApp.services')
           else
             @document = Document.create(content: @content)
 
-        createDocument: (content = '// Untitled script\n') ->
+        createDocument: (content = '// Untitled script\n', folder) ->
           @content = content
-          @document = Document.create(content: content)
+          @document = Document.create(content: content, folder: folder)
 
         cloneDocument: ->
-          @createDocument(@content)
+          folder = @document?.folder
+          @createDocument(@content, folder)
 
         setContent: (content = '') ->
           @content = content
