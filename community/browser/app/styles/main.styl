@@ -332,17 +332,17 @@ select
   .close
     display: none
 
-.maximize-editor
-  #editor
-    min-height: 100%
-    position: absolute
-    top: 0
-    bottom: 0
-    left: 0
-    right: 0
-    overflow-y: scroll
+
+#editor
+  &.file-loaded
     .view-editor
-      min-height: 100%
+      top: 39px
+  &.maximize-editor
+    height: 100% !important
+    .view-editor
+      bottom: 0
+    .message-bar
+      position: absolute
     .CodeMirror
       position: absolute
       left: 0
@@ -351,12 +351,6 @@ select
       bottom: 0
     .CodeMirror-scroll
       max-height: initial
-    .message-bar
-      position: absolute
-      left: 0
-      right: 0
-      bottom: 0
-      z-index: 10
 
 // TODO: implement this class as @extend .fa-pencil
 .edit-in-place

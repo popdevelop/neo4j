@@ -76,10 +76,13 @@
     opacity: 0 // avoid being displayed before CodeMirror has loaded
 
   .view-editor
-    transist: min-height
+    transist: all
     min-height: 0%
     overflow-y: auto
-    position: relative
+    position: absolute
+    left: 0
+    right: 0
+    top: 0
 
   .message-bar
     height: 49px
@@ -87,7 +90,11 @@
     padding: 0 24px
     color: #FFF
     overflow: hidden
+    z-index: 100
     position: relative
+    left: 0
+    right: 0
+    bottom: 0
     a
       color: #fff
     .actions
