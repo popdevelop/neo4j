@@ -25,12 +25,24 @@ angular.module('neo4jApp.controllers')
 
     $scope.$watch 'frame.response', (resp) ->
       return unless resp
+      # available combos:
+      # - Graph + Table
+      # - Table only
+      # - none
+      $scope.availableModes = []
+      $scope.availableModes.push('table') if resp.table.size
+      $scope.availableModes.push('graph') if resp.table.nodes.length
+
       # Initialise tab state from user selected if any
       $scope.tab = $rootScope.stickyTab
       # Otherwise try to detect the best mode
       if not $scope.tab?
         showGraph = resp.table.nodes.length
         $scope.tab = if showGraph then 'graph' else 'table'
+
+      # Override user tab selection if that mode doesn't exists
+      $scope.tab = 'table' unless $scope.availableModes.indexOf($scope.tab) >= 0
+
 
     $scope.setActive = (tab) ->
       tab ?= if $scope.tab is 'graph' then 'table' else 'graph'
