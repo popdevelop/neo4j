@@ -148,6 +148,7 @@ angular.module('neo4jApp.controllers')
       resize = ->
         $('#stream').css
           'max-height': $(window).height() - $('#editor').height()
+          'top': $('.view-editor').height() + $('.file-bar').height()
         $scope.$emit 'layout.changed'
       $(window).resize(resize)
       check = ->
