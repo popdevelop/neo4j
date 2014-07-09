@@ -31,6 +31,7 @@ angular.module('neo4jApp.controllers')
       $scope.colors = graphStyle.defaultColors()
 
       $scope.onItemClick = (item, type) ->
+        return $scope.Inspector.reset() unless item
         $scope.Inspector.reset({
           data: item
           type: type
