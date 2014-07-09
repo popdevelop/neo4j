@@ -13,7 +13,7 @@ div(ng-controller="CypherResultCtrl", fullscreen)
               style="pointer-events:fill;")
           include partials/inspector
 
-        .view-result-table.result(ng-show='isActive("table")', ng-animate = "'animate-box'")
+        .view-result-table.result(ng-show='isActive("table")')
           neo-table(table-data='frame.response.table')
           a.fa.fa-download(exportable 'ng-click'='exportCSV(frame.response.table)', tooltip-placement='left', tooltip='Download CSV')
         .view-result-error.result(ng-show='frame.detailedErrorText')

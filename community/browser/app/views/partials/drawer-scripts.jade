@@ -8,7 +8,7 @@ h4 Saved scripts
       div(edit-in-place='folder.name', on-blur='folders.save()')
       a.fa.fa-trash-o(ng-click='removeFolder(folder)', tooltip-placement='left', tooltip='Remove folder')
     ul.starred.indented(ng-show='folder.expanded')
-      li(ng-repeat="document in documents.where({folder: folder.id})", ng-animate="{leave:'pop-out', enter:'pop-in'}")
+      li(ng-repeat="document in documents.where({folder: folder.id})")
         include list-item
   hr(ng-if="documents.where({folder: false}).length > 0")
   .droppable(ui-sortable="sortableOptions")

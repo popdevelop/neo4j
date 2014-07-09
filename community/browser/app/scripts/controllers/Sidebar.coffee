@@ -86,6 +86,7 @@ angular.module('neo4jApp.controllers')
             $scope.documents.add(doc, {at: idx + idxOffset})
 
           $scope.documents.save()
+          return
 
         update: (e, ui) ->
           ui.item.resort = yes
