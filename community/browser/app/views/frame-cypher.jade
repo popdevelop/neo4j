@@ -11,7 +11,7 @@ div(ng-controller="CypherResultCtrl", fullscreen)
               on-item-click='onItemClick($item, "graphItem")'
               ng-controller='D3GraphCtrl'
               style="pointer-events:fill;")
-            include partials/inspector
+          include partials/inspector
 
         .view-result-table.result(ng-show='isActive("table")', ng-animate = "'animate-box'")
           neo-table(table-data='frame.response.table')
