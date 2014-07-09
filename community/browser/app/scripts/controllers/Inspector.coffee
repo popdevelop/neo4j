@@ -29,8 +29,10 @@ angular.module('neo4jApp.controllers')
       $scope.sizes = graphStyle.defaultSizes()
       $scope.arrowWidths = graphStyle.defaultArrayWidths()
       $scope.colors = graphStyle.defaultColors()
+      $scope.currentItem = null
 
       $scope.onItemClick = (item, type) ->
+        $scope.currentItem = item
         return $scope.Inspector.reset() unless item
         $scope.Inspector.reset({
           data: item
