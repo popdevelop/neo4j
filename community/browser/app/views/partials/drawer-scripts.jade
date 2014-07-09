@@ -1,6 +1,5 @@
 h4 Saved scripts
-  a.create-folder(ng-click='folders.create()', tooltip-placement='bottom', tooltip='Create folder')
-    .fa.fa-plus-sign-alt
+  a.create-folder.fa.fa-plus(ng-click='folders.create()') New folder
 .inner
   .droppable(
     ng-repeat='folder in folders.all()', ui-sortable="sortableOptions")
