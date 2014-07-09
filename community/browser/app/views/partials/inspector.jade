@@ -48,3 +48,8 @@ script(id="inspector/relationshipType.html", type="text/ng-template")
 
 .inspector-footer(ng-if="Inspector.length > 0")
   .inspector-footer-row(ng-repeat="row in Inspector.items", ng-include="row.tmpl", onload ="item = row.data")
+
+.inspector-footer(ng-if="Inspector.length == 0")
+  .inspector-footer-row
+    ul.list-inline
+      li(ng-bind="resultStatistics(frame)")
