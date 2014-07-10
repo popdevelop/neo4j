@@ -40,6 +40,13 @@ angular.module('neo4jApp.controllers')
           tmpl: "inspector/#{type}.html"
         })
 
+      $scope.styleForItem = (item) ->
+        style = graphStyle.forEntity(item)
+        {
+          'background-color': style.props.color
+          'color': style.props['text-color-internal']
+        }
+
       $scope.sizeLessThan = (a, b) ->
         a = if a then a.replace('px', '') else 0
         b = if b then b.replace('px', '') else 0

@@ -1,6 +1,6 @@
 script(id="inspector/graphItem.html", type="text/ng-template")
   ul.list-inline
-    li
+    li.inspector-pin(ng-style='styleForItem(item)')
       i.fa.fa-thumb-tack
     li.empty(ng-if='item.propertyList.length == 0') No properties
     li.pair(ng-repeat='property in item.propertyList')
