@@ -83,6 +83,9 @@ angular.module('neo4jApp.controllers')
         $scope.isDrawerShown = state
         $scope.whichDrawer = selectedDrawer
 
+      $scope.showingDrawer = (named) ->
+        $scope.isDrawerShown and ($scope.whichDrawer is named)
+
       $scope.$watch 'isDrawerShown', () ->
         $timeout(() -> $scope.$emit 'layout.changed', 0)
 
