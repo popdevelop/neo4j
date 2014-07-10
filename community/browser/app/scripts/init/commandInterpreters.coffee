@@ -34,7 +34,7 @@ angular.module('neo4jApp')
         null
 
     argv = (input) ->
-      rv = input.toLowerCase().split(' ')
+      rv = input?.toLowerCase().split(' ')
       rv or []
 
     error = (msg, exception = "Error", data) ->
@@ -54,10 +54,18 @@ angular.module('neo4jApp')
     FrameProvider.interpreters.push
       type: 'style'
       matches: "#{cmdchar}style"
-      exec: ['$rootScope', ($rootScope) ->
-        (input) ->
-          $rootScope.togglePopup('styling')
-          true
+      exec: [
+        '$rootScope', 'exportService', 'GraphStyle',
+        ($rootScope, exportService, GraphStyle) ->
+          (input, q) ->
+            switch argv(input)[1]
+              when 'reset'
+                GraphStyle.resetToDefault()
+              when 'export'
+                exportService.download('graphstyle.grass', 'text/plain;charset=utf-8', GraphStyle.toString())
+              else
+                $rootScope.togglePopup('styling')
+            true
       ]
 
     # FrameProvider.interpreters.push
