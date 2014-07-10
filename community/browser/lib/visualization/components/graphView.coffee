@@ -26,6 +26,11 @@ neo.graphView = ->
     chart
 
   chart.style = (value) ->
+    return style unless arguments.length
+    style = value
+    chart
+
+  chart.grass = (value) ->
     return style.toSheet() unless arguments.length
     style.importGrass(value)
     chart
@@ -39,7 +44,8 @@ neo.graphView = ->
     chart
 
   chart.update = ->
-    viz.update()
+    if viz
+      viz.update()
     chart
 
   chart

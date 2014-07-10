@@ -37,6 +37,7 @@ angular.module('neo4jApp.controllers')
       linkDistance = 60
 
       graphView = neo.graphView()
+      .style(GraphStyle)
 
       el = d3.select($element[0])
       el.append('defs')
@@ -47,7 +48,7 @@ angular.module('neo4jApp.controllers')
       $scope.style = GraphStyle.rules
       $scope.$watch 'style', (val) =>
         return unless val
-#        @update()
+        graphView.update()
       , true
 
       resize = ->
