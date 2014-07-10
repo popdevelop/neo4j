@@ -31,14 +31,24 @@ angular.module('neo4jApp.controllers')
       $scope.colors = graphStyle.defaultColors()
       $scope.currentItem = null
 
+      inspectorItem = (item, type) ->
+        data: item
+        type: type
+        tmpl: "inspector/#{type}.html"
+
       $scope.onItemClick = (item, type) ->
-        $scope.currentItem = item
-        return $scope.Inspector.reset() unless item
-        $scope.Inspector.reset({
-          data: item
-          type: type
-          tmpl: "inspector/#{type}.html"
-        })
+        if item
+          $scope.currentItem = inspectorItem(item, type)
+          $scope.Inspector.reset($scope.currentItem)
+        else
+          $scope.currentItem = null
+          $scope.Inspector.reset()
+
+      $scope.onItemHover = (item, type) ->
+        if item
+          $scope.Inspector.push(inspectorItem(item, type))
+        else
+          $scope.Inspector.reset($scope.currentItem)
 
       $scope.styleForItem = (item) ->
         style = graphStyle.forEntity(item)

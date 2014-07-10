@@ -9,6 +9,8 @@ div(ng-controller="CypherResultCtrl", fullscreen)
             svg(neo-graph
               graph-data='frame.response.graph'
               on-item-click='onItemClick($item, "graphItem")'
+              on-item-mouse-over='onItemHover($item, "graphItem")'
+              on-item-mouse-out='onItemHover()'
               ng-controller='D3GraphCtrl'
               style="pointer-events:fill;")
           include partials/inspector

@@ -55,6 +55,16 @@ angular.module('neo4jApp.controllers')
           .height($element.height())
           .width($element.width())
 
+      itemMouseOver = (item) ->
+        if $attrs.onItemMouseOver
+          exp = $parse($attrs.onItemMouseOver)
+          $scope.$apply(->exp($scope, {'$item': item }))
+
+      itemMouseOut = (item) ->
+        if $attrs.onItemMouseOut
+          exp = $parse($attrs.onItemMouseOut)
+          $scope.$apply(->exp($scope, {'$item': item }))
+
       graphView
       .on('nodeClicked', (d) ->
         d.fixed = yes
@@ -82,6 +92,8 @@ angular.module('neo4jApp.controllers')
       .on('relationshipClicked', (d) ->
         toggleSelection(d)
       )
+      .on('nodeMouseOver', itemMouseOver)
+      .on('nodeMouseOut', itemMouseOut)
 
       selectItem = (item) ->
         if $attrs.onItemClick

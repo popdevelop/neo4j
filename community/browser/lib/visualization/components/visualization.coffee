@@ -15,6 +15,10 @@ neo.viz = (el, graph, layout, style) ->
   onRelationshipClick = (relationship) =>
     viz.trigger('relationshipClicked', relationship)
 
+  onNodeMouseOver = (node) -> viz.trigger('nodeMouseOver', node)
+
+  onNodeMouseOut = (node) -> viz.trigger('nodeMouseOut', node)
+
   render = ->
     geometry.onTick(graph)
 
@@ -69,6 +73,8 @@ neo.viz = (el, graph, layout, style) ->
     .attr("class", "node")
     .call(force.drag)
     .call(clickHandler)
+    .on('mouseover', onNodeMouseOver)
+    .on('mouseout', onNodeMouseOut)
 
     for renderer in neo.renderers.node
       nodeGroups.call(renderer.onGraphChange, viz);
@@ -80,5 +86,5 @@ neo.viz = (el, graph, layout, style) ->
   clickHandler = neo.utils.clickHandler()
   clickHandler.on 'click', onNodeClick
   clickHandler.on 'dblclick', onNodeDblClick
-  
-  viz 
+
+  viz
