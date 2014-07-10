@@ -32,6 +32,8 @@ app = angular.module('neo4jApp', [
   'neo4jApp.filters'
   'neo4jApp.services'
   'neo4jApp.animations'
+  'neo.exportable'
+  'neo.csv'
   'ui.bootstrap.dropdown'
   'ui.bootstrap.position'
   'ui.bootstrap.tooltip'
