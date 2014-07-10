@@ -262,6 +262,11 @@ angular.module('neo4jApp')
     #       q.promise
     #   ]
 
+    extractGraphModel = (response, CypherGraphModel) ->
+      graph = new neo.models.Graph()
+      graph.addNodes(response.nodes.map(CypherGraphModel.convertNode()))
+      graph.addRelationships(response.relationships.map(CypherGraphModel.convertRelationship(graph)))
+      graph
 
     # Cypher handler
     FrameProvider.interpreters.push
@@ -271,7 +276,7 @@ angular.module('neo4jApp')
         'where', 'foreach', 'with', 'load', 'using', 'unwind'
       ]
       templateUrl: 'views/frame-cypher.html'
-      exec: ['Cypher', 'GraphModel', (Cypher, GraphModel) ->
+      exec: ['Cypher', 'CypherGraphModel', (Cypher, CypherGraphModel) ->
         # Return the function that handles the input
         (input, q) ->
           Cypher.transaction().commit(input).then(
@@ -279,9 +284,10 @@ angular.module('neo4jApp')
               if response.size > Settings.maxRows
                 q.reject(error("Resultset too large (over #{Settings.maxRows} rows)"))
               else
+
                 q.resolve(
                   table: response
-                  graph: new GraphModel(response)
+                  graph: extractGraphModel(response, CypherGraphModel)
                 )
           ,
           q.reject

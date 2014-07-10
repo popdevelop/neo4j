@@ -3,15 +3,19 @@ class neo.utils.adjacentAngles
   findRuns: (angleList, minSeparation) ->
 
     p = 0
-    minStart = 0
     start = 0
     end = 0
     runs = []
+    minStart = () ->
+      if runs.length == 0
+        0
+      else
+        runs[0].start
 
     scanForDensePair = ->
       start = p
       end = angleList.wrapIndex(p + 1)
-      if end == minStart
+      if end == minStart()
         'done'
       else
         p = end
@@ -22,7 +26,7 @@ class neo.utils.adjacentAngles
           scanForDensePair
 
     extendEnd = ->
-      if p == minStart
+      if p == minStart()
         'done'
 
       else if tooDense(start, angleList.wrapIndex(p + 1))
@@ -36,10 +40,9 @@ class neo.utils.adjacentAngles
 
     extendStart = ->
       candidateStart = angleList.wrapIndex(p - 1)
-      if tooDense(candidateStart, end)
+      if tooDense(candidateStart, end) and candidateStart != end
         start = candidateStart
         p = start
-        minStart = start
         extendStart
 
       else
@@ -55,8 +58,12 @@ class neo.utils.adjacentAngles
         end: end
       angleList.angle(run) < angleList.length(run) * minSeparation
 
+    stepCount = 0
     step = scanForDensePair
     while step != 'done'
+      if stepCount++ > angleList.totalLength() * 10
+        console.log 'Warning: failed to layout arrows', ("#{ key }: #{ value.angle }" for own key, value of angleList.list).join('\n'), minSeparation
+        break
       step = step()
 
     runs

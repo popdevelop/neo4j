@@ -5,15 +5,13 @@ neo.graphView = ->
   callbacks = {}
 
   trigger = (event, args...) ->
-    callback.apply(null, args) for callback in callbacks[event]
+    callback.apply(null, args) for callback in (callbacks[event] or [])
     # TODO: maybe check here if the graphModel is dirty and redraw?
 
   chart = (selection) ->
     selection.each (graphModel) ->
       if not viz
         viz = neo.viz(@, graphModel, layout, style)
-        graphModel.on 'updated', ->
-          viz.update()
         viz.trigger = trigger
       viz.update()
     return
