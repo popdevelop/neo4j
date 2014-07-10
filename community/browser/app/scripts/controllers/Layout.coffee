@@ -117,7 +117,8 @@ angular.module('neo4jApp.controllers')
         $scope.isPopupShown = !!dialog
 
       $scope.globalKey = (e) ->
-        # Don't toggle anything when shortcut popup is open
+        resizeStream()
+
         return if $scope.isPopupShown and e.keyCode != 191
 
         # ABK: kinda weird as a global key.
@@ -142,18 +143,14 @@ angular.module('neo4jApp.controllers')
         # else
         #   console.debug(e)
 
-      # we need set a max-height to make the stream scrollable, but since it's
-      # position:relative the max-height needs to be calculated.
-      timer = null
-      resize = ->
-        $('#stream').css
-          'max-height': $(window).height() - $('#editor').height()
-          'top': $('.view-editor').height() + $('.file-bar').height()
-        $scope.$emit 'layout.changed'
-      $(window).resize(resize)
-      check = ->
-        resize()
-        $timeout.cancel(timer)
-        timer = $timeout(check, 500, false)
-      check()
+      resizeStream = Utils.debounce((val) ->
+        unless $scope.editor.maximized
+          $('#stream').css
+            'top': $('.view-editor').height() + $('.file-bar').height()
+      , 200)
+
+      $(window).resize(resizeStream)
+
+      $("body").bind "transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", ->
+        resizeStream()
   ]
