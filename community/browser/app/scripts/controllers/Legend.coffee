@@ -38,6 +38,7 @@ angular.module('neo4jApp')
       }
       for node in graph.nodes()
         stats.labels[''] ?=
+          label: ''
           attrs: []
           count: 0
           style: graphStyle.forNode()
@@ -45,6 +46,7 @@ angular.module('neo4jApp')
 
         for label, idx in node.labels
           stats.labels[label] ?=
+            label: label
             attrs: Object.keys(node.propertyMap)
             count: 0
             style: graphStyle.forNode(node, idx)
@@ -53,12 +55,14 @@ angular.module('neo4jApp')
 
       for rel in graph.relationships()
         stats.types[''] ?=
+          type: ''
           attrs: []
           count: 0
           style: graphStyle.forRelationship()
         stats.types[''].count++
 
         stats.types[rel.type] ?=
+          type: rel.type
           attrs: Object.keys(rel.propertyMap)
           count: 0
           style: graphStyle.forRelationship(rel)

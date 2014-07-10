@@ -10,39 +10,44 @@ script(id="inspector/graphItem.html", type="text/ng-template")
 script(id="inspector/label.html", type="text/ng-template")
   ul.list-inline
     li.inspector-icon
-      i.fa.fa-eye
-      | Style nodes:
+      .label.label-node.class-name(ng-style='{"background-color": item.style.props.color, "color": item.style.props["text-color-internal"]}') {{item.label || '*'}}
     li.colors
       ul.list-inline
+        li Color:
         li(ng-repeat='scheme in colors')
           a(ng-style='{"background-color": scheme.color}'
             ng-class='{active: scheme.color == item.style.props.color && scheme["border-color"] == item.style.props["border-color"]}'
             ng-click="selectScheme(item, scheme)")
     li.node-sizes
       ul.list-inline
+        li Size:
         li(ng-repeat='size in sizes')
           a(ng-class='{active: sizeLessThan(size.diameter, item.style.props.diameter)}'
             ng-click='selectSize(item, size)')
     li.attributes
-      a.attribute(ng-click='selectCaption(item, "id")') id
-      a.attribute(
-        ng-repeat='property in item.attrs'
-        ng-click='selectCaption(item, property)'
-        ng-bind="property")
+      ul.list-inline
+        li Caption:
+        li
+          a.attribute(ng-click='selectCaption(item, "id")') id
+        li(ng-repeat='property in item.attrs')
+          a.attribute(
+            ng-click='selectCaption(item, property)'
+            ng-bind="property")
 
 script(id="inspector/relationshipType.html", type="text/ng-template")
   ul.list-inline
     li.inspector-icon
-      i.fa.fa-eye
-      | Style relationships:
+      .label.label-relationship.class-name(ng-style='{"background-color": item.style.props.color, "color": item.style.props["text-color-internal"]}') {{item.type  || '*'}}
     li.colors
       ul.list-inline
+        li Color:
         li(ng-repeat='scheme in colors')
           a(ng-style='{"background-color": scheme.color}'
             ng-class='{active: scheme.color == item.style.props.color && scheme["border-color"] == item.style.props["border-color"]}'
             ng-click="selectScheme(item, scheme)")
     li.arrow-widths
       ul.list-inline
+        li Size:
         li(ng-repeat='arrowWidth in arrowWidths')
           a(ng-style='arrowDisplayWidth($index)'
             ng-class='{active: arrowWidth["shaft-width"] == item.style.props["shaft-width"]}'
