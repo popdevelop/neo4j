@@ -1,51 +1,31 @@
-neo.graphView = ->
-  layout = neo.layout.force()
-  style = neo.style()
-  viz = null
-  callbacks = {}
+class neo.graphView
+  constructor: (element, measureSize, graph, @style) ->
+    layout = neo.layout.force()
+    @viz = neo.viz(element, measureSize, graph, layout, @style)
+    @callbacks = {}
+    callbacks = @callbacks
+    @viz.trigger = do ->
+      (event, args...) ->
+        callback.apply(null, args) for callback in (callbacks[event] or [])
 
-  trigger = (event, args...) ->
-    callback.apply(null, args) for callback in (callbacks[event] or [])
-    # TODO: maybe check here if the graphModel is dirty and redraw?
+  on: (event, callback) ->
+    (@callbacks[event] ?= []).push(callback)
+    @
 
-  chart = (selection) ->
-    selection.each (graphModel) ->
-      if not viz
-        viz = neo.viz(@, graphModel, layout, style)
-        viz.trigger = trigger
-      viz.update()
-    return
-
-  chart.on = (event, callback) ->
-    (callbacks[event] ?= []).push(callback)
-    chart
-
-  chart.layout = (value) ->
+  layout: (value) ->
     return layout unless arguments.length
     layout = value
-    chart
+    @
 
-  chart.style = (value) ->
-    return style unless arguments.length
-    style = value
-    chart
+  grass: (value) ->
+    return @style.toSheet() unless arguments.length
+    @style.importGrass(value)
+    @
 
-  chart.grass = (value) ->
-    return style.toSheet() unless arguments.length
-    style.importGrass(value)
-    chart
+  update: ->
+    @viz.update()
+    @
 
-  chart.width = (value) ->
-    return viz.width unless arguments.length
-    chart
-
-  chart.height = (value) ->
-    return viz.height unless arguments.length
-    chart
-
-  chart.update = ->
-    if viz
-      viz.update()
-    chart
-
-  chart
+  resize: ->
+    @viz.resize()
+    @

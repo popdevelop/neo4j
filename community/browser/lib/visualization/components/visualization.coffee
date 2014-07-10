@@ -1,4 +1,4 @@
-neo.viz = (el, graph, layout, style) ->
+neo.viz = (el, measureSize, graph, layout, style) ->
   viz =
     style: style
 
@@ -41,9 +41,6 @@ neo.viz = (el, graph, layout, style) ->
   viz.update = ->
     return unless graph
 
-    height = try parseInt(el.style('height').replace('px', ''))
-    width  = try parseInt(el.style('width').replace('px', ''))
-
     layers = el.selectAll("g.layer").data(["relationships", "nodes"])
 
     layers.enter().append("g")
@@ -81,7 +78,12 @@ neo.viz = (el, graph, layout, style) ->
 
     nodeGroups.exit().remove();
 
-    force.update(graph, [width, height])
+    size = measureSize()
+    force.update(graph, [size.width, size.height])
+
+  viz.resize = ->
+    size = measureSize()
+    force.update(graph, [size.width, size.height])
 
   clickHandler = neo.utils.clickHandler()
   clickHandler.on 'click', onNodeClick
