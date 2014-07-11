@@ -13,16 +13,16 @@ class neo.models.Graph
 
   addNodes: (nodes) =>
     for node in nodes
-      if (@_nodes.indexOf(node) < 0)
+      if !@findNode(node.id)?
+        @nodeMap[node.id] = node
         @_nodes.push(node)
-      @nodeMap[node.id] ||= node
     @
 
   addRelationships: (relationships) =>
     for relationship in relationships
-      if (@_relationships.indexOf(relationship) < 0)
+      if !@findRelationship(relationship.id)?
+        @relationshipMap[relationship.id] = relationship
         @_relationships.push(relationship)
-      @relationshipMap[relationship.id] = relationship
     @
 
   findNode: (id) => @nodeMap[id]
