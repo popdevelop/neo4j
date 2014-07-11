@@ -1,7 +1,7 @@
 script(id="inspector/graphItem.html", type="text/ng-template")
   ul.list-inline
-    li.inspector-pin(ng-style='styleForItem(item)')
-      i.fa.fa-thumb-tack
+    li
+      .label.label-node.class-name(ng-style='styleForItem(item)', ng-bind="item.isNode ? item.labels[0] : item.type")
     li.empty(ng-if='item.propertyList.length == 0') No properties
     li.pair(ng-repeat='property in item.propertyList')
       .key(ng-bind-template="{{property.key}}: ")
