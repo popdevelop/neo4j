@@ -12,5 +12,6 @@ class neo.models.Node
 
   relationshipCount: (graph) ->
     node = @
-    graph.relationships().filter((relationship) ->
-      relationship.source == node or relationship.target == node).length
+    rels = []
+    rels.push[relationship] for relationship in graph.relationships() when relationship.source is node or relationship.target is node
+    rels.length

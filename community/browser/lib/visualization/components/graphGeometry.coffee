@@ -107,9 +107,9 @@ class NeoD3Geometry
         b.relationshipCount(graph) - a.relationshipCount(graph))
 
     for node in sortedNodes
-      relationships = graph.relationships().filter((relationship) ->
-        relationship.source == node or relationship.target == node
-      )
+      relationships = []
+      relationships.push(relationship) for relationship in graph.relationships() when relationship.source is node or relationship.target is node
+
       arrowAngles = { floating: {}, fixed: {} }
       relationshipMap = {}
       for relationship in relationships

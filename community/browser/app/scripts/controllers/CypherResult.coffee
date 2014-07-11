@@ -65,7 +65,9 @@ angular.module('neo4jApp.controllers')
           {plural: 'relationships', singular: 'relationship', verb: 'deleted', field: 'relationship_deleted' }
           {plural: 'relationships', singular: 'relationship', verb: 'created', field: 'relationships_created' }
         ]
-        nonZeroFields = fields.filter((field) -> stats[field.field] > 0)
+        nonZeroFields = []
+        nonZeroFields.push(field) for field in fields when stats[field.field] > 0
+
         messages = ("#{field.verb} #{stats[field.field]} #{if stats[field.field] is 1 then field.singular else field.plural}" for field in nonZeroFields)
         messages.push "returned #{frame.response.table.size} #{if frame.response.table.size is 1 then 'row' else 'rows'}"
         joinedMessages = messages.join(', ')
