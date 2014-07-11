@@ -46,7 +46,7 @@ angular.module('neo4jApp.controllers')
 
       $scope.onItemHover = (item, type) ->
         if item
-          $scope.Inspector.push(inspectorItem(item, type))
+          $scope.Inspector.reset(inspectorItem(item, type))
         else
           $scope.Inspector.reset($scope.currentItem)
 
