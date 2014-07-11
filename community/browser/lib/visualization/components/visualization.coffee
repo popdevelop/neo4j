@@ -45,6 +45,11 @@ neo.viz = (el, measureSize, graph, layout, style) ->
 
     layers = el.selectAll("g.layer").data(["relationships", "nodes"])
 
+    # Background click event
+    el.on('click', ->
+      viz.trigger('canvasClicked', el)
+    )
+
     layers.enter().append("g")
     .attr("class", (d) -> "layer " + d )
 

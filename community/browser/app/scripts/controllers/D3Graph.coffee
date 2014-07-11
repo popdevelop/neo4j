@@ -39,22 +39,21 @@ angular.module('neo4jApp.controllers')
         width: $element.width()
         height: $element.height()
 
-      itemMouseOver = (item) ->
-        if $attrs.onItemMouseOver
-          exp = $parse($attrs.onItemMouseOver)
-          $scope.$apply(->exp($scope, {'$item': item }))
+      attributeHandlerFactory = (attribute) ->
+        (item) ->
+          if $attrs[attribute]
+            exp = $parse($attrs[attribute])
+            $scope.$apply(->exp($scope, {'$item': item }))
 
-      itemMouseOut = (item) ->
-        if $attrs.onItemMouseOut
-          exp = $parse($attrs.onItemMouseOut)
-          $scope.$apply(->exp($scope, {'$item': item }))
+      itemMouseOver = attributeHandlerFactory('onItemMouseOver')
+
+      itemMouseOut = attributeHandlerFactory('onItemMouseOut')
+
+      onCanvasClicked = attributeHandlerFactory('onCanvasClicked')
+
+      selectItem = attributeHandlerFactory('onItemClick')
 
       selectedItem = null
-
-      selectItem = (item) ->
-        if $attrs.onItemClick
-          exp = $parse($attrs.onItemClick)
-          $scope.$apply(->exp($scope, {'$item': item }))
 
       toggleSelection = (d) =>
         if d is selectedItem
@@ -62,7 +61,7 @@ angular.module('neo4jApp.controllers')
           selectedItem = null
         else
           selectedItem?.selected = no
-          d.selected = yes
+          d?.selected = yes
           selectedItem = d
 
         graphView.update()
@@ -117,6 +116,10 @@ angular.module('neo4jApp.controllers')
           .on('nodeMouseOut', itemMouseOut)
           .on('relMouseOver', itemMouseOver)
           .on('relMouseOut', itemMouseOut)
+          .on('canvasClicked', ->
+            toggleSelection(null)
+            onCanvasClicked()
+          )
 
           graphView.resize()
           $rootScope.$broadcast 'graph:changed', graph

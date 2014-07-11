@@ -11,6 +11,7 @@ div(ng-controller="CypherResultCtrl", fullscreen)
               on-item-click='onItemClick($item, "graphItem")'
               on-item-mouse-over='onItemHover($item, "graphItem")'
               on-item-mouse-out='onItemHover()'
+              on-canvas-clicked='onItemClick()'
               ng-controller='D3GraphCtrl'
               style="pointer-events:fill;")
           include partials/inspector
