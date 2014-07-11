@@ -33,6 +33,7 @@ angular.module('neo4jApp.controllers')
     'GraphStyle'
     'CypherGraphModel'
     ($attrs, $element, $parse, $window, $rootScope, $scope, CircularLayout, GraphExplorer, GraphStyle, CypherGraphModel) ->
+      graphView = null
 
       measureSize = ->
         width: $element.width()
@@ -48,6 +49,27 @@ angular.module('neo4jApp.controllers')
           exp = $parse($attrs.onItemMouseOut)
           $scope.$apply(->exp($scope, {'$item': item }))
 
+      selectedItem = null
+
+      selectItem = (item) ->
+        if $attrs.onItemClick
+          exp = $parse($attrs.onItemClick)
+          $scope.$apply(->exp($scope, {'$item': item }))
+
+      toggleSelection = (d) =>
+        if d is selectedItem
+          d.selected = no
+          selectedItem = null
+        else
+          selectedItem?.selected = no
+          d.selected = yes
+          selectedItem = d
+
+        graphView.update()
+        selectItem(selectedItem)
+
+      $rootScope.$on 'layout.changed', (-> graphView?.resize())
+
       @render = (initialGraph) ->
         graph = initialGraph
         return if graph.nodes().length is 0
@@ -62,25 +84,6 @@ angular.module('neo4jApp.controllers')
             return unless val
             graphView.update()
           , true
-
-          selectedItem = null
-
-          selectItem = (item) ->
-            if $attrs.onItemClick
-              exp = $parse($attrs.onItemClick)
-              $scope.$apply(->exp($scope, {'$item': item }))
-
-          toggleSelection = (d) =>
-            if d is selectedItem
-              d.selected = no
-              selectedItem = null
-            else
-              selectedItem?.selected = no
-              d.selected = yes
-              selectedItem = d
-
-            graphView.update()
-            selectItem(selectedItem)
 
           graphView
           .on('nodeClicked', (d) ->
@@ -114,7 +117,6 @@ angular.module('neo4jApp.controllers')
           .on('nodeMouseOut', itemMouseOut)
 
           graphView.resize()
-          $rootScope.$on 'layout.changed', (-> graphView.resize())
           $rootScope.$broadcast 'graph:changed', graph
 
       return @
