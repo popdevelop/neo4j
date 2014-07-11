@@ -57,7 +57,7 @@ angular.module('neo4jApp.controllers')
 
       toggleSelection = (d) =>
         if d is selectedItem
-          d.selected = no
+          d?.selected = no
           selectedItem = null
         else
           selectedItem?.selected = no
