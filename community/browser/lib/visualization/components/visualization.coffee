@@ -16,8 +16,10 @@ neo.viz = (el, measureSize, graph, layout, style) ->
     viz.trigger('relationshipClicked', relationship)
 
   onNodeMouseOver = (node) -> viz.trigger('nodeMouseOver', node)
-
   onNodeMouseOut = (node) -> viz.trigger('nodeMouseOut', node)
+
+  onRelMouseOver = (rel) -> viz.trigger('relMouseOver', rel)
+  onRelMouseOut = (rel) -> viz.trigger('relMouseOut', rel)
 
   render = ->
     geometry.onTick(graph)
@@ -55,6 +57,8 @@ neo.viz = (el, measureSize, graph, layout, style) ->
     relationshipGroups.enter().append("g")
     .attr("class", "relationship")
     .on("click", onRelationshipClick)
+    .on('mouseover', onRelMouseOver)
+    .on('mouseout', onRelMouseOut)
 
     geometry.onGraphChange(graph)
 

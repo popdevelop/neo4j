@@ -115,6 +115,8 @@ angular.module('neo4jApp.controllers')
             )
           .on('nodeMouseOver', itemMouseOver)
           .on('nodeMouseOut', itemMouseOut)
+          .on('relMouseOver', itemMouseOver)
+          .on('relMouseOut', itemMouseOut)
 
           graphView.resize()
           $rootScope.$broadcast 'graph:changed', graph
