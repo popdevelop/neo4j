@@ -19,6 +19,8 @@ indent-hover = 22px
   height: 100%
   .droppable
     user-select: none
+    ul
+      min-height: 8px
   .pane
     position: absolute
     right: 0
@@ -73,11 +75,11 @@ indent-hover = 22px
     font-size: 12px
     line-height: 39px;
     font-size: 13px
-    border-bottom: 1px solid drawer-color-border
     color: #fff
     font-weight: bold
     margin-bottom: 12px
     margin-top: 12px
+    border-bottom: 1px solid drawer-color-border
     &:first-child
       margin-top: 0
     .count
@@ -89,6 +91,9 @@ indent-hover = 22px
       margin: 0
       padding-left: 16px
       cursor: pointer
+      &.folded
+        border-bottom: none
+        margin-bottom: -10px
       .fa-caret-right
         absolute: top 13px left 0px
     .fa-trash-o
@@ -132,6 +137,9 @@ indent-hover = 22px
     li
       background-color: drawer-color-bg
       overflow: hidden
+      &.sortable-placeholder
+        border-radius: 4px
+        height: 29px
       .list-item
         padding: 9px horizontal-padding 0 0
         padding-left: indent-hover
@@ -271,7 +279,7 @@ indent-hover = 22px
       color: #FFF
 
   hr
-    border-top: 1px solid drawer-color-border
+    border-top: 1px dashed lighten(drawer-color-border, 10%)
     margin-top: 13px
     margin-bottom: 1px
 

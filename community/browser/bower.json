@@ -10,7 +10,7 @@
     "angular-local-storage": "latest",
     "angular-ui-bootstrap": "0.11.0",
     "angular-ui-codemirror": "0.1.0",
-    "angular-ui-sortable": "0.0.1",
+    "angular-ui-sortable": "0.12.8",
     "bootstrap": "3.1.1",
     "blob": "latest",
     "codemirror": "3.24.0",
