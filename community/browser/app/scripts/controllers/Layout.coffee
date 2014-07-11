@@ -150,7 +150,8 @@ angular.module('neo4jApp.controllers')
         unless $scope.editor.maximized
           $('#stream').css
             'top': $('.view-editor').height() + $('.file-bar').height()
-      , 200)
+          $scope.$emit 'layout.changed'
+      , 100)
 
       $(window).resize(resizeStream)
 
