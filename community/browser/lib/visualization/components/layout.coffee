@@ -39,7 +39,7 @@ neo.layout = do ->
 
       forceLayout.update = (graph, size) ->
 
-        nodes         = graph.nodes()
+        nodes         = neo.utils.cloneArray(graph.nodes())
         relationships = graph.relationships()
 
         radius = nodes.length * linkDistance / (Math.PI * 2)
