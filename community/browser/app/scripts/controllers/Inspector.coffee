@@ -57,6 +57,12 @@ angular.module('neo4jApp.controllers')
           'color': style.props['text-color-internal']
         }
 
+      $scope.styleForLabel = (label) ->
+        item =
+          labels: [label]
+          isNode: true
+        $scope.styleForItem(item)
+
       $scope.sizeLessThan = (a, b) ->
         a = if a then a.replace('px', '') else 0
         b = if b then b.replace('px', '') else 0
