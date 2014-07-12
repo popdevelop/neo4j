@@ -2,7 +2,7 @@ class NeoD3Geometry
   square = (distance) -> distance * distance
 
   constructor: (@style) ->
-    @relationshipRouting = new neo.utils.circumferentialRelationshipRouting(@style)
+    @relationshipRouting = new neo.utils.pairwiseArcsRelationshipRouting(@style)
 
   addShortenedNextWord = (line, word, measure) ->
     until word.length <= 2
