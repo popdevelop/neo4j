@@ -1,6 +1,7 @@
 neo.viz = (el, measureSize, graph, layout, style) ->
   viz =
     style: style
+    size: measureSize()
 
   el = d3.select(el)
   geometry = new NeoD3Geometry(style)
@@ -87,12 +88,13 @@ neo.viz = (el, measureSize, graph, layout, style) ->
 
     nodeGroups.exit().remove();
 
-    size = measureSize()
-    force.update(graph, [size.width, size.height])
+    force.update(graph, [viz.size.width, viz.size.height])
 
   viz.resize = ->
-    size = measureSize()
-    force.update(graph, [size.width, size.height])
+    newSize = measureSize()
+    unless newSize.width == viz.size.width and newSize.height = viz.size.height
+      viz.size = newSize
+      force.update(graph, [viz.size.width, viz.size.height])
 
   clickHandler = neo.utils.clickHandler()
   clickHandler.on 'click', onNodeClick
