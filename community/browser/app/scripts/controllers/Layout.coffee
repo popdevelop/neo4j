@@ -136,7 +136,7 @@ angular.module('neo4jApp.controllers')
         # else
         #   console.debug(e)
 
-      resizeStream = Utils.debounce((val) ->
+      resizeStream = Utils.debounce((ignored) ->
         unless $scope.editor.maximized
           $('#stream').css
             'top': $('.view-editor').height() + $('.file-bar').height()
