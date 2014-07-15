@@ -36,11 +36,11 @@ angular.module('neo4jApp').run([
       Server.status('?t='+ts).then(
         ->
           $scope.offline = no
-          timer = $timeout(check, Settings.hearbeat)
+          timer = $timeout(check, Settings.heartbeat)
       ,
         ->
           $scope.offline = yes
-          timer = $timeout(check, Settings.hearbeat)
+          timer = $timeout(check, Settings.heartbeat)
       )
     check()
 ])
