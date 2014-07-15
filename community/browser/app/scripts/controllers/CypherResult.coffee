@@ -28,7 +28,6 @@ angular.module('neo4jApp.controllers')
       # available combos:
       # - Graph + Table
       # - Table only
-      # - none
       $scope.availableModes = []
       $scope.availableModes.push('table') if resp.table.size
       $scope.availableModes.push('graph') if resp.table.nodes.length

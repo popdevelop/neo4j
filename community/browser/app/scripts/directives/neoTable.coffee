@@ -61,17 +61,24 @@ angular.module('neo4jApp.directives')
         # (repeat watchers are expensive)
         render = (result) ->
           rows = result.rows()
-          return "" unless rows.length
+          cols = result.columns()
+          return "" unless cols.length
           html  = "<table class='table data'>"
           html += "<thead><tr>"
-          for col in result.columns()
+          for col in cols
             html += "<th>#{col}</th>"
           html += "</tr></thead>"
           html += "<tbody>"
-          for row in rows
+          if rows.length
+            for row in rows
+              html += "<tr>"
+              for cell in row
+                html += '<td>' + cell2html(cell) + '</td>'
+              html += "</tr>"
+          else # empty results
             html += "<tr>"
-            for cell in row
-              html += '<td>' + cell2html(cell) + '</td>'
+            for col in cols
+              html += '<td>&nbsp;</td>'
             html += "</tr>"
           html += "</tbody>"
           html += "</table>"
