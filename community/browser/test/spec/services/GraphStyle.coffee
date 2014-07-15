@@ -69,17 +69,17 @@ node {
 
     it 'should create new rules for labels that have not been seen before', ->
       expect(GraphStyle.forNode(labels: ['Movie']).get('color')).toBe('#A5ABB6')
-      expect(GraphStyle.forNode(labels: ['Person']).get('color')).toBe('#F25A29')
+      expect(GraphStyle.forNode(labels: ['Person']).get('color')).toBe('#68BDF6')
       sheet = GraphStyle.toSheet()
       expect(sheet['node.Movie']['color']).toBe('#A5ABB6')
-      expect(sheet['node.Person']['color']).toBe('#F25A29')
+      expect(sheet['node.Person']['color']).toBe('#68BDF6')
 
     it 'should allocate colors that are not already used by existing rules', ->
       GraphStyle.change({isNode:yes, labels: ['Person']}, {color: '#A5ABB6'})
-      expect(GraphStyle.forNode(labels: ['Movie']).get('color')).toBe('#F25A29')
+      expect(GraphStyle.forNode(labels: ['Movie']).get('color')).toBe('#68BDF6')
       sheet = GraphStyle.toSheet()
       expect(sheet['node.Person']['color']).toBe('#A5ABB6')
-      expect(sheet['node.Movie']['color']).toBe('#F25A29')
+      expect(sheet['node.Movie']['color']).toBe('#68BDF6')
 
     it 'should stick to first default color once all default colors have been exhausted', ->
       for i in [1..GraphStyle.defaultColors().length]

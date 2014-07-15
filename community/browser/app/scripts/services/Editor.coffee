@@ -101,7 +101,7 @@ angular.module('neo4jApp.services')
           @maximized = !!state
 
         saveDocument: ->
-          input = @content
+          input = @content.trim()
           return unless input
           # re-fetch document from collection
           @document = Document.get(@document.id) if @document?.id
