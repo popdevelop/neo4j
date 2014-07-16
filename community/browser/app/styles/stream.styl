@@ -36,6 +36,7 @@
       .view-result
         position: relative
         height: auto
+        minimum-height: middlebar-height
         background: #F8F9FB
         z-index: 10
 
@@ -75,6 +76,17 @@
             margin: 0
             background: none
             border: none
+
+        .view-result-loading
+          .spinner
+            height: 40px
+            position: relative;
+            top: 50%;
+            padding-top: 4px
+            padding-bottom: 4px
+            margin-left: auto
+            margin-right: auto
+            text-align: center
     footer
       position: relative
       padding: 0

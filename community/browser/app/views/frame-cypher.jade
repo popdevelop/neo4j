@@ -26,21 +26,19 @@ div(ng-controller="CypherResultCtrl", fullscreen)
             include partials/result-status
 
 
-        .view-result-error.result(ng-show='frame.detailedErrorText')
+        .view-result-error.result(ng-show='frame.hasErrors')
           pre(ng-bind="frame.detailedErrorText")
           .status-bar.error
             .status
               .fa.fa-exclamation-triangle
               {{frame.errorText}}
 
-
         .view-result-loading(ng-show='frame.isLoading')
-          span
-            .fa.fa-spinner.fa-spin
-            | Executing query...
+          .spinner
+            span.fa.fa-spinner.fa-spin.fa-2x
           .status-bar
             .status
-              span Loading!
+              span Running...
 
 
       //- .status-bar(ng-class='{error: frame.hasErrors, loading: frame.isLoading}')
